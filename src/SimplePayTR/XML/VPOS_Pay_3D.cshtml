@@ -1,0 +1,39 @@
+﻿@{
+    
+    var total = Model.Pay.Total.ToString("N2").Replace(",",".");
+    string time = DateTime.Now.ToString("yyyyMMddHHmmss");
+    
+    var sessionInfo = Guid.NewGuid().ToString("N");
+    var orderId = string.Format("{0}{1}", DateTime.Now.ToString("ddMMyyyyhhmmss"), Model.Pay.ProcessId.ToUpper());
+
+    var expiredate = Model.Pay.ExpireDate.Substring(2, 2) + Model.Pay.ExpireDate.Substring(0, 2);
+
+    string hashstr = Model.Account.uyeno + Model.Pay.CardNumber + expiredate + total + "949" + orderId + sessionInfo + Model.Extra.SuccessUrl + Model.Extra.ErrorUrl + time + Model.Account.xcip;
+    
+    
+
+    System.Security.Cryptography.SHA1 sha = new System.Security.Cryptography.SHA1CryptoServiceProvider();
+    byte[] hashbytes = System.Text.Encoding.ASCII.GetBytes(hashstr);
+    byte[] inputbytes = sha.ComputeHash(hashbytes);
+    String hash = Convert.ToBase64String(inputbytes);
+
+    var successUrl = Model.Extra.SuccessUrl.Replace(Model.Pay.ProcessId, "");
+    var errorUrl = Model.Extra.ErrorUrl.Replace(Model.Pay.ProcessId, "");
+
+} 
+
+<form method="post" action="https://get724.vakifbank.com.tr/Get724/get724uye.aspx">
+
+    <input type="hidden" name="uyeno" value="@Model.Account.uyeno" />
+    <input type="hidden" name="kkno" value="@Model.Pay.CardNumber" />
+    <input type="hidden" name="gectar" value="@expiredate" />
+    <input type="hidden" name="tutar"  value="@(total)" />
+    <input type="hidden" name="dcins" value="949" />
+    <input type="hidden" name="sipbil" value="@orderId" />
+    <input type="hidden" name="sesbil" value="@sessionInfo" />
+    <input type="hidden" name="burl" value="@(successUrl)" />
+    <input type="hidden" name="hurl" value="@(errorUrl)" />
+    <input type="hidden" name="zaman" value="@time" />
+    <input type="hidden" name="ozet" value="@hash" />    
+
+</form>

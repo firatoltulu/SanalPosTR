@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CC5Request>
+  <Name>@(Model.Account.Name)</Name>
+  <Password>@(Model.Account.Password)</Password>
+  <ClientId>@(Model.Account.ClientId)</ClientId>
+  <Mode>P</Mode>
+  <OrderId>@(Model.Pay.ProcessId)</OrderId>
+  <Total>@(Convert.ToDecimal(Model.Pay.Total).ToString("N2").Replace(".","").Replace(",","."))</Total>
+  <Type>Credit</Type>
+  <Currency>949</Currency>
+  <email></email>
+</CC5Request>

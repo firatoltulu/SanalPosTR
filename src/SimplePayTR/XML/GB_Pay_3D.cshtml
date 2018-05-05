@@ -1,0 +1,46 @@
+﻿@{
+    var total = Convert.ToInt32(Convert.ToDecimal(Model.Pay.Total) * 100);
+    var processId = string.Format("{0}_{1}", DateTime.Now.ToString("ddMMyyyyhhmmss"), Model.Pay.ProcessId.ToUpper());
+    var instalment = "";
+
+    var password = string.Format("{0}0{1}", Model.Account.Password, Model.Account.TerminalId);
+    var hashPass = SimplePayTR.Model.GetSHA1(password).ToUpper();
+
+
+    var hashValue = string.Format("{0}{1}{2}{3}{4}{5}{6}{7}{8}", Model.Account.TerminalId, processId, total, Model.Extra.SuccessUrl, Model.Extra.ErrorUrl, "gpdatarequest", instalment, Model.Account.StoreKey, hashPass);
+
+    var newhashValue = SimplePayTR.Model.GetSHA1(hashValue).ToUpper();
+
+    
+}
+
+<form method="post" action="@Model.Extra.Url">
+
+    <input type="hidden" name="mode" value="PROD" />
+    <input type="hidden" name="apiversion" value="v0.01" />
+    <input type="hidden" name="terminalprovuserid" value="@(Model.Account.UserName)" />
+    <input type="hidden" name="terminaluserid" value="@(Model.Account.Id)" />
+    <input type="hidden" name="terminalmerchantid" value="@(Model.Account.MerchantId)" />
+    <input type="hidden" name="txntype" value="gpdatarequest" />
+    <input type="hidden" name="txnsubtype" value="sales" />
+    <input type="hidden" name="txnamount" value="@(total)" />
+    <input type="hidden" name="txncurrencycode" value="949" />
+    <input type="hidden" name="txninstallmentcount" value="@instalment" />
+    <input type="hidden" name="orderid" value="@(processId)" />
+    <input type="hidden" name="terminalid" value="@(Model.Account.TerminalId)" />
+    <input type="hidden" name="successurl" value="@(Model.Extra.SuccessUrl)" />
+    <input type="hidden" name="errorurl" value="@(Model.Extra.ErrorUrl)" />
+    <input type="hidden" name="customeripaddress" value="@(Model.Pay.Ip)" />
+    <input type="hidden" name="customeremailaddress" value="@(Model.Pay.EMail)" />
+
+    <input type="hidden" name="secure3dhash" value="@(newhashValue)" />
+    <input type="hidden" name="secure3dsecuritylevel" value="CUSTOM_PAY" />
+
+    <input type="hidden" name="hashedData" value="@hashValue" />
+    <input type="hidden" name="companyname" value="www.lezzetlihediye.com" />
+    <input type="hidden" name="lang" value="tr" />
+    <input type="hidden" name="txntimestamp" value="@DateTime.Now.ToString()" />
+    <input name="refreshtime" type="hidden" value="5" />
+    <input type="hidden" name="garantipay" value="N" />
+
+</form>

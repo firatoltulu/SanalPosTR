@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CC5Request>
+  <Name>@(Model.Account.Name)</Name>
+  <Password>@(Model.Account.Password)</Password>
+  <ClientId>@(Model.Account.ClientId)</ClientId>
+  <Mode>P</Mode>
+  <OrderId>@(Model.Account.ProcessId)</OrderId>
+  <Type>Auth</Type>
+  <Number>@(Model.Account.CardNumber)</Number>
+  <Total>@(Convert.ToDecimal(Model.Pay.Total).ToString("N2").Replace(".","").Replace(",","."))</Total>
+  <UserId>@(Model.Pay.UserId)</UserId>
+  <Taksit>@(Model.Pay.Installment==1 ? "" : Model.Pay.Installment)</Taksit>
+  <Currency>949</Currency>
+  <IPAddress></IPAddress>
+  <CardholderPresentCode>13</CardholderPresentCode>
+  <Email></Email>
+  <GroupId></GroupId>
+  <TransId></TransId>
+  <PayerTxnId>@Model.Account.PayerTxnId</PayerTxnId>".
+  <PayerSecurityLevel>@Model.Account.PayerSecurityLevel</PayerSecurityLevel>
+  <PayerAuthenticationCode>@Model.Account.PayerAuthenticationCode</PayerAuthenticationCode>
+</CC5Request>
