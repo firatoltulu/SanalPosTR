@@ -46,3 +46,9 @@ public void UseESTPay()
         }
 
 
+Yapılacak:
+
+* Dökümantasyon
+* Eksik Banka entegrasyonları
+* Test Projesinin zenginleştirilmesi
+
