@@ -58,12 +58,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\src\SimplePayTR\SimplePayTR.csproj">
-      <Project>{048a7d7a-d05c-43f8-9adc-0b8174d698ed}</Project>
-      <Name>SimplePayTR</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
