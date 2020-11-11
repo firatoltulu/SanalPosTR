@@ -22,11 +22,23 @@ namespace SimplePayTR.Test
 
             ApplicationBuilder.UseSimplePayTR(ops =>
             {
-                ops.UseZiraat(new ZiraatBankConfiguration()
+                ops.UseZiraat(new NestPayConfiguration()
                 {
                     Name = "testuser",
                     ClientId = "testclient",
-                    Password = "g8YUjec4ZiEamMC",
+                    Password = "testClient",
+                    UseTestEndPoint = true,
+                    SiteFailUrl = "http://x.com/Fail",
+                    SiteSuccessUrl = "http://x.com/Success"
+                });
+
+                ops.UseYKB(new YKBConfiguration()
+                {
+                    MerchantId = "x",
+                    TerminalId = "x",
+                    PosnetId = "x",
+                    UserName = "5558",
+                    Password = "123456",
                     UseTestEndPoint = true,
                     SiteFailUrl = "http://x.com/Fail",
                     SiteSuccessUrl = "http://x.com/Success"

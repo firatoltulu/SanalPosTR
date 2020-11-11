@@ -12,23 +12,55 @@ namespace SimplePayTR.Core.Providers
         public abstract string EmbededDirectory { get; }
 
         public virtual IProviderConfiguration ProviderConfiguration { get; }
+        public Banks CurrentBank { get; set; }
 
         public virtual string GetUrl(bool use3DSecure)
         {
             return string.Empty;
         }
 
+        public virtual string OnCompilingTemplate(ViewModel viewModel, string template)
+        {
+            if (ProviderConfiguration.UseTestEndPoint)
+                viewModel.EnvironmentUrl = SimplePayGlobal.BankTestUrls[CurrentBank];
+            else
+                viewModel.EnvironmentUrl = SimplePayGlobal.BankProdUrls[CurrentBank];
+
+            return StringHelper.PrepaireXML(viewModel, template);
+        }
+
+        public virtual string OnCompilingTemplate(VerifyPaymentModel paymentModel, string template)
+        {
+            var viewModel = new ViewModel
+            {
+                Configuration = ProviderConfiguration,
+                Order = paymentModel.Order,
+                Attributes = paymentModel.Attributes
+            };
+
+            return OnCompilingTemplate(viewModel, template);
+        }
+
         public virtual string OnCompilingTemplate(PaymentModel paymentModel, string template)
         {
-            string viewModel = StringHelper.PrepaireXML(new ViewModel
+            var viewModel = new ViewModel
             {
                 CreditCard = paymentModel.CreditCard,
                 Configuration = ProviderConfiguration,
                 Order = paymentModel.Order,
                 Attributes = paymentModel.Attributes
-            }, template);
+            };
 
-            return viewModel;
+            return OnCompilingTemplate(viewModel, template);
+        }
+
+        public virtual string OnCompilingTemplate(Refund refundModel, string template)
+        {
+            return OnCompilingTemplate(new ViewModel
+            {
+                Configuration = ProviderConfiguration,
+                Refund = refundModel
+            }, template);
         }
 
         public async virtual Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
@@ -37,7 +69,7 @@ namespace SimplePayTR.Core.Providers
             string resource = string.Empty;
 
             if (paymentModel.Use3DSecure)
-                resource = $"{EmbededDirectory}.3D.html";
+                resource = $"{EmbededDirectory}.3D.xml";
             else
                 resource = $"{EmbededDirectory}.Pay.xml";
 
@@ -59,6 +91,7 @@ namespace SimplePayTR.Core.Providers
                     PaymentResult paymentResult = new PaymentResult();
                     paymentResult.IsRedirectContent = true;
                     paymentResult.ServerResponseRaw = viewModel;
+                    paymentResult.Status = true;
 
                     return paymentResult;
                 }
@@ -67,14 +100,31 @@ namespace SimplePayTR.Core.Providers
                 throw new ApplicationException($"{this.GetType().Name} template is empty");
         }
 
-        public virtual Task<PaymentResult> ProcessPayment3DSecure(PaymentModel paymentModel, NameValueCollection collection)
+        public async virtual Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection)
         {
-            return default;
+            var postForm = GetPostForm();
+            var resource = $"{EmbededDirectory}.3DEnd.xml";
+            string embededResource = StringHelper.ReadEmbedResource(resource);
+            string viewModel = OnCompilingTemplate(paymentModel, embededResource);
+            postForm.Content = viewModel;
+
+            HTTPClient httpClient = new HTTPClient(GetUrl(true));
+
+            return await httpClient.Post(postForm, Handler);
         }
 
-        public virtual Task<PaymentResult> ProcessRefound(Refund refund)
+        public virtual async Task<PaymentResult> ProcessRefound(Refund refund)
         {
-            return default;
+            var resource = $"{EmbededDirectory}.Refund.xml";
+
+            string embededResource = StringHelper.ReadEmbedResource(resource);
+            string viewModel = OnCompilingTemplate(refund, embededResource);
+
+            var form = GetPostForm();
+            form.Content = viewModel;
+
+            HTTPClient httpClient = new HTTPClient(GetUrl(false));
+            return await httpClient.Post(form, Handler);
         }
 
         public abstract PostForm GetPostForm();

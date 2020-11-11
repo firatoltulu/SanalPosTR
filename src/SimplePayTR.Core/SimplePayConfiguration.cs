@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePayTR.Core.Configuration;
-using SimplePayTR.Core.Providers;
-using SimplePayTR.Core.Providers.Est;
+using SimplePayTR.Core.Helper;
 using System;
 
 namespace SimplePayTR.Core
@@ -15,23 +14,57 @@ namespace SimplePayTR.Core
             _serviceProvider = serviceProvider;
         }
 
-        public ISimplePayConfiguration UseZiraat(ZiraatBankConfiguration estConfiguration)
+        #region NestPay 
+
+        public ISimplePayConfiguration UseZiraat(NestPayConfiguration configuration)
         {
-            var estConf = (NestPayConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ziraat);
-            mappingConfigurationEst(estConfiguration, estConf);
+            mappingConfigurationNest(Banks.Ziraat, configuration);
             return this;
         }
 
-        private static void mappingConfigurationEst(
-            NestPayConfiguration estConfiguration,
-            NestPayConfiguration estConf)
+        public ISimplePayConfiguration UseAkbank(NestPayConfiguration configuration)
         {
-            estConf.ClientId = estConfiguration.ClientId;
-            estConf.Name = estConfiguration.Name;
-            estConf.Password = estConfiguration.Password;
-            estConf.SiteFailUrl = estConfiguration.SiteFailUrl;
-            estConf.SiteSuccessUrl = estConfiguration.SiteSuccessUrl;
-            estConf.UseTestEndPoint = estConfiguration.UseTestEndPoint;
+            mappingConfigurationNest(Banks.Akbank, configuration);
+            return this;
+        }
+
+        public ISimplePayConfiguration UseIsBank(NestPayConfiguration configuration)
+        {
+            mappingConfigurationNest(Banks.Isbank, configuration);
+            return this;
+        }
+
+        public ISimplePayConfiguration UseFinansBank(NestPayConfiguration configuration)
+        {
+            mappingConfigurationNest(Banks.FinansBank, configuration);
+            return this;
+        }
+
+        public ISimplePayConfiguration UseTEB(NestPayConfiguration configuration)
+        {
+            mappingConfigurationNest(Banks.TEB, configuration);
+            return this;
+        }
+
+        public ISimplePayConfiguration UseAnadolubank(NestPayConfiguration configuration)
+        {
+            mappingConfigurationNest(Banks.Anadolubank, configuration);
+            return this;
+        }
+
+        #endregion
+
+        public ISimplePayConfiguration UseYKB(YKBConfiguration configuration)
+        {
+            var yKBConfiguration = (YKBConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ykb);
+            new MapperOptimized().Copy(configuration, yKBConfiguration);
+            return this;
+        }
+
+        private void mappingConfigurationNest(Banks nestBanks, NestPayConfiguration configuration)
+        {
+            var nestPayConfiguration = (NestPayConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ziraat);
+            new MapperOptimized().Copy(configuration, nestPayConfiguration);
         }
     }
 }

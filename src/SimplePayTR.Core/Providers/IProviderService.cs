@@ -19,7 +19,7 @@ namespace SimplePayTR.Core.Providers
         /// <param name="order"></param>
         /// <param name="collection"></param>
         /// <returns></returns>
-        Task<PaymentResult> ProcessPayment3DSecure(PaymentModel paymentModel, NameValueCollection collection);
+        Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection);
 
         /// <summary>
         /// İade Yap
@@ -28,7 +28,7 @@ namespace SimplePayTR.Core.Providers
         /// <returns></returns>
         Task<PaymentResult> ProcessRefound(Refund refund);
 
-
+        Banks CurrentBank { get; set; }
 
     }
 }

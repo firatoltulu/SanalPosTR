@@ -14,7 +14,7 @@ namespace SimplePayTR
 
         public decimal Comission { get; set; }
 
-        public string CurrencyCode { get; set; }
+        public string CurrencyCode { get; set; } 
 
 
         public int? Installment { get; set; }

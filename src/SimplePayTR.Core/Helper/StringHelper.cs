@@ -45,11 +45,24 @@ namespace SimplePayTR.Core
                     writer.WriteSafeString(value.ToString(new CultureInfo("en-US")));
                 });
 
+                Handlebars.RegisterHelper("formatInstallment", (writer, context, parameters) =>
+                {
+                    var value = Convert.ToInt32(parameters[0]);
+                    if (value < 10)
+                        writer.WriteSafeString($"0{value}");
+                    else
+                        writer.WriteSafeString(value.ToString());
+
+                });
+
                 dynamic values = new ExpandoObject();
 
                 values.Configuration = model.Configuration;
                 values.Order = model.Order;
                 values.CreditCard = model.CreditCard;
+                values.Refund = model.Refund;
+                values.EnvironmentUrl = model.EnvironmentUrl;
+
 
                 if (model.Attributes.Count > 0)
                 {

@@ -167,8 +167,6 @@ namespace SimplePayTR.Network
 
         public Result Pay3D(Request request, System.Collections.Specialized.NameValueCollection collection)
         {
-            
-
             for (int i = 0; i < collection.Count; i++)
             {
                 request.Accounts.Add(collection.GetKey(i), collection[i]);
@@ -185,7 +183,9 @@ namespace SimplePayTR.Network
 
         public bool Check3D(System.Collections.Specialized.NameValueCollection formCollection, Dictionary<string, object> accounts)
         {
-            return true;
+
+
+            
         }
     }
 }

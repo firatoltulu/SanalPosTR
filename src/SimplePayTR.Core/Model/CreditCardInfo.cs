@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace SimplePayTR.Core.Model
 {
@@ -8,7 +6,9 @@ namespace SimplePayTR.Core.Model
     {
         public string CardNumber { get; set; }
 
-        public string ExpireDate { get; set; }
+        public string ExpireMonth { get; set; }
+
+        public string ExpireYear { get; set; }
 
         public string CVV2 { get; set; }
 

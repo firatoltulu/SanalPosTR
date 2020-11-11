@@ -10,7 +10,7 @@
   <OrderId>{{ Order.OrderId }}</OrderId>
   
   <Number>{{  CreditCard.CardNumber}}</Number>
-  <Expires>{{ CreditCard.ExpireDate }}</Expires>
+  <Expires>{{CreditCard.ExpireMonth}}/{{CreditCard.ExpireYear}}</Expires>
   <Cvv2Val>{{ CreditCard.CVV2}}</Cvv2Val>
   
   <Total> {{formatMoneyUS Order.Total}}</Total>

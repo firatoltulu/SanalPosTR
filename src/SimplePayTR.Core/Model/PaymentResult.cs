@@ -1,5 +1,7 @@
 ﻿namespace SimplePayTR
 {
+
+
     public class PaymentResult
     {
         public bool Status { get; set; }

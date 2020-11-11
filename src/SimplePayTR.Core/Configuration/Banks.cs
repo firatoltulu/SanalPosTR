@@ -1,4 +1,4 @@
-﻿namespace SimplePayTR.Core.Providers
+﻿namespace SimplePayTR.Core
 {
     public enum Banks
     {
@@ -9,6 +9,8 @@
         Isbank,
         DenizBank,
         VakifBank,
-        FinansBank
+        FinansBank,
+        Anadolubank,
+        TEB
     }
 }

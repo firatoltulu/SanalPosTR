@@ -5,21 +5,52 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Providers\NestPay\Resources\3D.html" />
-    <None Remove="Providers\NestPay\Resources\3DEnd.xml" />
-    <None Remove="Providers\NestPay\Resources\Pay.xml" />
+    <Compile Remove="Configuration\Banks\**" />
+    <EmbeddedResource Remove="Configuration\Banks\**" />
+    <None Remove="Configuration\Banks\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Banks\AkbankBank.cs" />
+    <Compile Remove="Banks\ZiraatBank.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Providers\NestPay\Resources\3D.xml" />
+    <None Remove="Providers\NestPay\Resources\3DEnd.xml" />
+    <None Remove="Providers\NestPay\Resources\Pay.xml" />
+    <None Remove="Providers\NestPay\Resources\Refund.xml" />
+    <None Remove="Providers\YKB\Resources\3D.xml" />
+    <None Remove="Providers\YKB\Resources\3DEnd.xml" />
+    <None Remove="Providers\YKB\Resources\3D_before.xml" />
+    <None Remove="Providers\YKB\Resources\Pay.xml" />
+    <None Remove="Providers\YKB\Resources\Refund.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Providers\NestPay\Resources\Refund.xml" />
     <EmbeddedResource Include="Providers\NestPay\Resources\Pay.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Providers\NestPay\Resources\3D.html">
+    <EmbeddedResource Include="Providers\NestPay\Resources\3D.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Providers\NestPay\Resources\3DEnd.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\Pay.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\3D.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\3D_before.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\3DEnd.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\Refund.xml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +59,10 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="RestSharp" Version="106.11.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Banks\" />
   </ItemGroup>
 
 </Project>

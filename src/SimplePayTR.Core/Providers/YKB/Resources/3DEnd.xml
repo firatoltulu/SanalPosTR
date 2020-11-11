@@ -1,0 +1,8 @@
+﻿<posnetRequest>
+  <mid>{{ Configuration.MerchantId }}</mid>
+  <tid>{{ Configuration.TerminalId }}</tid>
+  <oosTranData>
+    <bankData>{{BankPacket}}</bankData>
+    <wpAmount>0</wpAmount>
+  </oosTranData>
+</posnetRequest>

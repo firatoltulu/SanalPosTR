@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SimplePayTR.Core.Helper;
+using System.Collections.Generic;
 
 namespace SimplePayTR.Core.Model
 {
@@ -10,7 +11,12 @@ namespace SimplePayTR.Core.Model
 
         public bool Use3DSecure { get; set; }
 
-        public PaymentModel Clone() => (PaymentModel)this.MemberwiseClone();
+        public PaymentModel Clone()
+        {
+            var target = new PaymentModel();
+            new MapperOptimized().Copy(this, target);
+            return target;
+        }
 
         public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
     }
