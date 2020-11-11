@@ -15,18 +15,23 @@ namespace SimplePayTR.Core
             _serviceProvider = serviceProvider;
         }
 
-        public ISimplePayConfiguration UseEst(EstConfiguration estConfiguration)
+        public ISimplePayConfiguration UseZiraat(ZiraatBankConfiguration estConfiguration)
         {
-            var estConf = (EstConfiguration)_serviceProvider.GetRequiredService<Func<ProviderTypes, IProviderConfiguration>>()(ProviderTypes.Est);
+            var estConf = (NestPayConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ziraat);
+            mappingConfigurationEst(estConfiguration, estConf);
+            return this;
+        }
 
+        private static void mappingConfigurationEst(
+            NestPayConfiguration estConfiguration,
+            NestPayConfiguration estConf)
+        {
             estConf.ClientId = estConfiguration.ClientId;
-            estConf.Endpoint = estConfiguration.Endpoint;
             estConf.Name = estConfiguration.Name;
             estConf.Password = estConfiguration.Password;
             estConf.SiteFailUrl = estConfiguration.SiteFailUrl;
             estConf.SiteSuccessUrl = estConfiguration.SiteSuccessUrl;
-
-            return this;
+            estConf.UseTestEndPoint = estConfiguration.UseTestEndPoint;
         }
     }
 }

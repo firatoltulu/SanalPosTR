@@ -7,7 +7,7 @@ namespace SimplePayTR.Core
 {
     public static class SimplePayApplicationCollectionExtension
     {
-        public static IApplicationBuilder UseSimplePay(
+        public static IApplicationBuilder UseSimplePayTR(
                 this IApplicationBuilder app,
                 Action<ISimplePayConfiguration> options)
         {

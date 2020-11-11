@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CC5Request>
+  <Name>    {{ Configuration.Name }}</Name>
+  <Password>{{Configuration.Password }}</Password>
+  <ClientId>{{Configuration.ClientId }}</ClientId>
+  <Mode>{{ Configuration.Mode }}</Mode>
+  <OrderId>{{OrderId}}</OrderId>
+  <Type>{{ Configuration.Type }}</Type>
+  
+  <Number>{{CardNumber}}</Number>
+
+  <Total> {{formatMoneyUS Order.Total}}</Total>
+
+  {{#if Order.Installment }}
+  <Taksit>{{ Order.Installment }}</Taksit>
+  {{else}}
+
+  <Taksit></Taksit>
+
+  {{/if}}
+
+  <Currency>{{ Order.CurrencyCode }}</Currency>
+  <UserId>{{  Order.UserId }}</UserId>
+  <IPAddress></IPAddress>
+  <CardholderPresentCode>13</CardholderPresentCode>
+  <Email></Email>
+  <GroupId></GroupId>
+  <TransId></TransId>
+  <PayerTxnId>{{ PayerTxnId }}</PayerTxnId>".
+  <PayerSecurityLevel>{{ PayerSecurityLevel }}</PayerSecurityLevel>
+  <PayerAuthenticationCode>{{ PayerAuthenticationCode }}</PayerAuthenticationCode>
+</CC5Request>

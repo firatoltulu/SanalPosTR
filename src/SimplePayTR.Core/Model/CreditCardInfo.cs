@@ -12,8 +12,8 @@ namespace SimplePayTR.Core.Model
 
         public string CVV2 { get; set; }
 
-        public string FullName { get; set; }
+        public string CardHolderName { get; set; }
 
-        public List<Attribute> Attributes { get; set; } = new List<Attribute>();
+        public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
     }
 }

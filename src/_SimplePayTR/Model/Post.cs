@@ -18,7 +18,6 @@ namespace SimplePayTR
 
         public DataFormat RequestFormat { get; set; }
 
-        public string ContentType { get; set; }
 
         public string PreTag { get; set; }
 

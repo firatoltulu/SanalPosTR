@@ -5,9 +5,29 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Providers\NestPay\Resources\3D.html" />
+    <None Remove="Providers\NestPay\Resources\3DEnd.xml" />
+    <None Remove="Providers\NestPay\Resources\Pay.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Providers\NestPay\Resources\Pay.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\NestPay\Resources\3D.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\NestPay\Resources\3DEnd.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Handlebars.Net" Version="1.11.5" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
   </ItemGroup>
 
 </Project>

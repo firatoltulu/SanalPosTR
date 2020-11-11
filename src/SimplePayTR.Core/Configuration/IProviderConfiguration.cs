@@ -2,6 +2,6 @@
 {
     public interface IProviderConfiguration
     {
-        string Endpoint { get; set; }
+        bool UseTestEndPoint { get; set; }
     }
 }

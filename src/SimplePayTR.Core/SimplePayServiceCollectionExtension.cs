@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Providers;
-using SimplePayTR.Core.Providers.Est;
 using System;
+using System.Text;
 
 namespace SimplePayTR.Core
 {
@@ -10,33 +10,31 @@ namespace SimplePayTR.Core
     {
         public static IServiceCollection AddSimplePayTR(this IServiceCollection services)
         {
-            services.AddScoped<EstProviderService>();
-            services.AddScoped<EstConfiguration>();
+            services.AddScoped<ZiraatBankService>();
+            services.AddScoped<AkbankBankService>();
 
-            services.AddTransient<Func<ProviderTypes, IProviderService>>(serviceProvider => key =>
+            services.AddScoped<ZiraatBankConfiguration>();
+            services.AddScoped<AkbankConfiguration>();
+
+            services.AddTransient<ISimplePayConfiguration, SimplePayConfiguration>();
+
+            services.AddTransient<Func<Banks, IProviderService>>(serviceProvider => key =>
             {
-                switch (key)
-                {
-                    case ProviderTypes.Est:
-                        return serviceProvider.GetService<EstProviderService>();
-
-                    default:
-                        return null;
-                }
+                var provider = SimplePayGlobal.BankProviders[key];
+                var instance = (IProviderService)serviceProvider.GetService(provider);
+                return instance;
             });
 
-
-            services.AddTransient<Func<ProviderTypes, IProviderConfiguration>>(serviceProvider => key =>
+            services.AddTransient<Func<Banks, IProviderConfiguration>>(serviceProvider => key =>
             {
-                switch (key)
-                {
-                    case ProviderTypes.Est:
-                        return serviceProvider.GetService<EstConfiguration>();
+                var provider = SimplePayGlobal.BankConfiguration[key];
+                var instance = (IProviderConfiguration)serviceProvider.GetService(provider);
 
-                    default:
-                        return null;
-                }
+                return instance;
             });
+
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+
 
             return services;
         }

@@ -2,7 +2,7 @@
 
 namespace SimplePayTR
 {
-    public class Order
+    public class OrderInfo
     {
         public string OrderId { get; set; }
 
@@ -14,14 +14,15 @@ namespace SimplePayTR
 
         public decimal Comission { get; set; }
 
-        public int Installment { get; set; }
+        public string CurrencyCode { get; set; }
 
-        public bool Use3DSecure { get; set; }
 
-        public List<Attribute> Attributes { get; set; } = new List<Attribute>();
+        public int? Installment { get; set; }
+
+
     }
 
-    public partial class Attribute
+    public partial class SimplePayAttribute
     {
         public string Key { get; set; }
         public string Value { get; set; }

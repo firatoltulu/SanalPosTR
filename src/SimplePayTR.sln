@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePayTR.Core", "SimplePayTR.Core\SimplePayTR.Core.csproj", "{FE486C96-CDE2-414C-94F3-A103737C517B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePayTR.Test", "SimplePayTR.Test\SimplePayTR.Test.csproj", "{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old_SimplePayTR", "_SimplePayTR\Old_SimplePayTR.csproj", "{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{FE486C96-CDE2-414C-94F3-A103737C517B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE486C96-CDE2-414C-94F3-A103737C517B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE486C96-CDE2-414C-94F3-A103737C517B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

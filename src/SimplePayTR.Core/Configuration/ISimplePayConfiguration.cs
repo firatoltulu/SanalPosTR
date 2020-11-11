@@ -4,6 +4,6 @@ namespace SimplePayTR.Core.Configuration
 {
     public interface ISimplePayConfiguration
     {
-        ISimplePayConfiguration UseEst(EstConfiguration estConfiguration);
+        ISimplePayConfiguration UseZiraat(ZiraatBankConfiguration estConfiguration);
     }
 }

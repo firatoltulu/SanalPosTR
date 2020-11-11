@@ -11,7 +11,7 @@ namespace SimplePayTR.Core.Providers
         /// </summary>
         /// <param name="order"></param>
         /// <returns></returns>
-        Task<PaymentResult> ProcessPayment(Order order);
+        Task<PaymentResult> ProcessPayment(PaymentModel paymentModel);
 
         /// <summary>
         /// 3D ile Onaylanmış Ödemeyi Al
@@ -19,7 +19,7 @@ namespace SimplePayTR.Core.Providers
         /// <param name="order"></param>
         /// <param name="collection"></param>
         /// <returns></returns>
-        Task<PaymentResult> ProcessPayment3DSecure(Order order, NameValueCollection collection);
+        Task<PaymentResult> ProcessPayment3DSecure(PaymentModel paymentModel, NameValueCollection collection);
 
         /// <summary>
         /// İade Yap
@@ -27,5 +27,8 @@ namespace SimplePayTR.Core.Providers
         /// <param name="refund"></param>
         /// <returns></returns>
         Task<PaymentResult> ProcessRefound(Refund refund);
+
+
+
     }
 }
