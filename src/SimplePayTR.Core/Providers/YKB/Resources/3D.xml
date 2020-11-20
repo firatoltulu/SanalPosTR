@@ -1,4 +1,4 @@
-﻿<form method="post" action="{{EnvironmentUrl}}/3DSWebService/YKBPaymentService">
+﻿<form id="simplepaytr" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
     <input name="mid" type="hidden" id="mid" value="{{ Configuration.MerchantId }}" />
     <input name="posnetID" type="hidden" id="PosnetID" value="{{ Configuration.PosnetId }}" />
 

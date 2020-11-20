@@ -9,35 +9,34 @@ namespace SimplePayTR.Core
 {
     internal static class SimplePayGlobal
     {
-        public static Dictionary<Banks, Type> BankProviders = new Dictionary<Banks, Type>
+        public static Dictionary<BankTypes, Type> BankProviders = new Dictionary<BankTypes, Type>
         {
-            { Banks.Ziraat, typeof(NestPayProviderService)},
-            { Banks.Akbank, typeof(NestPayProviderService) },
-            { Banks.FinansBank, typeof(NestPayProviderService) },
-            { Banks.Isbank, typeof(NestPayProviderService) },
-            { Banks.Ykb, typeof(YKBProviderServices) },
+            { BankTypes.Ziraat, typeof(NestPayProviderService)},
+            { BankTypes.Akbank, typeof(NestPayProviderService) },
+            { BankTypes.FinansBank, typeof(NestPayProviderService) },
+            { BankTypes.Isbank, typeof(NestPayProviderService) },
+            { BankTypes.Ykb, typeof(YKBProviderServices) },
         };
 
-        public static Dictionary<Banks, Type> BankConfiguration = new Dictionary<Banks, Type>
+        public static Dictionary<BankTypes, IProviderConfiguration> BankConfiguration = new Dictionary<BankTypes, IProviderConfiguration>
         {
-            { Banks.Ziraat, typeof(NestPayConfiguration)},
-            { Banks.Akbank, typeof(NestPayConfiguration) },
-            { Banks.FinansBank, typeof(NestPayConfiguration) },
-            { Banks.Isbank, typeof(NestPayConfiguration) },
-            { Banks.Ykb, typeof(YKBConfiguration) },
-
+            { BankTypes.Ziraat, new NestPayConfiguration()},
+            { BankTypes.Akbank,  new NestPayConfiguration() },
+            { BankTypes.FinansBank,  new NestPayConfiguration() },
+            { BankTypes.Isbank,  new NestPayConfiguration() },
+            { BankTypes.Ykb,  new YKBConfiguration() },
         };
 
-        public static Dictionary<Banks, string> BankTestUrls = new Dictionary<Banks, string>
+        public static Dictionary<BankTypes, IEnvironmentConfiguration> BankTestUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
         {
-            { Banks.Ziraat, "https://sanalpos2.ziraatbank.com.tr"},
-            {Banks.Ykb,"https://setmpos.ykb.com" }
+            {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } }
         };
 
-        public static Dictionary<Banks, string> BankProdUrls = new Dictionary<Banks, string>
+        public static Dictionary<BankTypes, IEnvironmentConfiguration> BankProdUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
         {
-            { Banks.Ziraat, "https://sanalpos.ziraatbank.com.tr"},
-            { Banks.Ykb, "https://postnet.ykb.com.tr"},
+            {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.ziraatbank.com.tr" } },
+            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://postnet.ykb.com.tr" } }
         };
 
 

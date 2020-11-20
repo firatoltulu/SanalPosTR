@@ -45,6 +45,12 @@ namespace SimplePayTR.Core
                     writer.WriteSafeString(value.ToString(new CultureInfo("en-US")));
                 });
 
+                Handlebars.RegisterHelper("formatMoneyWithoutDecimal", (writer, context, parameters) =>
+                {
+                    var value = Convert.ToDouble(parameters[0]);
+                    writer.WriteSafeString(value.ToString("0",new CultureInfo("en-US")));
+                });
+
                 Handlebars.RegisterHelper("formatInstallment", (writer, context, parameters) =>
                 {
                     var value = Convert.ToInt32(parameters[0]);
@@ -61,7 +67,7 @@ namespace SimplePayTR.Core
                 values.Order = model.Order;
                 values.CreditCard = model.CreditCard;
                 values.Refund = model.Refund;
-                values.EnvironmentUrl = model.EnvironmentUrl;
+                values.Environment = model.Environment;
 
 
                 if (model.Attributes.Count > 0)

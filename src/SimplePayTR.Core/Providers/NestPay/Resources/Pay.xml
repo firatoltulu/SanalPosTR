@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CC5Request>
-  <Name>    {{ Configuration.Name }}</Name>
+  <Name>{{ Configuration.Name }}</Name>
   <Password>{{Configuration.Password }}</Password>
   <ClientId>{{Configuration.ClientId }}</ClientId>
   <Mode>{{ Configuration.Mode }}</Mode>

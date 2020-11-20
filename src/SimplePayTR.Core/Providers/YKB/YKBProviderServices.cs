@@ -1,8 +1,12 @@
-﻿using SimplePayTR.Core.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using SimplePayTR.Core.Configuration;
+using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
 using System;
-using System.Collections.Specialized;
+using System.Globalization;
+using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SimplePayTR.Core.Providers.Ykb
 {
@@ -23,16 +27,13 @@ namespace SimplePayTR.Core.Providers.Ykb
             public string ErrorCode { get; set; }
         }
 
-        private YKBConfiguration _ykbConfiguration;
-
-        public YKBProviderServices(Func<Banks, IProviderConfiguration> ziraatConfiguration) : base()
+        public YKBProviderServices(Func<BankTypes, IProviderConfiguration> ziraatConfiguration) : base()
         {
-            _ykbConfiguration = (YKBConfiguration)ziraatConfiguration(Banks.Ykb);
         }
 
         #region Base
 
-        public override IProviderConfiguration ProviderConfiguration => _ykbConfiguration;
+        public override IProviderConfiguration ProviderConfiguration => SimplePayGlobal.BankConfiguration[BankTypes.Ykb];
         public override string EmbededDirectory => "YKB.Resources";
 
         public override PostForm GetPostForm()
@@ -45,24 +46,6 @@ namespace SimplePayTR.Core.Providers.Ykb
             return postForm;
         }
 
-        public override string GetUrl(bool use3DSecure)
-        {
-            if (use3DSecure == false)
-            {
-                if (_ykbConfiguration.UseTestEndPoint)
-                    return $"{SimplePayGlobal.BankTestUrls[Banks.Ykb]}/PosnetWebService/XML";
-                else
-                    return $"{SimplePayGlobal.BankProdUrls[Banks.Ykb]}/3DSWebService/YKBPaymentService";
-            }
-            else
-            {
-                if (_ykbConfiguration.UseTestEndPoint)
-                    return $"{SimplePayGlobal.BankTestUrls[Banks.Ykb]}/PosnetWebService/XML";
-                else
-                    return $"{SimplePayGlobal.BankProdUrls[Banks.Ykb]}/3DSWebService/YKBPaymentService";
-            }
-        }
-
         #endregion Base
 
         #region Pay
@@ -71,7 +54,7 @@ namespace SimplePayTR.Core.Providers.Ykb
         {
             var cloneObj = paymentModel.Clone();
 
-            string orderId = paymentModel.Order.OrderId.PadLeft(paymentModel.Use3DSecure ? 20 : 24, '0');
+            string orderId = cloneObj.Order.OrderId.PadLeft(cloneObj.Use3DSecure ? 20 : 24, '0');
 
             if (cloneObj.Order.Installment.HasValue && (cloneObj.Order.Installment == 1 || cloneObj.Order.Installment == 0))
                 cloneObj.Order.Installment = null;
@@ -79,7 +62,10 @@ namespace SimplePayTR.Core.Providers.Ykb
             cloneObj.Order.Total *= 100;
             cloneObj.Order.OrderId = orderId;
 
-            if (paymentModel.Use3DSecure)
+            if (cloneObj.Order.CurrencyCode.IsEmpty())
+                cloneObj.Order.CurrencyCode = "TL";
+
+            if (cloneObj.Use3DSecure)
             {
                 string template = StringHelper.ReadEmbedResource($"{EmbededDirectory}.3D_before.xml");
                 string postData = StringHelper.PrepaireXML(new ViewModel
@@ -93,8 +79,8 @@ namespace SimplePayTR.Core.Providers.Ykb
                 var post = GetPostForm();
                 post.Content = postData;
 
-                HTTPClient client = new HTTPClient(GetUrl(true));
-                var result = await client.Post(post, Handler3D);
+                HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
+                var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler3D);
 
                 if (result.Status)
                 {
@@ -116,17 +102,25 @@ namespace SimplePayTR.Core.Providers.Ykb
             return await base.ProcessPayment(cloneObj);
         }
 
-        public async override Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection)
+        public async override Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
-            if (Validate3D(paymentModel, collection))
-            {
-                for (int i = 0; i < collection.Count; i++)
-                    paymentModel.Attributes.Add(new SimplePayAttribute { Key = collection.GetKey(i), Value = collection[i] });
+            foreach (var item in collection)
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = item.Key.ToLower(), Value = item.Value });
 
+            var validateResult = await Validate3D(paymentModel, collection);
+            if (validateResult.Status)
+            {
                 return await base.VerifyPayment(paymentModel, collection);
             }
             else
-                throw new ApplicationException("İmza Doğrulanamadı");
+            {
+                return new PaymentResult()
+                {
+                    Status = false,
+                    Error = validateResult.Error,
+                    ErrorCode = validateResult.ErrorCode
+                };
+            }
         }
 
         public override Task<PaymentResult> ProcessRefound(Refund refund)
@@ -138,12 +132,41 @@ namespace SimplePayTR.Core.Providers.Ykb
             return base.ProcessRefound(cloneObj);
         }
 
-        private bool Validate3D(VerifyPaymentModel paymentModel, NameValueCollection collection)
+        private async Task<PaymentResult> Validate3D(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
-            string xid = collection.Get("Xid");
-            var amount = Convert.ToDecimal(collection.Get("Amount")) / 100M;
+            var config = (YKBConfiguration)ProviderConfiguration;
 
-            return paymentModel.Order.Total == amount && paymentModel.Order.OrderId == xid;
+            string encKey = config.HashKey;
+
+            string xid = collection["Xid"];
+            var amount = (decimal.Parse(collection["Amount"], new CultureInfo("tr-TR")) * 100).ToString("0", new CultureInfo("en-US"));
+            string firstHash = HashHelper.GetSHA256(encKey + ';' + config.TerminalId);
+            string mac = HashHelper.GetSHA256(xid + ';' + amount + ';' + paymentModel.Order.CurrencyCode + ';' + config.MerchantId + ';' + firstHash);
+
+            paymentModel.Attributes.Add(new SimplePayAttribute { Key = "mac", Value = mac });
+
+            string template = StringHelper.ReadEmbedResource($"{EmbededDirectory}.3D_Resolve.xml");
+            string postData = StringHelper.PrepaireXML(new ViewModel
+            {
+                Use3DSecure = true,
+                Configuration = ProviderConfiguration,
+                Attributes = paymentModel.Attributes
+            }, template);
+
+            var post = GetPostForm();
+            post.Content = System.Net.WebUtility.UrlEncode(postData);
+
+            HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
+            var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler);
+
+            if (StringHelper.GetInlineContent(result.ServerResponseRaw, "mdStatus") != "1")
+            {
+                result.Status = false;
+                result.ErrorCode = StringHelper.GetInlineContent("mdErrorMessage", result.ServerResponseRaw);
+            }
+                
+
+            return result;
         }
 
         #endregion Pay

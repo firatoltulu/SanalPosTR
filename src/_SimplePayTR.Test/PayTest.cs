@@ -1,5 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace SimplePayTR.Test
 {
@@ -9,39 +12,21 @@ namespace SimplePayTR.Test
         [TestMethod]
         public void UseESTPay()
         {
-            var jsonPay = "{\"ClientId\":\"X\",\"Name\":\"x\",\"Password\":\"x\",\"StoreKey\":\"x\"}";
-            Dictionary<string, object> accounts = new Dictionary<string, object>();
+            string text = "19031500648276583200http://localhost:50063/api/simplePay/Successhttp://localhost:50063/api/simplePay/fail0DB3820DA0744AFD931F84099898As";
 
-            var pos = new Gateway(NetworkType.EST);
-            Request payRequest = new Request
-            {
-                Url = "https://www.sanalakpos.com/servlet/",
-                Accounts = accounts,
-                SuccessUrl = string.Format("https://{0}/Integration/Success/{1}", "www.lezzetlihediye.com", 1),
-                ErrorUrl = string.Format("https://{0}/Integration/Error/{1}", "www.lezzetlihediye.com", 1),
-                Is3D = true,
-                Pos = new RequestPos
-                {
-                    CardNumber = "4022....1287",
-                    Comission = 0,
-                    CVV2 = "888",
-                    EMail = "",
-                    ExpireDate = "0925",
-                    FullName = "FIRAT OLTULU",
-                    Installment = 0,
-                    Ip = ":::1",
-                    ProcessId = "1",
-                    Total = 10,
-                    UserId = "ECommerce3D"
-                }
-            };
+            Encoding UE = Encoding.GetEncoding("ISO-8859-9");
+            byte[] hashValue;
+            byte[] message = UE.GetBytes(text);
 
-            var tAccounts = Newtonsoft.Json.JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonPay);
-            foreach (var item in tAccounts)
-            {
-                accounts.Add(item.Key, item.Value);
-            }
-            var result = pos.Pay(payRequest);
+            SHA1Managed hashString = new SHA1Managed();
+            string hex = "";
+
+            hashValue = hashString.ComputeHash(message);
+
+            var result = Convert.ToBase64String(hashValue);
+
+            Assert.AreEqual("EDieUdFmY4RilJ306HpeNU8f50w=", result);
+
         }
     }
 }

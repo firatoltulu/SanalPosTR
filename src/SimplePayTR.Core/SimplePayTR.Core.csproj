@@ -23,6 +23,7 @@
     <None Remove="Providers\YKB\Resources\3D.xml" />
     <None Remove="Providers\YKB\Resources\3DEnd.xml" />
     <None Remove="Providers\YKB\Resources\3D_before.xml" />
+    <None Remove="Providers\YKB\Resources\3D_Resolve.xml" />
     <None Remove="Providers\YKB\Resources\Pay.xml" />
     <None Remove="Providers\YKB\Resources\Refund.xml" />
   </ItemGroup>
@@ -36,6 +37,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Providers\NestPay\Resources\3DEnd.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\YKB\Resources\3D_Resolve.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Providers\YKB\Resources\Pay.xml">

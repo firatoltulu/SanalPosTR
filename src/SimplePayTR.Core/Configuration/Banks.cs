@@ -1,6 +1,6 @@
 ﻿namespace SimplePayTR.Core
 {
-    public enum Banks
+    public enum BankTypes
     {
         Ziraat,
         Garanti,

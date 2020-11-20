@@ -40,10 +40,11 @@ namespace SimplePayTR.Test.Providers
         [TestCaseSource("_paymentModelData")]
         public async Task YKBServiceTest_ProcessPayment(IEnumerable<PaymentModel> paymentModels)
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _ykbService = providerService(Banks.Ykb);
-
-            var serverResponse = await _ykbService.ProcessPayment(paymentModels.FirstOrDefault());
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _ykbService = providerService(BankTypes.Ykb);
+            var model = paymentModels.FirstOrDefault();
+            model.Order.OrderId = new Random().Next(10000, 999999).ToString();
+            var serverResponse = await _ykbService.ProcessPayment(model);
 
             Assert.IsTrue(serverResponse.Status, serverResponse.ErrorCode);
         }
@@ -51,8 +52,8 @@ namespace SimplePayTR.Test.Providers
         [TestCaseSource("_paymentModelData")]
         public async Task YKBServiceTest_ProcessPaymentWith3D(IEnumerable<PaymentModel> paymentModels)
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _ykbService = providerService(Banks.Ykb);
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _ykbService = providerService(BankTypes.Ykb);
             var _paymentModel = paymentModels.FirstOrDefault();
 
             _paymentModel.Use3DSecure = true;
@@ -65,8 +66,8 @@ namespace SimplePayTR.Test.Providers
         [Test]
         public async Task YKBServiceTest_Refund()
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _ykbService = providerService(Banks.Ykb);
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _ykbService = providerService(BankTypes.Ykb);
             var serverResponse = await _ykbService.ProcessRefound(new Refund
             {
                 OrderId = "1".PadLeft(24, '0'),

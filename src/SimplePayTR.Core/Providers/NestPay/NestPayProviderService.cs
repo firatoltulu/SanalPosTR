@@ -1,7 +1,8 @@
-﻿using SimplePayTR.Core.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using SimplePayTR.Core.Configuration;
+using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
 using System;
-using System.Collections.Specialized;
 using System.Globalization;
 using System.Threading.Tasks;
 
@@ -9,31 +10,33 @@ namespace SimplePayTR.Core.Providers.Est
 {
     public class NestPayProviderService : BaseProviderService, IProviderService
     {
-        private NestPayConfiguration _nestPayConfiguration;
-
-        public NestPayProviderService(Func<Banks, IProviderConfiguration> ziraatConfiguration) : base()
+        public NestPayProviderService(Func<BankTypes, IProviderConfiguration> ziraatConfiguration) : base()
         {
-            _nestPayConfiguration = (NestPayConfiguration)ziraatConfiguration(CurrentBank);
         }
 
         #region Base
 
-        public override IProviderConfiguration ProviderConfiguration => _nestPayConfiguration;
+        public override IProviderConfiguration ProviderConfiguration => SimplePayGlobal.BankConfiguration[CurrentBank];
 
         public override string OnCompilingTemplate(PaymentModel paymentModel, string template)
         {
             if (paymentModel.Use3DSecure)
             {
                 var nestConf = (NestPayConfiguration)ProviderConfiguration;
-                var rnd = new Random().Next(100000, 9999999);
+                var rnd = Guid.NewGuid().ToString("N").Substring(0, 20).ToUpper();
+                var installment = (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0)) ? "" : paymentModel.Order.Installment.ToString();
+                var amount = paymentModel.Order.Total.ToString(new CultureInfo("en-US"));
+
                 var hashStr = string.Concat(
                                 nestConf.ClientId,
                                 paymentModel.Order.OrderId,
-                                paymentModel.Order.Total.ToString(new CultureInfo("en-US")),
+                                amount,
                                 nestConf.SiteSuccessUrl,
                                 nestConf.SiteFailUrl,
                                 nestConf.Type,
-                                paymentModel.Order.Installment ?? null, rnd, nestConf.HashKey
+                                installment,
+                                rnd,
+                                nestConf.HashKey
                             );
 
                 paymentModel.Attributes.Add(new SimplePayAttribute()
@@ -46,12 +49,6 @@ namespace SimplePayTR.Core.Providers.Est
                 {
                     Key = "Random",
                     Value = rnd.ToString()
-                });
-
-                paymentModel.Attributes.Add(new SimplePayAttribute()
-                {
-                    Key = "Url",
-                    Value = GetUrl(paymentModel.Use3DSecure)
                 });
             }
             return base.OnCompilingTemplate(paymentModel, template);
@@ -69,24 +66,6 @@ namespace SimplePayTR.Core.Providers.Est
             return postForm;
         }
 
-        public override string GetUrl(bool use3DSecure)
-        {
-            if (use3DSecure == false)
-            {
-                if (_nestPayConfiguration.UseTestEndPoint)
-                    return $"{SimplePayGlobal.BankTestUrls[CurrentBank]}/fim/api";
-                else
-                    return $"{SimplePayGlobal.BankTestUrls[CurrentBank]}/fim/api";
-            }
-            else
-            {
-                if (_nestPayConfiguration.UseTestEndPoint)
-                    return $"{SimplePayGlobal.BankTestUrls[CurrentBank]}/fim";
-                else
-                    return $"{SimplePayGlobal.BankTestUrls[CurrentBank]}/fim";
-            }
-        }
-
         #endregion Base
 
         #region Pay
@@ -98,31 +77,40 @@ namespace SimplePayTR.Core.Providers.Est
             if (cloneObj.Order.Installment.HasValue && (cloneObj.Order.Installment == 1 || cloneObj.Order.Installment == 0))
                 cloneObj.Order.Installment = null;
 
+            if (cloneObj.Order.CurrencyCode.IsEmpty())
+                cloneObj.Order.CurrencyCode = "949";
+
             return base.ProcessPayment(cloneObj);
         }
 
-        public override async Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection)
+        public override async Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
-            var nestPayConfiguration = _nestPayConfiguration;
-
-            if (Validate3D(collection, nestPayConfiguration))
+            if (Validate3D(collection))
             {
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "OrderId", Value = collection.Get("oid") });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerTxnId", Value = collection.Get("xid") });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerSecurityLevel", Value = collection.Get("eci") });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerAuthenticationCode", Value = collection.Get("cavv") });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "CardNumber", Value = collection.Get("md") });
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "OrderId", Value = collection["oid"] });
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerTxnId", Value = collection["xid"] });
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerSecurityLevel", Value = collection["eci"] });
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerAuthenticationCode", Value = collection["cavv"] });
+                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "CardNumber", Value = collection["md"] });
 
                 return await base.VerifyPayment(paymentModel, collection);
             }
             else
-                throw new ApplicationException("İmza Doğrulanamadı");
+            {
+                PaymentResult paymentResult = new PaymentResult();
+                paymentResult.Error = collection["ErrMsg"];
+                paymentResult.ErrorCode = collection["ProcReturnCode"];
+                paymentResult.Status = false;
+                return paymentResult;
+            }
         }
 
-        public bool Validate3D(NameValueCollection formCollection, NestPayConfiguration nestPayConfiguration)
+        public bool Validate3D(IFormCollection formCollection)
         {
-            string hashparams = formCollection.Get("HASHPARAMS");
-            string hashparamsval = formCollection.Get("HASHPARAMSVAL");
+            var nestPayConfiguration = ((NestPayConfiguration)ProviderConfiguration);
+
+            string hashparams = formCollection["HASHPARAMS"];
+            string hashparamsval = formCollection["HASHPARAMSVAL"];
             string paramsval = "";
 
             int index1 = 0;
@@ -130,22 +118,29 @@ namespace SimplePayTR.Core.Providers.Est
 
             do
             {
+                string val;
                 index2 = hashparams.IndexOf(":", index1);
-                string val = formCollection.Get(hashparams.Substring(index1, index2 - index1)) == null ? "" : formCollection.Get(hashparams.Substring(index1, index2 - index1));
+                string string1 = formCollection[hashparams.Substring(index1, index2 - index1)];
+
+                if (string1 == null)
+                    val = string1;
+                else
+                    val = formCollection[hashparams.Substring(index1, index2 - index1)];
+
                 paramsval += val;
                 index1 = index2 + 1;
             }
             while (index1 < hashparams.Length);
 
             string hashval = paramsval + nestPayConfiguration.HashKey;
-            string hashparam = formCollection.Get("HASH");
+            string hashparam = formCollection["HASH"];
             string hash = StringHelper.GetSHA1(hashval);
             if (!paramsval.Equals(hashparamsval) || !hash.Equals(hashparam))
             {
                 return false;
             }
 
-            var mdstatus = formCollection.Get("mdStatus");
+            var mdstatus = formCollection["mdStatus"];
             var result = (mdstatus.Equals("1") || mdstatus.Equals("2") || mdstatus.Equals("3") || mdstatus.Equals("4"));
             return result;
         }

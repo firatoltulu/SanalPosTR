@@ -24,9 +24,9 @@ namespace SimplePayTR.Test
             {
                 ops.UseZiraat(new NestPayConfiguration()
                 {
-                    Name = "testuser",
-                    ClientId = "testclient",
-                    Password = "testClient",
+                    Name = "x",
+                    ClientId = "x",
+                    Password = "x",
                     UseTestEndPoint = true,
                     SiteFailUrl = "http://x.com/Fail",
                     SiteSuccessUrl = "http://x.com/Success"

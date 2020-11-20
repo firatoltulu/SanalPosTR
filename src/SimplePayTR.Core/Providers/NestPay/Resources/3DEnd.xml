@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CC5Request>
-  <Name>    {{ Configuration.Name }}</Name>
+  <Name>{{ Configuration.Name }}</Name>
   <Password>{{Configuration.Password }}</Password>
   <ClientId>{{Configuration.ClientId }}</ClientId>
   <Mode>{{ Configuration.Mode }}</Mode>
@@ -9,7 +9,7 @@
   
   <Number>{{CardNumber}}</Number>
 
-  <Total> {{formatMoneyUS Order.Total}}</Total>
+  <amount>{{formatMoneyUS Order.Total}}</amount>
 
   {{#if Order.Installment }}
   <Taksit>{{ Order.Installment }}</Taksit>
@@ -26,7 +26,7 @@
   <Email></Email>
   <GroupId></GroupId>
   <TransId></TransId>
-  <PayerTxnId>{{ PayerTxnId }}</PayerTxnId>".
+  <PayerTxnId>{{ PayerTxnId }}</PayerTxnId>
   <PayerSecurityLevel>{{ PayerSecurityLevel }}</PayerSecurityLevel>
   <PayerAuthenticationCode>{{ PayerAuthenticationCode }}</PayerAuthenticationCode>
 </CC5Request>

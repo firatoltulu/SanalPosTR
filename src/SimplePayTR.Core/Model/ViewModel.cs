@@ -8,6 +8,6 @@ namespace SimplePayTR.Core.Model
 
         public Refund Refund { get; set; }
 
-        public string EnvironmentUrl { get; set; }
+        public IEnvironmentConfiguration Environment { get; set; }
     }
 }

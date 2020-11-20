@@ -14,7 +14,7 @@ namespace SimplePayTR.Core
             if (app == null) throw new ArgumentNullException(nameof(app));
 
             var services = app.ApplicationServices;
-            var configuration = services.GetService<ISimplePayConfiguration>();
+            var configuration = services.GetRequiredService<ISimplePayConfiguration>();
 
             options(configuration);
 

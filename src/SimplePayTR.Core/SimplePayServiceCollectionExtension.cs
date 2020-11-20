@@ -12,31 +12,36 @@ namespace SimplePayTR.Core
     {
         public static IServiceCollection AddSimplePayTR(this IServiceCollection services)
         {
+
             services.AddScoped<NestPayProviderService>();
             services.AddScoped<YKBProviderServices>();
 
             services.AddScoped<NestPayConfiguration>();
             services.AddScoped<YKBConfiguration>();
 
-            services.AddTransient<ISimplePayConfiguration, SimplePayConfiguration>();
-            services.AddTransient<Func<Banks, IProviderService>>(serviceProvider => key =>
+            services.AddTransient<Func<BankTypes, IProviderService>>(serviceProvider => key =>
             {
                 var provider = SimplePayGlobal.BankProviders[key];
-                var instance = (IProviderService)serviceProvider.GetService(provider);
-                instance.CurrentBank = key;
+               // var instance = (IProviderService)serviceProvider.GetRequiredService(provider);
 
+                var instance = (IProviderService)ActivatorUtilities.CreateInstance(serviceProvider, provider);
+
+                instance.CurrentBank = key;
                 return instance;
             });
 
-            services.AddTransient<Func<Banks, IProviderConfiguration>>(serviceProvider => key =>
+            services.AddTransient<Func<BankTypes, IProviderConfiguration>>(serviceProvider => key =>
             {
                 var provider = SimplePayGlobal.BankConfiguration[key];
-                var instance = (IProviderConfiguration)serviceProvider.GetService(provider);
-                return instance;
+                return provider;
             });
+
+            services.AddTransient<ISimplePayConfiguration, SimplePayConfiguration>();
+
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
+            
             return services;
         }
     }

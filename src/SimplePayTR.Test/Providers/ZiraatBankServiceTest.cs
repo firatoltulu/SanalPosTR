@@ -19,10 +19,10 @@ namespace SimplePayTR.Test.Providers
                     {
                         CreditCard = new CreditCardInfo()
                         {
-                            CardNumber = "4546711234567894",
-                            CVV2 = "000",
+                            CardNumber = "4355084355084358",
+                            CVV2 = "",
                             ExpireMonth = "12",
-                            ExpireYear = "26",
+                            ExpireYear = "25",
                             CardHolderName = "FIRAT OLTULU",
                         },
                         Order = new OrderInfo
@@ -42,19 +42,19 @@ namespace SimplePayTR.Test.Providers
         [TestCaseSource("_paymentModelData")]
         public async Task EstProviderServiceTest_ProcessPayment(IEnumerable<PaymentModel> paymentModels)
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _estService = providerService(Banks.Ziraat);
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _estService = providerService(BankTypes.Ziraat);
 
             var serverResponse = await _estService.ProcessPayment(paymentModels.FirstOrDefault());
 
-            Assert.IsFalse(serverResponse.Status);
+            Assert.IsTrue(serverResponse.Status);
         }
 
         [TestCaseSource("_paymentModelData")]
         public async Task EstProviderServiceTest_ProcessPaymentWith3D(IEnumerable<PaymentModel> paymentModels)
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _estService = providerService(Banks.Ziraat);
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _estService = providerService(BankTypes.Ziraat);
             var _paymentModel = paymentModels.FirstOrDefault();
 
             _paymentModel.Use3DSecure = true;
@@ -67,8 +67,8 @@ namespace SimplePayTR.Test.Providers
         [Test]
         public async Task EstProviderServiceTest_Refund()
         {
-            var providerService = ServiceProvider.GetRequiredService<Func<Banks, IProviderService>>();
-            var _estService = providerService(Banks.Ziraat);
+            var providerService = ServiceProvider.GetRequiredService<Func<BankTypes, IProviderService>>();
+            var _estService = providerService(BankTypes.Ziraat);
             var serverResponse = await _estService.ProcessRefound(new Refund
             {
                 OrderId = "123123",

@@ -1,6 +1,4 @@
-﻿using SimplePayTR.Core.Configuration;
-
-namespace SimplePayTR.Core.Configuration
+﻿namespace SimplePayTR.Core.Configuration
 {
     public class NestPayConfiguration : IProviderConfiguration, I3DConfiguration
     {

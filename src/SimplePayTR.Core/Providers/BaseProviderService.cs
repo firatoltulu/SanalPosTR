@@ -1,8 +1,8 @@
-﻿using SimplePayTR.Core.Configuration;
+﻿using Microsoft.AspNetCore.Http;
+using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
 using System;
-using System.Collections.Specialized;
 using System.Threading.Tasks;
 
 namespace SimplePayTR.Core.Providers
@@ -12,7 +12,11 @@ namespace SimplePayTR.Core.Providers
         public abstract string EmbededDirectory { get; }
 
         public virtual IProviderConfiguration ProviderConfiguration { get; }
-        public Banks CurrentBank { get; set; }
+
+        public virtual IEnvironmentConfiguration EndPointConfiguration =>
+            ProviderConfiguration.UseTestEndPoint ? SimplePayGlobal.BankTestUrls[CurrentBank] : SimplePayGlobal.BankProdUrls[CurrentBank];
+
+        public BankTypes CurrentBank { get; set; }
 
         public virtual string GetUrl(bool use3DSecure)
         {
@@ -22,9 +26,9 @@ namespace SimplePayTR.Core.Providers
         public virtual string OnCompilingTemplate(ViewModel viewModel, string template)
         {
             if (ProviderConfiguration.UseTestEndPoint)
-                viewModel.EnvironmentUrl = SimplePayGlobal.BankTestUrls[CurrentBank];
+                viewModel.Environment = SimplePayGlobal.BankTestUrls[CurrentBank];
             else
-                viewModel.EnvironmentUrl = SimplePayGlobal.BankProdUrls[CurrentBank];
+                viewModel.Environment = SimplePayGlobal.BankProdUrls[CurrentBank];
 
             return StringHelper.PrepaireXML(viewModel, template);
         }
@@ -83,8 +87,8 @@ namespace SimplePayTR.Core.Providers
 
                 if (paymentModel.Use3DSecure == false)
                 {
-                    HTTPClient httpClient = new HTTPClient(GetUrl(paymentModel.Use3DSecure));
-                    return await httpClient.Post(form, Handler);
+                    HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
+                    return await httpClient.Post(EndPointConfiguration.ApiEndPoint, form, Handler);
                 }
                 else
                 {
@@ -100,7 +104,7 @@ namespace SimplePayTR.Core.Providers
                 throw new ApplicationException($"{this.GetType().Name} template is empty");
         }
 
-        public async virtual Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection)
+        public async virtual Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
             var postForm = GetPostForm();
             var resource = $"{EmbededDirectory}.3DEnd.xml";
@@ -108,9 +112,9 @@ namespace SimplePayTR.Core.Providers
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
             postForm.Content = viewModel;
 
-            HTTPClient httpClient = new HTTPClient(GetUrl(true));
+            HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
 
-            return await httpClient.Post(postForm, Handler);
+            return await httpClient.Post(EndPointConfiguration.SecureReturnEndPoint, postForm, Handler);
         }
 
         public virtual async Task<PaymentResult> ProcessRefound(Refund refund)
@@ -123,8 +127,8 @@ namespace SimplePayTR.Core.Providers
             var form = GetPostForm();
             form.Content = viewModel;
 
-            HTTPClient httpClient = new HTTPClient(GetUrl(false));
-            return await httpClient.Post(form, Handler);
+            HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
+            return await httpClient.Post(EndPointConfiguration.RefundEndPoint, form, Handler);
         }
 
         public abstract PostForm GetPostForm();

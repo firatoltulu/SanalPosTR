@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePayTR.Core", "SimplePayTR.Core\SimplePayTR.Core.csproj", "{FE486C96-CDE2-414C-94F3-A103737C517B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePayTR.Core", "SimplePayTR.Core\SimplePayTR.Core.csproj", "{FE486C96-CDE2-414C-94F3-A103737C517B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePayTR.Test", "SimplePayTR.Test\SimplePayTR.Test.csproj", "{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePayTR.Test", "SimplePayTR.Test\SimplePayTR.Test.csproj", "{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Old_SimplePayTR", "_SimplePayTR\Old_SimplePayTR.csproj", "{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimplePayTR.UI", "SimplePayTR.UI\SimplePayTR.UI.csproj", "{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{048A7D7A-D05C-43F8-9ADC-0B8174D698ED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

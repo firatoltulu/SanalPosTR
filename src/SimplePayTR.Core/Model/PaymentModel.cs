@@ -13,9 +13,7 @@ namespace SimplePayTR.Core.Model
 
         public PaymentModel Clone()
         {
-            var target = new PaymentModel();
-            new MapperOptimized().Copy(this, target);
-            return target;
+            return ObjectCopier.Clone(this);
         }
 
         public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();

@@ -8,5 +8,7 @@ namespace SimplePayTR.Core.Model
 
         public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
 
+        public BankTypes SelectedBank { get; set; }
+
     }
 }

@@ -29,8 +29,6 @@ namespace SimplePayTR.Core.Configuration
 
         public bool UseTestEndPoint { get; set; }
 
-        public virtual string Endpoint => string.Empty;
-
         public string HashKey { get; set; }
     }
 }

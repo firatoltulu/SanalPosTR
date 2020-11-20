@@ -71,15 +71,10 @@ namespace SimplePayTR.Core
 
         public static string GetSHA1(string text)
         {
-            Encoding UE = Encoding.GetEncoding("ISO-8859-9");
-            byte[] hashValue;
-            byte[] message = UE.GetBytes(text);
-
-            SHA1Managed hashString = new SHA1Managed();
-
-            hashValue = hashString.ComputeHash(message);
-
-            return GetHexaDecimal(hashValue);
+            byte[] message = System.Text.Encoding.GetEncoding("ISO-8859-9").GetBytes(text);
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            var hashValue = sha.ComputeHash(message);
+            return Convert.ToBase64String(hashValue);
         }
 
         private static string GetHexaDecimal(byte[] bytes)
@@ -93,21 +88,13 @@ namespace SimplePayTR.Core
             return s.ToString();
         }
 
-        public static string GetSHA256(string text)
+        public static string GetSHA256(string originalString)
         {
-            UnicodeEncoding UE = new UnicodeEncoding();
-            byte[] hashValue;
-            byte[] message = UE.GetBytes(text);
-
-            SHA256Managed hashString = new SHA256Managed();
-            string hex = "";
-
-            hashValue = hashString.ComputeHash(message);
-            foreach (byte x in hashValue)
+            using (SHA256 sha256Hash = SHA256.Create())
             {
-                hex += String.Format("{0:x2}", x);
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.UTF8.GetBytes(originalString));
+                return Convert.ToBase64String(bytes);
             }
-            return hex;
         }
 
         public static string GetSHA512(string text)

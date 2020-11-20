@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using SimplePayTR.Core.Configuration;
+﻿using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Helper;
 using System;
 
@@ -14,57 +13,85 @@ namespace SimplePayTR.Core
             _serviceProvider = serviceProvider;
         }
 
-        #region NestPay 
+        #region NestPay
 
         public ISimplePayConfiguration UseZiraat(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.Ziraat, configuration);
+            mappingConfigurationNest(BankTypes.Ziraat, configuration);
             return this;
         }
 
         public ISimplePayConfiguration UseAkbank(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.Akbank, configuration);
+            mappingConfigurationNest(BankTypes.Akbank, configuration);
             return this;
         }
 
         public ISimplePayConfiguration UseIsBank(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.Isbank, configuration);
+            mappingConfigurationNest(BankTypes.Isbank, configuration);
             return this;
         }
 
         public ISimplePayConfiguration UseFinansBank(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.FinansBank, configuration);
+            mappingConfigurationNest(BankTypes.FinansBank, configuration);
             return this;
         }
 
         public ISimplePayConfiguration UseTEB(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.TEB, configuration);
+            mappingConfigurationNest(BankTypes.TEB, configuration);
             return this;
         }
 
         public ISimplePayConfiguration UseAnadolubank(NestPayConfiguration configuration)
         {
-            mappingConfigurationNest(Banks.Anadolubank, configuration);
+            mappingConfigurationNest(BankTypes.Anadolubank, configuration);
             return this;
         }
 
-        #endregion
+        #endregion NestPay
 
         public ISimplePayConfiguration UseYKB(YKBConfiguration configuration)
         {
-            var yKBConfiguration = (YKBConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ykb);
-            new MapperOptimized().Copy(configuration, yKBConfiguration);
+            SimplePayGlobal.BankConfiguration[BankTypes.Ykb] = configuration;
             return this;
         }
 
-        private void mappingConfigurationNest(Banks nestBanks, NestPayConfiguration configuration)
+        public ISimplePayConfiguration UseFromJSON(BankTypes bankTypes, string jsonValue)
         {
-            var nestPayConfiguration = (NestPayConfiguration)_serviceProvider.GetRequiredService<Func<Banks, IProviderConfiguration>>()(Banks.Ziraat);
-            new MapperOptimized().Copy(configuration, nestPayConfiguration);
+            var configuration = SimplePayGlobal.BankConfiguration[bankTypes];
+            var deserializeObj = System.Text.Json.JsonSerializer.Deserialize(jsonValue, configuration.GetType());
+            new MapperOptimized().Copy(deserializeObj, configuration);
+            return this;
+        }
+
+        private void mappingConfigurationNest(BankTypes nestBanks, NestPayConfiguration configuration)
+        {
+            SimplePayGlobal.BankConfiguration[nestBanks] = configuration;
+        }
+
+        public ISimplePayConfiguration SetSuccessReturnUrl(string url)
+        {
+            foreach (var item in SimplePayGlobal.BankConfiguration)
+            {
+                if(item.Value is I3DConfiguration)
+                    (item.Value as I3DConfiguration).SiteSuccessUrl = url;
+            }
+
+            return this;
+        }
+
+        public ISimplePayConfiguration SetFailReturnUrl(string url)
+        {
+            foreach (var item in SimplePayGlobal.BankConfiguration)
+            {
+                if (item.Value is I3DConfiguration)
+                    (item.Value as I3DConfiguration).SiteFailUrl = url;
+            }
+
+            return this;
         }
     }
 }

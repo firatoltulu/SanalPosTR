@@ -1,4 +1,5 @@
-﻿using SimplePayTR.Core.Model;
+﻿using Microsoft.AspNetCore.Http;
+using SimplePayTR.Core.Model;
 using System.Collections.Specialized;
 using System.Threading.Tasks;
 
@@ -19,7 +20,7 @@ namespace SimplePayTR.Core.Providers
         /// <param name="order"></param>
         /// <param name="collection"></param>
         /// <returns></returns>
-        Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, NameValueCollection collection);
+        Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection);
 
         /// <summary>
         /// İade Yap
@@ -28,7 +29,7 @@ namespace SimplePayTR.Core.Providers
         /// <returns></returns>
         Task<PaymentResult> ProcessRefound(Refund refund);
 
-        Banks CurrentBank { get; set; }
+        BankTypes CurrentBank { get; set; }
 
     }
 }

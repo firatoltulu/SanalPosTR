@@ -7,7 +7,7 @@
     <ccno>{{CreditCard.CardNumber}}</ccno>
     <expDate>{{CreditCard.ExpireYear}}{{CreditCard.ExpireMonth}}</expDate>
     <cvc>{{CreditCard.CVV2}}</cvc>
-    <amount>{{formatMoneyUS Order.Total}}</amount>
+    <amount>{{formatMoneyWithoutDecimal Order.Total}}</amount>
     <currencyCode>{{ Order.CurrencyCode }}</currencyCode>
     <orderID>{{ Order.OrderId }}</orderID>
 
