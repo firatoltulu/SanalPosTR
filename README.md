@@ -5,5 +5,10 @@
 Bir eticaret projesinin olmazsa olmazıdır, Sanal Pos Entegrasyonu, bir çok alt yapı var Garanti, YK, EST ve diğerleri 
 bunlar için ortak bir yapı oluşturdum. 
  
-NetCore 3.1 ile tekrardan yazılmaya başlanmıştır.
+- YKB 3D ve normal ödeme alt yapısı tamamlandı
+- NestPay(Est) 3D ve normal ödeme alt yapısı tamamlandı
+
+
+# Destek
+Açık issue lardaki entegrasyon maddelerinden herhangi birini yapabilirsiniz.
 
