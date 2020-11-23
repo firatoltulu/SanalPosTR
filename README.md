@@ -1,6 +1,6 @@
 #  SanalPosTR
 
-**Türkiye Bankalar Sanal Pos entegrasyonu
+**Türkiye Bankalar Sanal Pos Ortak Kullanım Altyapısı
 
 Bir eticaret projesinin olmazsa olmazıdır, Sanal Pos Entegrasyonu, bir çok alt yapı var Garanti, YK, EST ve diğerleri 
 bunlar için ortak bir yapı oluşturdum. 
