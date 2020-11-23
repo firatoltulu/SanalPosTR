@@ -1,4 +1,4 @@
-#  SimplePayTR
+#  SanalPosTR
 
 **Türkiye Bankalar Sanal Pos entegrasyonu
 
