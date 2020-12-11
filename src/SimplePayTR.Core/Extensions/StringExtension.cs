@@ -1,4 +1,6 @@
-﻿using System;
+﻿using HandlebarsDotNet;
+using SimplePayTR.Core.Model;
+using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
@@ -58,6 +60,17 @@ namespace SimplePayTR.Core.Extensions
             return IsEmpty(value);
         }
 
+
+        public static string CompileOrderLink(this string value, PaymentModel orderInfo)
+        {
+            if (value.Contains("{{") && value.Contains("}}"))
+            {
+                var compiledTemplate = Handlebars.Compile(value);
+                return compiledTemplate(orderInfo);
+            }
+            else
+                return value;
+        }
 
     }
 }

@@ -7,8 +7,10 @@
         public string FailRedirectUrl { get; set; }
 
         public string RedisConnectionString { get; set; }
-        public int? RedisDatabaseId { get; internal set; }
-        public int RedisDefaultExpireTimeOut { get; internal set; }
-        public string RedisPrefix { get; internal set; }
+        public int? RedisDatabaseId { get; set; }
+        public int RedisDefaultExpireTimeOut { get; set; }
+        public string RedisPrefix { get; set; }
+        public string SuccessEndPoint { get; set; }
+        public string FailEndPoint { get; set; }
     }
 }

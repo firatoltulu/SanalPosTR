@@ -1,7 +1,9 @@
 ﻿using LinqToDB;
+using SimplePayTR.Core;
 using SimplePayTR.UI.Data.DB;
 using SimplePayTR.UI.Data.Entities;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace SimplePayTR.UI.Data
@@ -33,6 +35,27 @@ namespace SimplePayTR.UI.Data
         public async Task UpdatePaySessionAsync(PaySession paySession)
         {
             await _databaseConnection.UpdateAsync(paySession);
+        }
+
+        public async Task<IEnumerable<PosInstallment>> GetPosInstallments(string binNumber)
+        {
+            BankTypes bankType;
+
+            var currentBank = _databaseConnection.PosBinNumbers.Where(whr => whr.Number == binNumber && whr.Active == true).FirstOrDefault();
+            if (currentBank == null)
+            {
+                bankType = _databaseConnection.PosConfigurations.Where(t => t.UseDefault == true && t.Active == true).Select(v => v.BankType).FirstOrDefault();
+                return await _databaseConnection.PosInstallments.Where(whr => whr.BankType == bankType && whr.Installment == 1).OrderBy(v => v.DisplayOrder).ToListAsync();
+            }
+            else
+                bankType = currentBank.BankType;
+
+            return await _databaseConnection.PosInstallments.Where(whr => whr.BankType == bankType).OrderBy(v => v.DisplayOrder).OrderBy(v => v.DisplayOrder).ToListAsync();
+        }
+
+        public async Task<PaySession> GetPaySession(string orderId)
+        {
+            return await _databaseConnection.PaySessions.FirstOrDefaultAsync(v => v.OrderId == orderId);
         }
     }
 }

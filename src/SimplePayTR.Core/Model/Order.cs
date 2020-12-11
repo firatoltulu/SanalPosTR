@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace SimplePayTR
+﻿namespace SimplePayTR
 {
     public class OrderInfo
     {
@@ -14,12 +12,11 @@ namespace SimplePayTR
 
         public decimal Comission { get; set; }
 
-        public string CurrencyCode { get; set; } 
-
+        public string CurrencyCode { get; set; }
 
         public int? Installment { get; set; }
 
-
+        public string CustomerId { get; set; }
     }
 
     public partial class SimplePayAttribute

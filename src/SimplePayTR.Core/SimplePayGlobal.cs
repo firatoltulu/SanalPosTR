@@ -35,8 +35,8 @@ namespace SimplePayTR.Core
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankProdUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
         {
-            {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.ziraatbank.com.tr" } },
-            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://postnet.ykb.com.tr" } }
+            {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos2.ziraatbank.com.tr" } },
+            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } }
         };
 
 

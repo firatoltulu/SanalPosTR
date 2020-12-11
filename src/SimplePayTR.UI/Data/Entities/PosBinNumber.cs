@@ -4,7 +4,7 @@ using System;
 
 namespace SimplePayTR.UI.Data.Entities
 {
-    public class PosConfiguration
+    public class PosBinNumber
     {
         [PrimaryKey]
         public Guid Id { get; set; }
@@ -13,11 +13,6 @@ namespace SimplePayTR.UI.Data.Entities
 
         public BankTypes BankType { get; set; }
 
-        [Column(DataType = LinqToDB.DataType.VarChar, Length = 1000)]
-        public string Configuration { get; set; }
-
-        public bool ForcePayRequest3D { get; set; }
-
-        public bool UseDefault { get; set; }
+        public string Number { get; set; }
     }
 }

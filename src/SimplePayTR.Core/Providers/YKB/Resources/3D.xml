@@ -8,7 +8,7 @@
 
     <input name="vftCode" type="hidden" id="vftCode" value="" />
     <input name="useJokerVadaa" type="hidden" id="useJokerVadaa" value="0" />
-    <input name="merchantReturnURL" type="hidden" id="merchantReturnURL" value="{{Configuration.SiteSuccessUrl}}" />
+    <input name="merchantReturnURL" type="hidden" id="merchantReturnURL" value="{{SiteSuccessUrl}}" />
     <input name="lang" type="hidden" id="lang" value="tr" />
     <input name="url" type="hidden" id="url" value="" />
 </form>

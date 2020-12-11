@@ -16,9 +16,7 @@ namespace SimplePayTR.Core.Model
 
         public Refund Clone()
         {
-            var clonedObj = new Refund();
-            new MapperOptimized().Copy(this, clonedObj);
-
+            var clonedObj = ObjectCopier.Clone(this); ;
             return clonedObj;
         }
 

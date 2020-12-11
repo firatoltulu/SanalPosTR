@@ -12,8 +12,8 @@
     <input type="hidden" name="clientid" value="{{Configuration.ClientId}}" />
     <input type="hidden" name="amount" value="{{formatMoneyUS Order.Total}}" />
     <input type="hidden" name="oid" value="{{Order.OrderId}}" />
-    <input type="hidden" name="okUrl" value="{{Configuration.SiteSuccessUrl}}" />
-    <input type="hidden" name="failUrl" value="{{Configuration.SiteFailUrl}}" />
+    <input type="hidden" name="okUrl" value="{{SiteSuccessUrl}}" />
+    <input type="hidden" name="failUrl" value="{{SiteFailUrl}}" />
     <input type="hidden" name="rnd" value="{{Random}}" />
     <input type="hidden" name="hash" value="{{Hash}}" />
   

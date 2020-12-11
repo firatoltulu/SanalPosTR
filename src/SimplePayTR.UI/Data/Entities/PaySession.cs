@@ -20,8 +20,11 @@ namespace SimplePayTR.UI.Data.Entities
         [Column(DataType = LinqToDB.DataType.VarChar, Length = 24)]
         public string OrderId { get; set; }
 
-        [Column(DataType = LinqToDB.DataType.VarChar, Length = 30)]
+        [Column(DataType = LinqToDB.DataType.VarChar, Length = 60)]
         public string UserId { get; set; }
+
+        [Column(DataType = LinqToDB.DataType.VarChar, Length = 90)]
+        public string CustomerId { get; set; }
 
         [Column(DataType = LinqToDB.DataType.VarChar, Length = 350)]
         public string Error { get; set; }
@@ -40,7 +43,6 @@ namespace SimplePayTR.UI.Data.Entities
 
         public bool UseSecure3D { get; set; }
 
-
         public DateTime CreateOn { get; set; }
 
         public BankTypes Bank { get; set; }
@@ -50,5 +52,7 @@ namespace SimplePayTR.UI.Data.Entities
         public decimal Amount { get; set; }
 
         public int? Installment { get; set; }
+
+        public bool TransferStatus { get; set; } = false;
     }
 }

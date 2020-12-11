@@ -31,8 +31,8 @@ namespace SimplePayTR.Core.Providers.Est
                                 nestConf.ClientId,
                                 paymentModel.Order.OrderId,
                                 amount,
-                                nestConf.SiteSuccessUrl,
-                                nestConf.SiteFailUrl,
+                                nestConf.SiteSuccessUrl.CompileOrderLink(paymentModel),
+                                nestConf.SiteFailUrl.CompileOrderLink(paymentModel),
                                 nestConf.Type,
                                 installment,
                                 rnd,
@@ -92,6 +92,9 @@ namespace SimplePayTR.Core.Providers.Est
                 paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerSecurityLevel", Value = collection["eci"] });
                 paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerAuthenticationCode", Value = collection["cavv"] });
                 paymentModel.Attributes.Add(new SimplePayAttribute { Key = "CardNumber", Value = collection["md"] });
+
+                if (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0))
+                    paymentModel.Order.Installment = null;
 
                 return await base.VerifyPayment(paymentModel, collection);
             }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Serilog;
 using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
 using System;
 using System.Globalization;
-using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace SimplePayTR.Core.Providers.Ykb
 {
@@ -73,11 +72,14 @@ namespace SimplePayTR.Core.Providers.Ykb
                     CreditCard = cloneObj.CreditCard,
                     Order = cloneObj.Order,
                     Use3DSecure = true,
-                    Configuration = ProviderConfiguration
+                    Configuration = ProviderConfiguration,
+                    SessionId = cloneObj.SessionId
                 }, template);
 
                 var post = GetPostForm();
                 post.Content = postData;
+
+                Log.Information("ProcessPayment - YKB Use3DSecure - POST");
 
                 HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
                 var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler3D);
@@ -138,10 +140,24 @@ namespace SimplePayTR.Core.Providers.Ykb
 
             string encKey = config.HashKey;
 
+            if (paymentModel.Order.CurrencyCode.IsEmpty())
+                paymentModel.Order.CurrencyCode = "TL";
+
+            Log.Information($"YKBProvider:ENC:{encKey}");
+
             string xid = collection["Xid"];
-            var amount = (decimal.Parse(collection["Amount"], new CultureInfo("tr-TR")) * 100).ToString("0", new CultureInfo("en-US"));
-            string firstHash = HashHelper.GetSHA256(encKey + ';' + config.TerminalId);
-            string mac = HashHelper.GetSHA256(xid + ';' + amount + ';' + paymentModel.Order.CurrencyCode + ';' + config.MerchantId + ';' + firstHash);
+            var amount = (decimal.Parse(collection["Amount"], new CultureInfo("tr-TR"))).ToString("0", new CultureInfo("en-US"));
+            string firstShaString = encKey + ';' + config.TerminalId;
+            string firstHash = HashHelper.GetSHA256(firstShaString);
+            string macShaString = xid + ';' + amount + ';' + paymentModel.Order.CurrencyCode + ';' + config.MerchantId + ';' + firstHash;
+            string mac = HashHelper.GetSHA256(macShaString);
+
+            Log.Information($"YKBProvider:firstShaString:{firstShaString}");
+            Log.Information($"YKBProvider:firstHash:{firstHash}");
+            Log.Information($"YKBProvider:sha256String:{macShaString}");
+            Log.Information($"YKBProvider:mac:{mac}");
+
+
 
             paymentModel.Attributes.Add(new SimplePayAttribute { Key = "mac", Value = mac });
 
@@ -164,7 +180,6 @@ namespace SimplePayTR.Core.Providers.Ykb
                 result.Status = false;
                 result.ErrorCode = StringHelper.GetInlineContent("mdErrorMessage", result.ServerResponseRaw);
             }
-                
 
             return result;
         }

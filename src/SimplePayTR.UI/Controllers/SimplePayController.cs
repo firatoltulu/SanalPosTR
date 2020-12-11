@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using Serilog;
 using SimplePayTR.Core;
 using SimplePayTR.Core.Model;
 using SimplePayTR.Core.Providers;
@@ -12,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace SimplePayTR.UI.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class SimplePayController : ControllerBase
     {
@@ -20,57 +22,59 @@ namespace SimplePayTR.UI.Controllers
         private readonly IDataServices _dataServices;
         private readonly ICache _cache;
         private readonly AppConfig _appConfig;
-        private string COOKIE_NAME => $"{_appConfig.RedisPrefix}Pay";
+        private readonly ILogger<SimplePayController> _logger;
+        private string COOKIE_NAME => $"SimplePayGuid";
 
         public SimplePayController(
             Func<BankTypes, IProviderService> paymentServices,
             IDataServices dataServices,
             ICache cache,
-            AppConfig appConfig
+            AppConfig appConfig,
+            ILogger<SimplePayController> logger
             )
         {
             _paymentServices = paymentServices;
             _dataServices = dataServices;
             _cache = cache;
             _appConfig = appConfig;
+            _logger = logger;
         }
 
-        [HttpPost()]
+        [HttpPost("Pay")]
         public async Task<object> Pay([FromBody] PaymentActionModel paymentModel)
         {
-            var sessionId = Guid.NewGuid();
-
-            var bankProvider = _paymentServices(paymentModel.SelectedBank);
-            var posConfiguration = Program.PosConfiguration[paymentModel.SelectedBank];
-
-            if (posConfiguration.ForcePayRequest3D)
-                paymentModel.Use3DSecure = posConfiguration.ForcePayRequest3D;
-
-            paymentModel.PosConfigurationId = posConfiguration.Id;
-
-            var bankResponse = await bankProvider.ProcessPayment(paymentModel);
-            var paySession = bankResponse.ToPaySessionSuccess(paymentModel);
-            await _dataServices.InsertPaySessionAsync(paySession);
-
-            if (bankResponse.Status)
+            using (_logger.BeginScope("Pay"))
             {
-                if (bankResponse.IsRedirectContent)
+                var bankProvider = _paymentServices(paymentModel.SelectedBank);
+                var posConfiguration = Program.PosConfiguration[paymentModel.SelectedBank];
+
+                if (posConfiguration.ForcePayRequest3D)
+                    paymentModel.Use3DSecure = posConfiguration.ForcePayRequest3D;
+
+                paymentModel.PosConfigurationId = posConfiguration.Id;
+
+                var bankResponse = await bankProvider.ProcessPayment(paymentModel);
+                var paySession = bankResponse.ToPaySessionSuccess(paymentModel);
+                await _dataServices.InsertPaySessionAsync(paySession);
+
+                if (bankResponse.Status)
                 {
-                    _cache.Set($"VerifyModel:{sessionId}", new VerifyPaymentModel()
+                    if (bankResponse.IsRedirectContent)
                     {
-                        Order = paymentModel.Order,
-                        SelectedBank = paymentModel.SelectedBank
-                    });
-                    _cache.Set($"PaySession:{sessionId}", paySession);
+                        _cache.Set($"VerifyModel:{paymentModel.SessionId}", new VerifyPaymentModel()
+                        {
+                            Order = paymentModel.Order,
+                            SelectedBank = paymentModel.SelectedBank
+                        });
+                        _cache.Set($"PaySession:{paymentModel.SessionId}", paySession);
+                    }
 
-                    await SetGuid(sessionId);
+                    return new PaymentActionResult { Status = true, Data = bankResponse.ToDataModel() };
                 }
-
-                return new PaymentActionResult { Status = true, Data = bankResponse.ToDataModel() };
-            }
-            else
-            {
-                return new PaymentActionResult { Status = false, Error = bankResponse.ErrorCode, ErrorMessage = bankResponse.Error };
+                else
+                {
+                    return new PaymentActionResult { Status = false, Error = bankResponse.ErrorCode, ErrorMessage = bankResponse.Error };
+                }
             }
         }
 
@@ -80,49 +84,74 @@ namespace SimplePayTR.UI.Controllers
             return Redirect("/");
         }
 
-        [HttpPost()]
-        public async Task<IActionResult> ValidatePayment([FromForm] IFormCollection paymentModel)
+        [HttpPost("ValidatePayment/{id?}")]
+        public async Task<IActionResult> ValidatePayment(string id, [FromForm] IFormCollection paymentModel)
         {
-            var sessionId = await GetGuid();
-            var verifyPaymentModel = _cache.Get<VerifyPaymentModel>($"VerifyModel:{sessionId}");
-            var paySession = _cache.Get<PaySession>($"PaySession:{sessionId}");
-
-            _cache.Delete($"VerifyModel:{sessionId}");
-            _cache.Delete($"PaySession:{sessionId}");
-
-            var bankProvider = _paymentServices(verifyPaymentModel.SelectedBank);
-            var bankResponse = await bankProvider.VerifyPayment(verifyPaymentModel, paymentModel);
-
-            if (bankResponse.Status)
+            using (_logger.BeginScope("ValidatePayment"))
             {
-                paySession.ReferanceNumber = bankResponse.ReferanceNumber;
-                paySession.ProvisionNumber = bankResponse.ProvisionNumber;
-                paySession.Status = true;
+                var sessionId = id;
 
-                await _dataServices.UpdatePaySessionAsync(paySession);
+                if (string.IsNullOrEmpty(sessionId))
+                    return Redirect($"{string.Format(_appConfig.FailRedirectUrl, "Uygulama Hatası")}");
 
-                return Redirect($"{string.Format(_appConfig.SuccessRedirectUrl, bankResponse.ProvisionNumber)}");
-            }
-            else
-            {
-                paySession.Error = bankResponse.Error;
-                paySession.ErrorCode = bankResponse.ErrorCode;
-                return Redirect($"{string.Format(_appConfig.FailRedirectUrl, bankResponse.Error)}");
+                var verifyPaymentModel = _cache.Get<VerifyPaymentModel>($"VerifyModel:{sessionId}");
+                var paySession = _cache.Get<PaySession>($"PaySession:{sessionId}");
+
+                Log.Information($"{sessionId} - Load From Cache");
+
+                _cache.Delete($"VerifyModel:{sessionId}");
+                _cache.Delete($"PaySession:{sessionId}");
+
+                Log.Information($"{sessionId} - Cache Removed");
+
+                var bankProvider = _paymentServices(verifyPaymentModel.SelectedBank);
+
+                Log.Information($"{sessionId} - BankProvider - ${bankProvider.CurrentBank}");
+
+                var bankResponse = await bankProvider.VerifyPayment(verifyPaymentModel, paymentModel);
+
+                if (bankResponse.Status)
+                {
+                    paySession.ReferanceNumber = bankResponse.ReferanceNumber;
+                    paySession.ProvisionNumber = bankResponse.ProvisionNumber;
+                    paySession.Status = true;
+
+                    await _dataServices.UpdatePaySessionAsync(paySession);
+
+                    return Redirect($"{string.Format(_appConfig.SuccessRedirectUrl, bankResponse.ProvisionNumber)}");
+                }
+                else
+                {
+                    paySession.Error = bankResponse.Error;
+                    paySession.ErrorCode = bankResponse.ErrorCode;
+                    return Redirect($"{string.Format(_appConfig.FailRedirectUrl, bankResponse.Error)}");
+                }
             }
         }
 
         public virtual Task<string> GetGuid()
         {
+            foreach (var item in HttpContext.Request.Cookies.Keys)
+            {
+                Log.Information($"GetGuid {item}");
+            }
+
             return Task.FromResult(HttpContext.Request.Cookies[COOKIE_NAME]);
         }
 
         public virtual Task SetGuid(Guid guid)
         {
+            if (Request.Cookies[COOKIE_NAME] != null)
+            {
+                Log.Information($"{COOKIE_NAME} zaten var");
+                return Task.CompletedTask;
+            }
+
             //delete current cookie value
-            HttpContext.Response.Cookies.Delete(COOKIE_NAME);
+            // HttpContext.Response.Cookies.Delete(COOKIE_NAME);
 
             //get date of cookie expiration
-            var cookieExpiresDate = DateTime.UtcNow.AddMinutes(10);
+            var cookieExpiresDate = DateTime.Now.AddMinutes(10);
 
             //if passed guid is empty set cookie as expired
             if (guid == Guid.Empty)
@@ -131,12 +160,26 @@ namespace SimplePayTR.UI.Controllers
             //set new cookie value
             var options = new CookieOptions
             {
-                HttpOnly = true,
-                Expires = cookieExpiresDate
+                Expires = cookieExpiresDate,
             };
-            HttpContext.Response.Cookies.Append(COOKIE_NAME, guid.ToString(), options);
+
+            Response.Cookies.Append(COOKIE_NAME, guid.ToString(), options);
 
             return Task.CompletedTask;
+        }
+
+        [HttpPost("Installment")]
+        public async Task<IActionResult> Installment(InstallmentModel model)
+        {
+            var installments = await _dataServices.GetPosInstallments(model.BinNumber);
+            return new JsonResult(installments);
+        }
+
+        [HttpPost("Detail")]
+        public async Task<IActionResult> Detail(OrderDetailModel model)
+        {
+            var installments = await _dataServices.GetPaySession(model.OrderId);
+            return new JsonResult(installments);
         }
     }
 }

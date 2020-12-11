@@ -8,7 +8,6 @@ namespace SimplePayTR.UI.Models
     {
         public BankTypes SelectedBank { get; set; }
 
-        public string SessionId { get; set; }
 
         public Guid PosConfigurationId { get; set; }
     }

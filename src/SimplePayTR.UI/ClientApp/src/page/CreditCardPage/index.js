@@ -38,6 +38,12 @@ const getParams = function (url) {
 function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
+function uuidv4() {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    }).replace(/[^A-Za-z0-9]/g,"");
+}
 
 export class ShadowView extends React.Component {
     attachShadow = (host) => {
@@ -60,17 +66,19 @@ if (urlParams.Status) {
 }
 
 export default function CreditCardPage() {
-    const [cvc, setCvc] = useState('000');
-    const [expiry, setExpiry] = useState('1022');
+    const [cvc, setCvc] = useState('');
+    const [expiry, setExpiry] = useState('');
     const [focus, setFocus] = useState('');
-    const [name, setName] = useState('FIRAT OLTULU');
-    const [number, setNumber] = useState('5400617020092306');
-    const orderId = getRndInteger(100000, 100000000);
+    const [name, setName] = useState('');
+    const [number, setNumber] = useState('');
+    const orderId = getRndInteger(100000, 99999999);
 
     const [useSecure, setuseSecure] = useState(false);
-    const [amount, setAmount] = useState(200);
+    const [amount, setAmount] = useState();
     const [bank, setBank] = useState(2);
     const [installment, setInstallment] = useState(0);
+    const [installments, setInstallments] = useState([]);
+
     const [open, setOpen] = useState(false);
     const [htmlContent, setHTML] = useState(false);
 
@@ -97,9 +105,8 @@ export default function CreditCardPage() {
                 Installment: installment ? parseInt(installment) : installment
             },
             Use3DSecure: useSecure,
-            SessionId: "1",
-            SelectedBank: parseInt(bank)
-
+            SessionId: uuidv4(),
+            SelectedBank: parseInt(bank),
         };
 
         Axios.post("api/SimplePay/Pay", sendObj).then(response => response.data).then(result => {
@@ -125,7 +132,19 @@ export default function CreditCardPage() {
 
     }
 
-    
+    const GetInstallment = (e) => {
+        Axios.post("api/SimplePay/Installment", { binNumber: number.substring(0, 6) }).then(x => x.data).then(result => {
+            
+            setInstallments(result.map(v => {
+                return {
+                    "Text": v.installment === 1 ? "Peşin" : v.installment,
+                    "Value": v.installment === 1 ? "0" : v.installment
+                }
+            }));
+
+        });
+    }
+
 
     return (
         <Container>
@@ -148,6 +167,7 @@ export default function CreditCardPage() {
                             maxLength={16}
                             onChange={e => setNumber(e.target.value)}
                             onFocus={e => setFocus(e.target.name)}
+                            onBlur={GetInstallment}
                         />
                     </InputGroup>
 
@@ -241,10 +261,7 @@ export default function CreditCardPage() {
                     <InputGroup>
                         <Text>Taksit Seç</Text>
                         <Select name="name" value={installment} onFocus={e => setFocus(e.target.name)} onChange={(e) => setInstallment(e.target.value)} >
-                            <option value="0">Peşin</option>
-                            <option value="2">2 Taksit</option>
-                            <option value="3">3 Taksit</option>
-                            <option value="4">4 Taksit</option>
+                            {installments.map(v => <option value={v.Value}>{v.Text}</option>)}
                         </Select>
                     </InputGroup>
                     <PaymentButton onClick={PaymentButtonClick}>

@@ -30,7 +30,10 @@ namespace SimplePayTR.UI
                 PosConfigurationId = paymentModel.PosConfigurationId,
                 Amount = paymentModel.Order.Total,
                 Installment = paymentModel.Order.Installment,
-                Id = Guid.NewGuid()
+                Id = Guid.NewGuid(),
+                OrderId = paymentModel.Order.OrderId,
+                UserId = paymentModel.Order.UserId,
+                CustomerId = paymentModel.Order.CustomerId
             };
         }
     }

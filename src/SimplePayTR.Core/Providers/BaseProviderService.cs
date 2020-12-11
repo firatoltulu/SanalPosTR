@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Serilog;
 using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
@@ -52,7 +53,9 @@ namespace SimplePayTR.Core.Providers
                 CreditCard = paymentModel.CreditCard,
                 Configuration = ProviderConfiguration,
                 Order = paymentModel.Order,
-                Attributes = paymentModel.Attributes
+                Attributes = paymentModel.Attributes,
+                Use3DSecure = paymentModel.Use3DSecure,
+                SessionId = paymentModel.SessionId
             };
 
             return OnCompilingTemplate(viewModel, template);
@@ -69,6 +72,8 @@ namespace SimplePayTR.Core.Providers
 
         public async virtual Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
         {
+            Log.Information($"ProcessPayment-Start");
+
             //after may be fluent validation here
             string resource = string.Empty;
 
@@ -78,7 +83,12 @@ namespace SimplePayTR.Core.Providers
                 resource = $"{EmbededDirectory}.Pay.xml";
 
             string embededResource = StringHelper.ReadEmbedResource(resource);
+
+            Log.Information($"ProcessPayment-ReadEmbedResource");
+
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
+
+            Log.Information($"ProcessPayment-CompiledTemplate");
 
             if (viewModel.IsEmpty() == false)
             {
@@ -87,11 +97,15 @@ namespace SimplePayTR.Core.Providers
 
                 if (paymentModel.Use3DSecure == false)
                 {
+                    Log.Information($"ProcessPayment-HttpPost - NonUse3DSecure");
+
                     HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
                     return await httpClient.Post(EndPointConfiguration.ApiEndPoint, form, Handler);
                 }
                 else
                 {
+                    Log.Information($"ProcessPayment-HttpPost - Use3DSecure");
+
                     PaymentResult paymentResult = new PaymentResult();
                     paymentResult.IsRedirectContent = true;
                     paymentResult.ServerResponseRaw = viewModel;
@@ -99,18 +113,28 @@ namespace SimplePayTR.Core.Providers
 
                     return paymentResult;
                 }
+
+
             }
             else
                 throw new ApplicationException($"{this.GetType().Name} template is empty");
+
+
+
         }
 
         public async virtual Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
+            Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Process");
+
             var postForm = GetPostForm();
             var resource = $"{EmbededDirectory}.3DEnd.xml";
             string embededResource = StringHelper.ReadEmbedResource(resource);
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
             postForm.Content = viewModel;
+
+            Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Http Post");
+
 
             HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
 

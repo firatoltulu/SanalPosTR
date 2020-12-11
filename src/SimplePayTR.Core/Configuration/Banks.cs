@@ -11,6 +11,7 @@
         VakifBank,
         FinansBank,
         Anadolubank,
-        TEB
+        TEB,
+        None
     }
 }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Builder.Internal;
+
 using Microsoft.Extensions.DependencyInjection;
 using SimplePayTR.Core;
 using SimplePayTR.Core.Configuration;
@@ -28,8 +28,8 @@ namespace SimplePayTR.Test
                     ClientId = "x",
                     Password = "x",
                     UseTestEndPoint = true,
-                    SiteFailUrl = "http://x.com/Fail",
-                    SiteSuccessUrl = "http://x.com/Success"
+                    SiteFailUrl = "http://x.com/Fail/{{OrderId}}",
+                    SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
                 });
 
                 ops.UseYKB(new YKBConfiguration()
@@ -40,8 +40,8 @@ namespace SimplePayTR.Test
                     UserName = "5558",
                     Password = "123456",
                     UseTestEndPoint = true,
-                    SiteFailUrl = "http://x.com/Fail",
-                    SiteSuccessUrl = "http://x.com/Success"
+                    SiteFailUrl = "http://x.com/Fail/{{OrderId}}",
+                    SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
                 });
             });
         }

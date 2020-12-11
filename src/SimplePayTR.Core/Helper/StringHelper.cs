@@ -1,5 +1,5 @@
 ﻿using HandlebarsDotNet;
-using RestSharp;
+using SimplePayTR.Core.Configuration;
 using SimplePayTR.Core.Extensions;
 using SimplePayTR.Core.Model;
 using System;
@@ -48,7 +48,7 @@ namespace SimplePayTR.Core
                 Handlebars.RegisterHelper("formatMoneyWithoutDecimal", (writer, context, parameters) =>
                 {
                     var value = Convert.ToDouble(parameters[0]);
-                    writer.WriteSafeString(value.ToString("0",new CultureInfo("en-US")));
+                    writer.WriteSafeString(value.ToString("0", new CultureInfo("en-US")));
                 });
 
                 Handlebars.RegisterHelper("formatInstallment", (writer, context, parameters) =>
@@ -58,7 +58,6 @@ namespace SimplePayTR.Core
                         writer.WriteSafeString($"0{value}");
                     else
                         writer.WriteSafeString(value.ToString());
-
                 });
 
                 dynamic values = new ExpandoObject();
@@ -69,6 +68,12 @@ namespace SimplePayTR.Core
                 values.Refund = model.Refund;
                 values.Environment = model.Environment;
 
+                if (model.Use3DSecure && model.Configuration is I3DConfiguration)
+                {
+                    var transform = (I3DConfiguration)model.Configuration;
+                    values.SiteSuccessUrl = transform.SiteSuccessUrl.CompileOrderLink(model);
+                    values.SiteFailUrl = transform.SiteFailUrl.CompileOrderLink(model);
+                }
 
                 if (model.Attributes.Count > 0)
                 {

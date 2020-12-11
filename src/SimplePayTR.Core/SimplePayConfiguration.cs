@@ -63,7 +63,7 @@ namespace SimplePayTR.Core
         {
             var configuration = SimplePayGlobal.BankConfiguration[bankTypes];
             var deserializeObj = System.Text.Json.JsonSerializer.Deserialize(jsonValue, configuration.GetType());
-            new MapperOptimized().Copy(deserializeObj, configuration);
+            SimplePayGlobal.BankConfiguration[bankTypes] = (IProviderConfiguration)deserializeObj;
             return this;
         }
 

@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using Serilog;
 using System;
 using System.Net;
 using System.Threading.Tasks;
@@ -17,8 +18,6 @@ namespace SimplePayTR
             get;
             set;
         }
-
-
 
         public async Task<T> Post<T>(string resource, PostForm post, Func<string, T> handler)
         {
@@ -45,12 +44,19 @@ namespace SimplePayTR
                         request.AddParameter(item.Key, item.Value, ParameterType.QueryString);
             }
 
+            Log.Information($"HTTPPost:{client.BaseUrl}/{request.Resource}");
+
             var serverResponse = client.Execute(request);
+
+            Log.Information($"HTTPPosted:{client.BaseUrl}/{request.Resource}, StatusCode = {serverResponse.StatusCode}");
 
             if (serverResponse.StatusCode == HttpStatusCode.OK)
                 return await Task.FromResult(handler(serverResponse.Content));
             else
+            {
+                Log.Information(serverResponse.Content);
                 return default;
+            }
         }
 
         public Task<PaymentResult> Post(string resource, PostForm post, Func<string, PaymentResult> handler)
@@ -79,12 +85,18 @@ namespace SimplePayTR
                         request.AddParameter(item.Key, item.Value, ParameterType.QueryString);
             }
 
+            Log.Information($"HTTPPost:{client.BaseUrl}/{request.Resource}");
+
             var serverResponse = client.Execute(request);
+
+            Log.Information($"HTTPPosted:{client.BaseUrl}/{request.Resource}, StatusCode = {serverResponse.StatusCode}");
 
             if (serverResponse.StatusCode == HttpStatusCode.OK)
                 paymentResult = handler(serverResponse.Content);
             else
             {
+                Log.Information(serverResponse.Content);
+
                 paymentResult = new PaymentResult();
                 paymentResult.Status = false;
                 paymentResult.Error = "[TIMEOUT]";
