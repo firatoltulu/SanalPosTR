@@ -1,8 +1,0 @@
-﻿<posnetRequest>
-  <mid>@(Model.Account.MId)</mid>
-  <tid>@(Model.Account.TId)</tid>
-  <oosTranData>
-    <bankData>@(Model.Account.BankPacket)</bankData>
-    <wpAmount>0</wpAmount>
-  </oosTranData>
-</posnetRequest>
