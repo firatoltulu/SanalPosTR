@@ -2,11 +2,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using SimplePayTR.Core;
+using SanalPosTR;
 using System.Collections.Generic;
 using System.IO;
 
-namespace SimplePayTR.UI
+namespace SanalPosTR.Playground
 {
     public class Program
     {

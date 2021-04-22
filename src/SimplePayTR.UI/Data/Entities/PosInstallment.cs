@@ -1,8 +1,8 @@
 ﻿using LinqToDB.Mapping;
-using SimplePayTR.Core;
+using SanalPosTR;
 using System;
 
-namespace SimplePayTR.UI.Data.Entities
+namespace SanalPosTR.Playground.Data.Entities
 {
     public class PosInstallment
     {

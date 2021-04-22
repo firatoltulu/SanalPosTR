@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI.Extensions
+namespace SanalPosTR.Playground.Extensions
 {
     public static class BrowserDetection
     {

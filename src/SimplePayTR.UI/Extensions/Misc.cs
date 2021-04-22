@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI.Extensions
+namespace SanalPosTR.Playground.Extensions
 {
     public static class Misc
     {

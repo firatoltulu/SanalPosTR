@@ -1,4 +1,4 @@
-﻿namespace SimplePayTR.UI.Models
+﻿namespace SanalPosTR.Playground.Models
 {
     public class PaymentActionResult
     {

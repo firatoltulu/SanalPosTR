@@ -2,17 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Serilog;
-using SimplePayTR.Core;
-using SimplePayTR.Core.Model;
-using SimplePayTR.Core.Providers;
-using SimplePayTR.UI.Caching;
-using SimplePayTR.UI.Data;
-using SimplePayTR.UI.Data.Entities;
-using SimplePayTR.UI.Models;
+using SanalPosTR;
+using SanalPosTR.Model;
+using SanalPosTR.Providers;
+using SanalPosTR.Playground.Caching;
+using SanalPosTR.Playground.Data;
+using SanalPosTR.Playground.Data.Entities;
+using SanalPosTR.Playground.Models;
 using System;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI.Controllers
+namespace SanalPosTR.Playground.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

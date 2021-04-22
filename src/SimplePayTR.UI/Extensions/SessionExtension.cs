@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI
+namespace SanalPosTR.Playground
 {
     public static class SessionExtensions
     {

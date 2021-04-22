@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using SimplePayTR.Core.Model;
-using SimplePayTR.Core;
+using SanalPosTR.Model;
+using SanalPosTR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using SimplePayTR.Core.Providers;
+using SanalPosTR.Providers;
 
-namespace SimplePayTR.Test.Providers
+namespace SanalPosTR.Test.Providers
 {
     [TestFixture]
     public class ZiraatBankServiceTest : Initialize

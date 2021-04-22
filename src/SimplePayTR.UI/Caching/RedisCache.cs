@@ -1,12 +1,12 @@
-using SimplePayTR.UI.Extensions;
-using SimplePayTR.UI.Models;
+using SanalPosTR.Playground.Extensions;
+using SanalPosTR.Playground.Models;
 using StackExchange.Redis;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 
-namespace SimplePayTR.UI.Caching
+namespace SanalPosTR.Playground.Caching
 {
     public class RedisCache : ICache
     {

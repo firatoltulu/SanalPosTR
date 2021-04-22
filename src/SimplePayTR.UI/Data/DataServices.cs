@@ -1,12 +1,12 @@
 ﻿using LinqToDB;
-using SimplePayTR.Core;
-using SimplePayTR.UI.Data.DB;
-using SimplePayTR.UI.Data.Entities;
+using SanalPosTR;
+using SanalPosTR.Playground.Data.DB;
+using SanalPosTR.Playground.Data.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI.Data
+namespace SanalPosTR.Playground.Data
 {
     public class DataServices : IDataServices
     {

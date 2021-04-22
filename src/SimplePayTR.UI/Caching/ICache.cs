@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SimplePayTR.UI.Caching
+namespace SanalPosTR.Playground.Caching
 {
     public interface ICache
     {

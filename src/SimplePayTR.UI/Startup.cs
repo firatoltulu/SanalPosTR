@@ -11,18 +11,18 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using SimplePayTR.Core;
-using SimplePayTR.UI.Caching;
-using SimplePayTR.UI.Data;
-using SimplePayTR.UI.Data.DB;
-using SimplePayTR.UI.Data.Entities;
-using SimplePayTR.UI.Models;
+using SanalPosTR;
+using SanalPosTR.Playground.Caching;
+using SanalPosTR.Playground.Data;
+using SanalPosTR.Playground.Data.DB;
+using SanalPosTR.Playground.Data.Entities;
+using SanalPosTR.Playground.Models;
 using System;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI
+namespace SanalPosTR.Playground
 {
     public class Startup
     {
@@ -49,7 +49,7 @@ namespace SimplePayTR.UI
                .AllowAnyMethod()
                .AllowAnyHeader());
             });
-            services.AddSimplePayTR();
+            services.AddSanalPosTR();
             services.AddLogging();
 
             services.AddLinqToDbContext<DatabaseConnection>((provider, options) =>
@@ -153,7 +153,7 @@ namespace SimplePayTR.UI
                 }
             });
 
-            app.UseSimplePayTR(async opts =>
+            app.UseSanalPosTR(async opts =>
             {
                 using (var scope = app.ApplicationServices.CreateScope())
                 {

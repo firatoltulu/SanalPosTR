@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Builder;
 
 using Microsoft.Extensions.DependencyInjection;
-using SimplePayTR.Core;
-using SimplePayTR.Core.Configuration;
+using SanalPosTR;
+using SanalPosTR.Configuration;
 using System;
 
-namespace SimplePayTR.Test
+namespace SanalPosTR.Test
 {
     public class Initialize
     {
@@ -15,12 +15,12 @@ namespace SimplePayTR.Test
         public Initialize()
         {
             var serviceCollection = new ServiceCollection();
-            serviceCollection.AddSimplePayTR();
+            serviceCollection.AddSanalPosTR();
 
             ServiceProvider = serviceCollection.BuildServiceProvider();
             ApplicationBuilder = new ApplicationBuilder(ServiceProvider);
 
-            ApplicationBuilder.UseSimplePayTR(ops =>
+            ApplicationBuilder.UseSanalPosTR(ops =>
             {
                 ops.UseZiraat(new NestPayConfiguration()
                 {

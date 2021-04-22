@@ -1,8 +1,8 @@
-﻿using SimplePayTR.UI.Data.Entities;
+﻿using SanalPosTR.Playground.Data.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.UI.Data
+namespace SanalPosTR.Playground.Data
 {
     public interface IDataServices
     {

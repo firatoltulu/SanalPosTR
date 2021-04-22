@@ -1,8 +1,8 @@
-﻿using SimplePayTR.UI.Data.Entities;
-using SimplePayTR.UI.Models;
+﻿using SanalPosTR.Playground.Data.Entities;
+using SanalPosTR.Playground.Models;
 using System;
 
-namespace SimplePayTR.UI
+namespace SanalPosTR.Playground
 {
     public static class ClientExtension
     {

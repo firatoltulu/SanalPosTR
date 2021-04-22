@@ -1,14 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
-using SimplePayTR.Core;
-using SimplePayTR.Core.Model;
-using SimplePayTR.Core.Providers;
+using SanalPosTR;
+using SanalPosTR.Model;
+using SanalPosTR.Providers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SimplePayTR.Test.Providers
+namespace SanalPosTR.Test.Providers
 {
     [TestFixture]
     public class YKBServiceTest : Initialize

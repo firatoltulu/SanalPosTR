@@ -1,9 +1,9 @@
 ﻿using LinqToDB;
 using LinqToDB.Configuration;
 using LinqToDB.Data;
-using SimplePayTR.UI.Data.Entities;
+using SanalPosTR.Playground.Data.Entities;
 
-namespace SimplePayTR.UI.Data.DB
+namespace SanalPosTR.Playground.Data.DB
 {
     public class DatabaseConnection : DataConnection
     {

@@ -1,8 +1,8 @@
-﻿using SimplePayTR.Core;
-using SimplePayTR.Core.Model;
+﻿using SanalPosTR;
+using SanalPosTR.Model;
 using System;
 
-namespace SimplePayTR.UI.Models
+namespace SanalPosTR.Playground.Models
 {
     public class PaymentActionModel : PaymentModel
     {
