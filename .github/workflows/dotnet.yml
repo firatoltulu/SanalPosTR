@@ -21,8 +21,6 @@ jobs:
       run: dotnet restore ./src
     - name: Build
       run: dotnet build ./src --configuration Release --no-restore
-    - name: Test
-      run: dotnet test ./src --no-restore --verbosity normal
     - name: publish on version change
       run: dotnet pack ./src/SimplePayTR.Core/SimplePayTR.Core.csproj --configuration Release --no-build --output bin/Release/Publish
     - name: Publish to Nuget
