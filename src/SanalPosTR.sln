@@ -2,11 +2,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR", "SanalPosTR.Core\SanalPosTR.csproj", "{FE486C96-CDE2-414C-94F3-A103737C517B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR", "SanalPosTR\SanalPosTR.csproj", "{89A3F766-8CF2-48AB-816F-63723B6C8860}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR.Test", "SimplePayTR.Test\SanalPosTR.Test.csproj", "{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR.Playground", "SanalPosTR.Playground\SanalPosTR.Playground.csproj", "{D4E8D9FB-DDFF-4000-9454-C44ACDCAFC4A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR.Playground", "SimplePayTR.UI\SanalPosTR.Playground.csproj", "{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SanalPosTR.Test", "SanalPosTR.Test\SanalPosTR.Test.csproj", "{96BFB44E-582D-487D-B1BB-860860C10136}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -14,18 +14,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{FE486C96-CDE2-414C-94F3-A103737C517B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FE486C96-CDE2-414C-94F3-A103737C517B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FE486C96-CDE2-414C-94F3-A103737C517B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FE486C96-CDE2-414C-94F3-A103737C517B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58A9AAEE-2C4A-44FC-8357-B0D0A58EF86F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{04DF4A50-0E8C-4C9D-B16C-D928788FCA24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89A3F766-8CF2-48AB-816F-63723B6C8860}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89A3F766-8CF2-48AB-816F-63723B6C8860}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89A3F766-8CF2-48AB-816F-63723B6C8860}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89A3F766-8CF2-48AB-816F-63723B6C8860}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4E8D9FB-DDFF-4000-9454-C44ACDCAFC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4E8D9FB-DDFF-4000-9454-C44ACDCAFC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4E8D9FB-DDFF-4000-9454-C44ACDCAFC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4E8D9FB-DDFF-4000-9454-C44ACDCAFC4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96BFB44E-582D-487D-B1BB-860860C10136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96BFB44E-582D-487D-B1BB-860860C10136}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96BFB44E-582D-487D-B1BB-860860C10136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96BFB44E-582D-487D-B1BB-860860C10136}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

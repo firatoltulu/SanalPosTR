@@ -22,7 +22,7 @@ jobs:
     - name: Build
       run: dotnet build ./src --configuration Release --no-restore
     - name: publish on version change
-      run: dotnet pack ./src/SimplePayTR.Core/SimplePayTR.Core.csproj --configuration Release --no-build --output bin/Release/Publish
+      run: dotnet pack ./src/SanalPosTR/SanalPosTR.csproj --configuration Release --no-build --output bin/Release/Publish
     - name: Publish to Nuget
       run: dotnet nuget push bin/Release/Publish/**/*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
    

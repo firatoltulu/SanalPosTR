@@ -67,6 +67,10 @@
     <None Remove="C:\Users\firat\.nuget\packages\linq2db.sqlserver\3.1.6\contentFiles\any\any\LinqToDB.Templates\Validation.ttinclude" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SanalPosTR\SanalPosTR.csproj" />
+  </ItemGroup>
+
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">
