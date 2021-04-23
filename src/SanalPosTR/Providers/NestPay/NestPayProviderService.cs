@@ -137,7 +137,7 @@ namespace SanalPosTR.Providers.Est
 
             string hashval = paramsval + nestPayConfiguration.HashKey;
             string hashparam = formCollection["HASH"];
-            string hash = StringHelper.GetSHA1(hashval);
+            string hash = TemplateHelper.GetSHA1(hashval);
             if (!paramsval.Equals(hashparamsval) || !hash.Equals(hashparam))
             {
                 return false;
@@ -156,17 +156,17 @@ namespace SanalPosTR.Providers.Est
         {
             PaymentResult result = new PaymentResult();
 
-            var hostResponse = StringHelper.GetInlineContent(serverResponse, "Response");
+            var hostResponse = TemplateHelper.GetInlineContent(serverResponse, "Response");
             if (hostResponse == "Approved")
             {
                 result.Status = true;
-                result.ProvisionNumber = StringHelper.GetInlineContent(serverResponse, "AuthCode");
-                result.ReferanceNumber = StringHelper.GetInlineContent(serverResponse, "HostRefNum");
+                result.ProvisionNumber = TemplateHelper.GetInlineContent(serverResponse, "AuthCode");
+                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "HostRefNum");
             }
             else
             {
-                result.Error = StringHelper.GetInlineContent(serverResponse, "ErrMsg");
-                result.ErrorCode = StringHelper.GetInlineContent(serverResponse, "ERRORCODE");
+                result.Error = TemplateHelper.GetInlineContent(serverResponse, "ErrMsg");
+                result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "ERRORCODE");
             }
 
             return result;

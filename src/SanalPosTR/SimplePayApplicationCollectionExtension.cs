@@ -16,6 +16,8 @@ namespace SanalPosTR
             var services = app.ApplicationServices;
             var configuration = services.GetRequiredService<ISimplePayConfiguration>();
 
+            TemplateHelper.initializeTemplate();
+
             options(configuration);
 
             return app;

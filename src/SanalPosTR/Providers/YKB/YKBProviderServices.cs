@@ -66,8 +66,8 @@ namespace SanalPosTR.Providers.Ykb
 
             if (cloneObj.Use3DSecure)
             {
-                string template = StringHelper.ReadEmbedResource($"{EmbededDirectory}.3D_before.xml");
-                string postData = StringHelper.PrepaireXML(new ViewModel
+                string template = TemplateHelper.ReadEmbedResource($"{EmbededDirectory}.3D_before.xml");
+                string postData = TemplateHelper.PrepaireXML(new ViewModel
                 {
                     CreditCard = cloneObj.CreditCard,
                     Order = cloneObj.Order,
@@ -161,8 +161,8 @@ namespace SanalPosTR.Providers.Ykb
 
             paymentModel.Attributes.Add(new SimplePayAttribute { Key = "mac", Value = mac });
 
-            string template = StringHelper.ReadEmbedResource($"{EmbededDirectory}.3D_Resolve.xml");
-            string postData = StringHelper.PrepaireXML(new ViewModel
+            string template = TemplateHelper.ReadEmbedResource($"{EmbededDirectory}.3D_Resolve.xml");
+            string postData = TemplateHelper.PrepaireXML(new ViewModel
             {
                 Use3DSecure = true,
                 Configuration = ProviderConfiguration,
@@ -175,10 +175,10 @@ namespace SanalPosTR.Providers.Ykb
             HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
             var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler);
 
-            if (StringHelper.GetInlineContent(result.ServerResponseRaw, "mdStatus") != "1")
+            if (TemplateHelper.GetInlineContent(result.ServerResponseRaw, "mdStatus") != "1")
             {
                 result.Status = false;
-                result.ErrorCode = StringHelper.GetInlineContent("mdErrorMessage", result.ServerResponseRaw);
+                result.ErrorCode = TemplateHelper.GetInlineContent("mdErrorMessage", result.ServerResponseRaw);
             }
 
             return result;
@@ -192,18 +192,18 @@ namespace SanalPosTR.Providers.Ykb
         {
             YKB3DResult result = new YKB3DResult();
 
-            var hostResponse = StringHelper.GetInlineContent(serverResponse, "approved");
+            var hostResponse = TemplateHelper.GetInlineContent(serverResponse, "approved");
             if (hostResponse == "1")
             {
                 result.Status = true;
-                result.Data1 = StringHelper.GetInlineContent(serverResponse, "data1");
-                result.Data2 = StringHelper.GetInlineContent(serverResponse, "data2");
-                result.Sign = StringHelper.GetInlineContent(serverResponse, "sign");
+                result.Data1 = TemplateHelper.GetInlineContent(serverResponse, "data1");
+                result.Data2 = TemplateHelper.GetInlineContent(serverResponse, "data2");
+                result.Sign = TemplateHelper.GetInlineContent(serverResponse, "sign");
             }
             else
             {
-                result.Error = StringHelper.GetInlineContent(serverResponse, "respText");
-                result.ErrorCode = StringHelper.GetInlineContent(serverResponse, "respCode");
+                result.Error = TemplateHelper.GetInlineContent(serverResponse, "respText");
+                result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "respCode");
             }
 
             return result;
@@ -215,17 +215,17 @@ namespace SanalPosTR.Providers.Ykb
 
             result.ServerResponseRaw = serverResponse;
 
-            var hostResponse = StringHelper.GetInlineContent(serverResponse, "approved");
+            var hostResponse = TemplateHelper.GetInlineContent(serverResponse, "approved");
             if (hostResponse == "1")
             {
                 result.Status = true;
-                result.ProvisionNumber = StringHelper.GetInlineContent(serverResponse, "authCode");
-                result.ReferanceNumber = StringHelper.GetInlineContent(serverResponse, "hostlogkey");
+                result.ProvisionNumber = TemplateHelper.GetInlineContent(serverResponse, "authCode");
+                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "hostlogkey");
             }
             else
             {
-                result.Error = StringHelper.GetInlineContent(serverResponse, "respText");
-                result.ErrorCode = StringHelper.GetInlineContent(serverResponse, "respCode");
+                result.Error = TemplateHelper.GetInlineContent(serverResponse, "respText");
+                result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "respCode");
             }
 
             return result;

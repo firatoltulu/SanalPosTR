@@ -31,7 +31,7 @@ namespace SanalPosTR.Providers
             else
                 viewModel.Environment = SimplePayGlobal.BankProdUrls[CurrentBank];
 
-            return StringHelper.PrepaireXML(viewModel, template);
+            return TemplateHelper.PrepaireXML(viewModel, template);
         }
 
         public virtual string OnCompilingTemplate(VerifyPaymentModel paymentModel, string template)
@@ -82,7 +82,7 @@ namespace SanalPosTR.Providers
             else
                 resource = $"{EmbededDirectory}.Pay.xml";
 
-            string embededResource = StringHelper.ReadEmbedResource(resource);
+            string embededResource = TemplateHelper.ReadEmbedResource(resource);
 
             Log.Information($"ProcessPayment-ReadEmbedResource");
 
@@ -129,7 +129,7 @@ namespace SanalPosTR.Providers
 
             var postForm = GetPostForm();
             var resource = $"{EmbededDirectory}.3DEnd.xml";
-            string embededResource = StringHelper.ReadEmbedResource(resource);
+            string embededResource = TemplateHelper.ReadEmbedResource(resource);
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
             postForm.Content = viewModel;
 
@@ -145,7 +145,7 @@ namespace SanalPosTR.Providers
         {
             var resource = $"{EmbededDirectory}.Refund.xml";
 
-            string embededResource = StringHelper.ReadEmbedResource(resource);
+            string embededResource = TemplateHelper.ReadEmbedResource(resource);
             string viewModel = OnCompilingTemplate(refund, embededResource);
 
             var form = GetPostForm();

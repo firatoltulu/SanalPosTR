@@ -5,15 +5,27 @@ using SanalPosTR.Model;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
 namespace SanalPosTR
 {
-    public class StringHelper
+    public static class TemplateHelper
     {
+        public static void initializeTemplate()
+        {
+            Template.RegisterFilter(typeof(TemplateMethodFilter));
+            Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
+            Template.RegisterSafeType(typeof(NestPayConfiguration), new[] { "*" });
+            Template.RegisterSafeType(typeof(YKBConfiguration), new[] { "*" });
+            Template.RegisterSafeType(typeof(CreditCardInfo), new[] { "*" });
+            Template.RegisterSafeType(typeof(OrderInfo), new[] { "*" });
+            Template.RegisterSafeType(typeof(Refund), new[] { "*" });
+            Template.RegisterSafeType(typeof(PaymentModel), new[] { "*" });
+            Template.RegisterSafeType(typeof(IEnvironmentConfiguration), new[] { "*" });
+        }
+
         public static string ReadEmbedResource(string name)
         {
             string result = string.Empty;
@@ -27,6 +39,18 @@ namespace SanalPosTR
             }
 
             return result;
+        }
+
+
+        public static string CompileOrderLink(this string value, PaymentModel orderInfo)
+        {
+            if (value.Contains("{{") && value.Contains("}}"))
+            {
+                var compiledTemplate = Template.Parse(value);
+                return compiledTemplate.Render(Hash.FromAnonymousObject(orderInfo));
+            }
+            else
+                return value;
         }
 
         public static string PrepaireXML(ViewModel model, string template1)
@@ -57,20 +81,9 @@ namespace SanalPosTR
                 }
 
                 Template template = Template.Parse(template1); // Parses and compiles the template
-                Template.RegisterFilter(typeof(TextFilter));
-                Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
-
-                Template.RegisterSafeType(typeof(NestPayConfiguration), new[] { "*" });
-                Template.RegisterSafeType(typeof(YKBConfiguration), new[] { "*" });
-                Template.RegisterSafeType(typeof(CreditCardInfo), new[] { "*" });
-                Template.RegisterSafeType(typeof(OrderInfo), new[] { "*" });
-                Template.RegisterSafeType(typeof(Refund), new[] { "*" });
-                Template.RegisterSafeType(typeof(IEnvironmentConfiguration), new[] { "*" });
 
                 string renderResult = template.Render(Hash.FromAnonymousObject(model, true));
-
-                //var compiledTemplate = Handlebars.Compile(template);
-                //string renderResult = compiledTemplate(values);
+ 
 
                 return renderResult;
             }
@@ -115,33 +128,6 @@ namespace SanalPosTR
         public static string GetSHA1(string text)
         {
             return HashHelper.GetSHA1(text);
-        }
-    }
-
-    public static class TextFilter
-    {
-        public static string formatMoney(string input)
-        {
-            return decimal.Parse(input).ToString("C2");
-        }
-
-        public static string formatMoneyUS(string input)
-        {
-            return decimal.Parse(input).ToString(new CultureInfo("en-US"));
-        }
-
-        public static string formatMoneyWithoutDecimal(string input)
-        {
-            return decimal.Parse(input).ToString("0", new CultureInfo("en-US"));
-        }
-
-        public static string formatInstallment(string input)
-        {
-            var value = Convert.ToInt32(input);
-            if (value < 10)
-                return $"0{value}";
-            else
-                return value.ToString();
         }
     }
 }

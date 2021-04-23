@@ -1,4 +1,4 @@
-﻿using HandlebarsDotNet;
+﻿using DotLiquid;
 using SanalPosTR.Model;
 using System;
 using System.Collections.Generic;
@@ -61,16 +61,7 @@ namespace SanalPosTR.Extensions
         }
 
 
-        public static string CompileOrderLink(this string value, PaymentModel orderInfo)
-        {
-            if (value.Contains("{{") && value.Contains("}}"))
-            {
-                var compiledTemplate = Handlebars.Compile(value);
-                return compiledTemplate(orderInfo);
-            }
-            else
-                return value;
-        }
+       
 
     }
 }
