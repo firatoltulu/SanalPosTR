@@ -16,7 +16,7 @@ namespace SanalPosTR.Providers.Est
 
         #region Base
 
-        public override IProviderConfiguration ProviderConfiguration => SimplePayGlobal.BankConfiguration[CurrentBank];
+        public override IProviderConfiguration ProviderConfiguration => Definition.BankConfiguration[CurrentBank];
 
         public override string OnCompilingTemplate(PaymentModel paymentModel, string template)
         {
@@ -39,13 +39,13 @@ namespace SanalPosTR.Providers.Est
                                 nestConf.HashKey
                             );
 
-                paymentModel.Attributes.Add(new SimplePayAttribute()
+                paymentModel.Attributes.Add(new SanalPosTRAttribute()
                 {
                     Key = "Hash",
                     Value = HashHelper.GetSHA1(hashStr)
                 });
 
-                paymentModel.Attributes.Add(new SimplePayAttribute()
+                paymentModel.Attributes.Add(new SanalPosTRAttribute()
                 {
                     Key = "Random",
                     Value = rnd.ToString()
@@ -87,11 +87,11 @@ namespace SanalPosTR.Providers.Est
         {
             if (Validate3D(collection))
             {
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "OrderId", Value = collection["oid"] });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerTxnId", Value = collection["xid"] });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerSecurityLevel", Value = collection["eci"] });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "PayerAuthenticationCode", Value = collection["cavv"] });
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = "CardNumber", Value = collection["md"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "OrderId", Value = collection["oid"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "PayerTxnId", Value = collection["xid"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "PayerSecurityLevel", Value = collection["eci"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "PayerAuthenticationCode", Value = collection["cavv"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "CardNumber", Value = collection["md"] });
 
                 if (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0))
                     paymentModel.Order.Installment = null;

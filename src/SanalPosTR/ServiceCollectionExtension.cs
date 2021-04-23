@@ -8,7 +8,7 @@ using System.Text;
 
 namespace SanalPosTR
 {
-    public static class SimplePayServiceCollectionExtension
+    public static class ServiceCollectionExtension
     {
         public static IServiceCollection AddSanalPosTR(this IServiceCollection services)
         {
@@ -21,7 +21,7 @@ namespace SanalPosTR
 
             services.AddTransient<Func<BankTypes, IProviderService>>(serviceProvider => key =>
             {
-                var provider = SimplePayGlobal.BankProviders[key];
+                var provider = Definition.BankProviders[key];
                // var instance = (IProviderService)serviceProvider.GetRequiredService(provider);
 
                 var instance = (IProviderService)ActivatorUtilities.CreateInstance(serviceProvider, provider);
@@ -32,11 +32,11 @@ namespace SanalPosTR
 
             services.AddTransient<Func<BankTypes, IProviderConfiguration>>(serviceProvider => key =>
             {
-                var provider = SimplePayGlobal.BankConfiguration[key];
+                var provider = Definition.BankConfiguration[key];
                 return provider;
             });
 
-            services.AddTransient<ISimplePayConfiguration, SimplePayConfiguration>();
+            services.AddTransient<IConfigurationService, ConfigurationService>();
 
 
             Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);

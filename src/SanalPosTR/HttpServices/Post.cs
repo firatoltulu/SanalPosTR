@@ -19,7 +19,7 @@ namespace SanalPosTR
 
         public string PreTag { get; set; }
 
-        public List<SimplePayAttribute> Parameters { get; set; } = new List<SimplePayAttribute>();
+        public List<SanalPosTRAttribute> Parameters { get; set; } = new List<SanalPosTRAttribute>();
     }
 
     public enum SendParameterType

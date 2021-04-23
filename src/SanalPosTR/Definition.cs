@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace SanalPosTR
 {
-    internal static class SimplePayGlobal
+    public static class Definition
     {
         public static Dictionary<BankTypes, Type> BankProviders = new Dictionary<BankTypes, Type>
         {

@@ -6,7 +6,7 @@ namespace SanalPosTR.Model
     {
         public OrderInfo Order { get; set; }
 
-        public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
+        public List<SanalPosTRAttribute> Attributes { get; set; } = new List<SanalPosTRAttribute>();
 
         public BankTypes SelectedBank { get; set; }
 

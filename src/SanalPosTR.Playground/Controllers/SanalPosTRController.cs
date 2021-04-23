@@ -16,21 +16,21 @@ namespace SanalPosTR.Playground.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SimplePayController : ControllerBase
+    public class SanalPosTRController : ControllerBase
     {
         private readonly Func<BankTypes, IProviderService> _paymentServices;
         private readonly IDataServices _dataServices;
         private readonly ICache _cache;
         private readonly AppConfig _appConfig;
-        private readonly ILogger<SimplePayController> _logger;
-        private string COOKIE_NAME => $"SimplePayGuid";
+        private readonly ILogger<SanalPosTRController> _logger;
+        private string COOKIE_NAME => $"SanalPosTRGuid";
 
-        public SimplePayController(
+        public SanalPosTRController(
             Func<BankTypes, IProviderService> paymentServices,
             IDataServices dataServices,
             ICache cache,
             AppConfig appConfig,
-            ILogger<SimplePayController> logger
+            ILogger<SanalPosTRController> logger
             )
         {
             _paymentServices = paymentServices;

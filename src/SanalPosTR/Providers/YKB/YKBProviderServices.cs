@@ -32,7 +32,7 @@ namespace SanalPosTR.Providers.Ykb
 
         #region Base
 
-        public override IProviderConfiguration ProviderConfiguration => SimplePayGlobal.BankConfiguration[BankTypes.Ykb];
+        public override IProviderConfiguration ProviderConfiguration => Definition.BankConfiguration[BankTypes.Ykb];
         public override string EmbededDirectory => "YKB.Resources";
 
         public override PostForm GetPostForm()
@@ -86,9 +86,9 @@ namespace SanalPosTR.Providers.Ykb
 
                 if (result.Status)
                 {
-                    cloneObj.Attributes.Add(new SimplePayAttribute { Key = "Data1", Value = result.Data1 });
-                    cloneObj.Attributes.Add(new SimplePayAttribute { Key = "Data2", Value = result.Data2 });
-                    cloneObj.Attributes.Add(new SimplePayAttribute { Key = "Sign", Value = result.Sign });
+                    cloneObj.Attributes.Add(new SanalPosTRAttribute { Key = "Data1", Value = result.Data1 });
+                    cloneObj.Attributes.Add(new SanalPosTRAttribute { Key = "Data2", Value = result.Data2 });
+                    cloneObj.Attributes.Add(new SanalPosTRAttribute { Key = "Sign", Value = result.Sign });
                 }
                 else
                 {
@@ -107,7 +107,7 @@ namespace SanalPosTR.Providers.Ykb
         public async override Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
             foreach (var item in collection)
-                paymentModel.Attributes.Add(new SimplePayAttribute { Key = item.Key.ToLower(), Value = item.Value });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = item.Key.ToLower(), Value = item.Value });
 
             var validateResult = await Validate3D(paymentModel, collection);
             if (validateResult.Status)
@@ -159,7 +159,7 @@ namespace SanalPosTR.Providers.Ykb
 
 
 
-            paymentModel.Attributes.Add(new SimplePayAttribute { Key = "mac", Value = mac });
+            paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "mac", Value = mac });
 
             string template = TemplateHelper.ReadEmbedResource($"{EmbededDirectory}.3D_Resolve.xml");
             string postData = TemplateHelper.PrepaireXML(new ViewModel

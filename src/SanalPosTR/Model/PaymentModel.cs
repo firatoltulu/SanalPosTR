@@ -20,7 +20,7 @@ namespace SanalPosTR.Model
             return ObjectCopier.Clone(this);
         }
 
-        public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
+        public List<SanalPosTRAttribute> Attributes { get; set; } = new List<SanalPosTRAttribute>();
 
         public string SessionId { get; set; }
     }

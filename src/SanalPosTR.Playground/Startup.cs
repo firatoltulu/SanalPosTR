@@ -38,7 +38,7 @@ namespace SanalPosTR.Playground
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             AppConfig appConfig = new AppConfig();
-            var section = Configuration.GetSection("SimplePayTR");
+            var section = Configuration.GetSection("SanalPosTRTR");
             section.Bind(appConfig);
 
             services.AddSingleton(appConfig.GetType(), appConfig);
@@ -180,7 +180,7 @@ namespace SanalPosTR.Playground
                 }
             });
 
-            Log.Information($"SimplePay Running");
+            Log.Information($"SanalPosTR Running");
         }
     }
 }

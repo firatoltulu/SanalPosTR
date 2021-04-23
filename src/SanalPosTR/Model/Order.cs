@@ -19,7 +19,7 @@
         public string CustomerId { get; set; }
     }
 
-    public partial class SimplePayAttribute
+    public partial class SanalPosTRAttribute
     {
         public string Key { get; set; }
         public string Value { get; set; }

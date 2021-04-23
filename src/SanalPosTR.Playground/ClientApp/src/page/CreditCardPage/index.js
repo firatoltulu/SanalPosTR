@@ -109,7 +109,7 @@ export default function CreditCardPage() {
             SelectedBank: parseInt(bank),
         };
 
-        Axios.post("api/SimplePay/Pay", sendObj).then(response => response.data).then(result => {
+        Axios.post("api/SanalPosTR/Pay", sendObj).then(response => response.data).then(result => {
 
             if (result.status) {
                 if (result.data.isRedirect === false) {
@@ -133,7 +133,7 @@ export default function CreditCardPage() {
     }
 
     const GetInstallment = (e) => {
-        Axios.post("api/SimplePay/Installment", { binNumber: number.substring(0, 6) }).then(x => x.data).then(result => {
+        Axios.post("api/SanalPosTR/Installment", { binNumber: number.substring(0, 6) }).then(x => x.data).then(result => {
             
             setInstallments(result.map(v => {
                 return {

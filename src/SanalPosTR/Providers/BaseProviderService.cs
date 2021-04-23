@@ -15,7 +15,7 @@ namespace SanalPosTR.Providers
         public virtual IProviderConfiguration ProviderConfiguration { get; }
 
         public virtual IEnvironmentConfiguration EndPointConfiguration =>
-            ProviderConfiguration.UseTestEndPoint ? SimplePayGlobal.BankTestUrls[CurrentBank] : SimplePayGlobal.BankProdUrls[CurrentBank];
+            ProviderConfiguration.UseTestEndPoint ? Definition.BankTestUrls[CurrentBank] : Definition.BankProdUrls[CurrentBank];
 
         public BankTypes CurrentBank { get; set; }
 
@@ -27,9 +27,9 @@ namespace SanalPosTR.Providers
         public virtual string OnCompilingTemplate(ViewModel viewModel, string template)
         {
             if (ProviderConfiguration.UseTestEndPoint)
-                viewModel.Environment = SimplePayGlobal.BankTestUrls[CurrentBank];
+                viewModel.Environment = Definition.BankTestUrls[CurrentBank];
             else
-                viewModel.Environment = SimplePayGlobal.BankProdUrls[CurrentBank];
+                viewModel.Environment = Definition.BankProdUrls[CurrentBank];
 
             return TemplateHelper.PrepaireXML(viewModel, template);
         }

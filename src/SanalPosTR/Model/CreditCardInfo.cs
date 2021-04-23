@@ -15,6 +15,6 @@ namespace SanalPosTR.Model
 
         public string CardHolderName { get; set; }
 
-        public List<SimplePayAttribute> Attributes { get; set; } = new List<SimplePayAttribute>();
+        public List<SanalPosTRAttribute> Attributes { get; set; } = new List<SanalPosTRAttribute>();
     }
 }
