@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <CC5Request>
   <Name>{{ Configuration.Name }}</Name>
-  <Password>{{Configuration.Password }}</Password>
-  <ClientId>{{Configuration.ClientId }}</ClientId>
+  <Password>{{ Configuration.Password }}</Password>
+  <ClientId>{{ Configuration.ClientId }}</ClientId>
   <Mode>{{ Configuration.Mode }}</Mode>
   <Type>{{ Configuration.Type }}</Type>
 
@@ -13,16 +13,14 @@
   <Expires>{{CreditCard.ExpireMonth}}/{{CreditCard.ExpireYear}}</Expires>
   <Cvv2Val>{{ CreditCard.CVV2}}</Cvv2Val>
   
-  <Total> {{formatMoneyUS Order.Total}}</Total>
-  
-  {{#if Order.Installment }}
-    <Taksit>{{ Order.Installment }}</Taksit>
-  {{else}}
-  
-    <Taksit></Taksit>
-  
-  {{/if}}
+  <Total> {{ Order.Total | formatMoneyUS}}</Total>
 
-<Currency>{{ Order.CurrencyCode }}</Currency>
+  {% if Order.Installment %}
+    <Taksit>{{ Order.Installment }}</Taksit>
+  {% else %}
+    <Taksit></Taksit>
+  {% endif %}
+
+  <Currency>{{ Order.CurrencyCode }}</Currency>
   <email></email>
 </CC5Request>

@@ -2,6 +2,7 @@
 
 namespace SanalPosTR.Model
 {
+    
     public class CreditCardInfo
     {
         public string CardNumber { get; set; }

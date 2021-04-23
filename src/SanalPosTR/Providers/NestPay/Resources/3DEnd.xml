@@ -9,15 +9,15 @@
   
   <Number>{{CardNumber}}</Number>
 
-  <amount>{{formatMoneyUS Order.Total}}</amount>
+  <amount>{{ Order.Total | formatMoneyUS }}</amount>
 
-  {{#if Order.Installment }}
+  {% if Order.Installment %}
   <Taksit>{{ Order.Installment }}</Taksit>
-  {{else}}
+  {% else %}
 
   <Taksit></Taksit>
 
-  {{/if}}
+  {% endif %}
 
   <Currency>{{ Order.CurrencyCode }}</Currency>
   <UserId>{{  Order.UserId }}</UserId>

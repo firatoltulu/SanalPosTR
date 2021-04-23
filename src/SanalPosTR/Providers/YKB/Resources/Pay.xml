@@ -7,15 +7,15 @@
     <ccno>{{CreditCard.CardNumber}}</ccno>
     <expDate>{{CreditCard.ExpireYear}}{{CreditCard.ExpireMonth}}</expDate>
     <cvc>{{CreditCard.CVV2}}</cvc>
-    <amount>{{formatMoneyWithoutDecimal Order.Total}}</amount>
+    <amount>{{Order.Total | formatMoneyWithoutDecimal }}</amount>
     <currencyCode>{{ Order.CurrencyCode }}</currencyCode>
     <orderID>{{ Order.OrderId }}</orderID>
 
-    {{#if Order.Installment }}
+    {% if Order.Installment %}
       <installment>{{ formatInstallment Order.Installment }}</installment>
-    {{else}}
+    {% else %}
       <installment>00</installment>
-    {{/if}}
-    
-</sale>
+    {% endif %}
+
+  </sale>
 </posnetRequest>

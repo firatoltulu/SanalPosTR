@@ -5,7 +5,7 @@
   <ClientId>{{Configuration.ClientId }}</ClientId>
   <Mode>P</Mode>
   <OrderId>{{ Refund.OrderId }}</OrderId>
-  <Total> {{formatMoneyUS Refund.RefundAmount}}</Total>
+  <Total> {{Refund.RefundAmount | formatMoneyUS}}</Total>
   <Type>Credit</Type>
   <Currency>{{ Refund.CurrencyCode }}</Currency>
   <email></email>

@@ -1,5 +1,8 @@
-﻿namespace SanalPosTR.Configuration
+﻿using DotLiquid;
+
+namespace SanalPosTR.Configuration
 {
+   
     public class NestPayConfiguration : IProviderConfiguration, I3DConfiguration
     {
         public string Name { get; set; }

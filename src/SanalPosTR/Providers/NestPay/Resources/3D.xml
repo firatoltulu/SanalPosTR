@@ -10,7 +10,7 @@
     <input type="hidden" name="currency" value="{{Order.CurrencyCode}}" />
 
     <input type="hidden" name="clientid" value="{{Configuration.ClientId}}" />
-    <input type="hidden" name="amount" value="{{formatMoneyUS Order.Total}}" />
+    <input type="hidden" name="amount" value="{{Order.Total | formatMoneyUS}}" />
     <input type="hidden" name="oid" value="{{Order.OrderId}}" />
     <input type="hidden" name="okUrl" value="{{SiteSuccessUrl}}" />
     <input type="hidden" name="failUrl" value="{{SiteFailUrl}}" />
@@ -19,13 +19,13 @@
   
     <input type="hidden" name="islemtipi" value="Auth" />
 
-    {{#if Order.Installment }}
+    {% if Order.Installment %}
         <input type="hidden" name="taksit" value="{{Order.Installment}}" />
-    {{else}}
+    {% else %}
         <input type="hidden" name="taksit" value="{{Order.Installment}}" />
-    {{/if}}
+    {% endif %}
 
-    <input type="hidden" name="storetype" value="3D" />
+  <input type="hidden" name="storetype" value="3D" />
   
     <input type="hidden" name="lang" value="tr" />
   

@@ -1,4 +1,4 @@
-﻿using HandlebarsDotNet;
+﻿using DotLiquid;
 using SanalPosTR.Configuration;
 using SanalPosTR.Extensions;
 using SanalPosTR.Model;
@@ -29,37 +29,10 @@ namespace SanalPosTR
             return result;
         }
 
-        public static string PrepaireXML(ViewModel model, string template)
+        public static string PrepaireXML(ViewModel model, string template1)
         {
             try
             {
-                Handlebars.RegisterHelper("formatMoney", (writer, context, parameters) =>
-                {
-                    var value = Convert.ToDouble(parameters[0]);
-                    writer.WriteSafeString(value.ToString("C2"));
-                });
-
-                Handlebars.RegisterHelper("formatMoneyUS", (writer, context, parameters) =>
-                {
-                    var value = Convert.ToDouble(parameters[0]);
-                    writer.WriteSafeString(value.ToString(new CultureInfo("en-US")));
-                });
-
-                Handlebars.RegisterHelper("formatMoneyWithoutDecimal", (writer, context, parameters) =>
-                {
-                    var value = Convert.ToDouble(parameters[0]);
-                    writer.WriteSafeString(value.ToString("0", new CultureInfo("en-US")));
-                });
-
-                Handlebars.RegisterHelper("formatInstallment", (writer, context, parameters) =>
-                {
-                    var value = Convert.ToInt32(parameters[0]);
-                    if (value < 10)
-                        writer.WriteSafeString($"0{value}");
-                    else
-                        writer.WriteSafeString(value.ToString());
-                });
-
                 dynamic values = new ExpandoObject();
 
                 values.Configuration = model.Configuration;
@@ -83,8 +56,21 @@ namespace SanalPosTR
                     });
                 }
 
-                var compiledTemplate = Handlebars.Compile(template);
-                string renderResult = compiledTemplate(values);
+                Template template = Template.Parse(template1); // Parses and compiles the template
+                Template.RegisterFilter(typeof(TextFilter));
+                Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
+
+                Template.RegisterSafeType(typeof(NestPayConfiguration), new[] { "*" });
+                Template.RegisterSafeType(typeof(YKBConfiguration), new[] { "*" });
+                Template.RegisterSafeType(typeof(CreditCardInfo), new[] { "*" });
+                Template.RegisterSafeType(typeof(OrderInfo), new[] { "*" });
+                Template.RegisterSafeType(typeof(Refund), new[] { "*" });
+                Template.RegisterSafeType(typeof(IEnvironmentConfiguration), new[] { "*" });
+
+                string renderResult = template.Render(Hash.FromAnonymousObject(model, true));
+
+                //var compiledTemplate = Handlebars.Compile(template);
+                //string renderResult = compiledTemplate(values);
 
                 return renderResult;
             }
@@ -129,6 +115,33 @@ namespace SanalPosTR
         public static string GetSHA1(string text)
         {
             return HashHelper.GetSHA1(text);
+        }
+    }
+
+    public static class TextFilter
+    {
+        public static string formatMoney(string input)
+        {
+            return decimal.Parse(input).ToString("C2");
+        }
+
+        public static string formatMoneyUS(string input)
+        {
+            return decimal.Parse(input).ToString(new CultureInfo("en-US"));
+        }
+
+        public static string formatMoneyWithoutDecimal(string input)
+        {
+            return decimal.Parse(input).ToString("0", new CultureInfo("en-US"));
+        }
+
+        public static string formatInstallment(string input)
+        {
+            var value = Convert.ToInt32(input);
+            if (value < 10)
+                return $"0{value}";
+            else
+                return value.ToString();
         }
     }
 }

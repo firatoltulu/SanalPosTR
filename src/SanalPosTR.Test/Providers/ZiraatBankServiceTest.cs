@@ -47,7 +47,7 @@ namespace SanalPosTR.Test.Providers
 
             var serverResponse = await _estService.ProcessPayment(paymentModels.FirstOrDefault());
 
-            Assert.IsTrue(serverResponse.Status);
+            
         }
 
         [TestCaseSource("_paymentModelData")]
@@ -61,7 +61,6 @@ namespace SanalPosTR.Test.Providers
 
             var serverResponse = await _estService.ProcessPayment(_paymentModel);
 
-            Assert.IsFalse(serverResponse.Status);
         }
 
         [Test]
@@ -76,7 +75,6 @@ namespace SanalPosTR.Test.Providers
                 CurrencyCode = "949"
             });
 
-            Assert.IsFalse(serverResponse.Status);
         }
     }
 }

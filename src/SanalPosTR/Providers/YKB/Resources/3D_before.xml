@@ -10,11 +10,13 @@
     <currencyCode>{{ Order.CurrencyCode }}</currencyCode>
     <XID>{{ Order.OrderId }}</XID>
     <cardHolderName><![CDATA[{{CreditCard.CardHolderName}}]]></cardHolderName>
-    {{#if Order.Installment }}
-      <installment>{{formatInstallment Order.Installment}}</installment>
-    {{else}}
+    
+    {% if Order.Installment %}
+      <installment>{{Order.Installment | formatInstallment}} </installment>
+    {% else %}
       <installment>00</installment>
-    {{/if}}
+    {% endif %}
+    
     <tranType>Sale</tranType>
   </oosRequestData>
 </posnetRequest>
