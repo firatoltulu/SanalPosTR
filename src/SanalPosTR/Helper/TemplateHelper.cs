@@ -17,6 +17,7 @@ namespace SanalPosTR
         {
             Template.RegisterFilter(typeof(TemplateMethodFilter));
             Template.NamingConvention = new DotLiquid.NamingConventions.CSharpNamingConvention();
+
             Template.RegisterSafeType(typeof(NestPayConfiguration), new[] { "*" });
             Template.RegisterSafeType(typeof(YKBConfiguration), new[] { "*" });
             Template.RegisterSafeType(typeof(CreditCardInfo), new[] { "*" });
@@ -24,6 +25,8 @@ namespace SanalPosTR
             Template.RegisterSafeType(typeof(Refund), new[] { "*" });
             Template.RegisterSafeType(typeof(PaymentModel), new[] { "*" });
             Template.RegisterSafeType(typeof(IEnvironmentConfiguration), new[] { "*" });
+            
+            
         }
 
         public static string ReadEmbedResource(string name)
@@ -82,8 +85,8 @@ namespace SanalPosTR
 
                 Template template = Template.Parse(template1); // Parses and compiles the template
 
-                string renderResult = template.Render(Hash.FromAnonymousObject(model, true));
- 
+                // string renderResult = template.Render(Hash.FromAnonymousObject(model));
+                string renderResult = template.Render(Hash.FromDictionary(((IDictionary<string, object>)values)));
 
                 return renderResult;
             }

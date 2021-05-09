@@ -12,7 +12,7 @@
     <cardHolderName><![CDATA[{{CreditCard.CardHolderName}}]]></cardHolderName>
     
     {% if Order.Installment %}
-      <installment>{{Order.Installment | formatInstallment}} </installment>
+      <installment>{{Order.Installment | formatInstallment}}</installment>
     {% else %}
       <installment>00</installment>
     {% endif %}

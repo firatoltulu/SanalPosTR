@@ -1,4 +1,5 @@
 ﻿using RestSharp;
+using SanalPosTR.Model;
 using System.Collections.Generic;
 
 namespace SanalPosTR

@@ -1,4 +1,4 @@
-﻿namespace SanalPosTR
+﻿namespace SanalPosTR.Model
 {
     public class OrderInfo
     {
