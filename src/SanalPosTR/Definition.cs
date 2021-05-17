@@ -24,18 +24,32 @@ namespace SanalPosTR
             { BankTypes.Akbank,  new NestPayConfiguration() },
             { BankTypes.FinansBank,  new NestPayConfiguration() },
             { BankTypes.Isbank,  new NestPayConfiguration() },
+            { BankTypes.HalkBank,  new NestPayConfiguration() },
+            { BankTypes.Anadolubank,  new NestPayConfiguration() },
             { BankTypes.Ykb,  new YKBConfiguration() },
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankTestUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
         {
             {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.Akbank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.FinansBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+            {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
+
+
             {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } }
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankProdUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
         {
             {BankTypes.Ziraat, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos2.ziraatbank.com.tr" } },
+            {BankTypes.Akbank, new NestPayEndPointConfiguration{ BaseUrl="https://www.sanalakpos.com" } },
+            {BankTypes.FinansBank, new NestPayEndPointConfiguration{ BaseUrl="https://www.fbwebpos.com" } },
+            {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.isbank.com.tr" } },
+            {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.halkbank.com.tr" } },
+            {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl=" https://anadolusanalpos.est.com.tr" } },
             {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } }
         };
 

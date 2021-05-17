@@ -118,7 +118,7 @@ export default function CreditCardPage() {
                     setHTML(result.data.content);
                     setOpen(true);
 
-                    setTimeout(() => { document.getElementById("simplepaytr").submit() }, 0);
+                    setTimeout(() => { document.getElementById("SanalPosTR").submit() }, 0);
 
                 }
             } else {
@@ -230,6 +230,7 @@ export default function CreditCardPage() {
                         <Select name="name" value={bank} onChange={(e) => setBank(e.target.value)} onFocus={e => setFocus(e.target.name)}>
                             <option value="0" >Ziraat</option>
                             <option value="2" >YKB</option>
+                            <option value="3" >Akbank</option>
                         </Select>
                     </InputGroup>
 

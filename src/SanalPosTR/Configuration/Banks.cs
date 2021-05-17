@@ -8,6 +8,7 @@
         Akbank,
         Isbank,
         DenizBank,
+        HalkBank,
         VakifBank,
         FinansBank,
         Anadolubank,
