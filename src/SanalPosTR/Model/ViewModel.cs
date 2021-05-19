@@ -1,9 +1,7 @@
-﻿using DotLiquid;
-using SanalPosTR.Configuration;
+﻿using SanalPosTR.Configuration;
 
 namespace SanalPosTR.Model
 {
-    [LiquidType("*")]
     public class ViewModel : PaymentModel
     {
         public IProviderConfiguration Configuration { get; set; }

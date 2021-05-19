@@ -20,13 +20,16 @@ namespace SanalPosTR
 
             Template.RegisterSafeType(typeof(NestPayConfiguration), new[] { "*" });
             Template.RegisterSafeType(typeof(YKBConfiguration), new[] { "*" });
+            Template.RegisterSafeType(typeof(IProviderConfiguration), new[] { "*" });
+            Template.RegisterSafeType(typeof(I3DConfiguration), new[] { "*" });
             Template.RegisterSafeType(typeof(CreditCardInfo), new[] { "*" });
             Template.RegisterSafeType(typeof(OrderInfo), new[] { "*" });
             Template.RegisterSafeType(typeof(Refund), new[] { "*" });
             Template.RegisterSafeType(typeof(PaymentModel), new[] { "*" });
             Template.RegisterSafeType(typeof(IEnvironmentConfiguration), new[] { "*" });
-            
-            
+            Template.RegisterSafeType(typeof(ViewModel), new[] { "*" });
+            Template.RegisterSafeType(typeof(PaymentModel), new[] { "*" });
+
         }
 
         public static string ReadEmbedResource(string name)
@@ -49,8 +52,9 @@ namespace SanalPosTR
         {
             if (value.Contains("{{") && value.Contains("}}"))
             {
+
                 var compiledTemplate = Template.Parse(value);
-                return compiledTemplate.Render(Hash.FromAnonymousObject(orderInfo));
+                return compiledTemplate.Render(Hash.FromAnonymousObject(orderInfo, true));
             }
             else
                 return value;
