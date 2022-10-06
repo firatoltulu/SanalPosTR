@@ -43,6 +43,18 @@ namespace SanalPosTR.Test
                     SiteFailUrl = "http://x.com/Fail/{{OrderId}}",
                     SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
                 });
+
+                ops.UseKuveytTurk(new KuveytTurkConfiguration()
+                {
+                    MerchantId = "x",
+                    //TerminalId = "x",
+                    //PosnetId = "x",
+                    UserName = "5558",
+                    Password = "123456",
+                    UseTestEndPoint = true,
+                    SiteFailUrl = "http://x.com/Fail/{{OrderId}}",
+                    SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
+                });
             });
         }
     }

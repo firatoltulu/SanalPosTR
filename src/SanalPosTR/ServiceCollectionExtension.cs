@@ -15,9 +15,11 @@ namespace SanalPosTR
 
             services.AddScoped<NestPayProviderService>();
             services.AddScoped<YKBProviderServices>();
+            services.AddScoped<KuveytTurkProviderServices>();
 
             services.AddScoped<NestPayConfiguration>();
             services.AddScoped<YKBConfiguration>();
+            services.AddScoped<KuveytTurkProviderServices>();
 
             services.AddTransient<Func<BankTypes, IProviderService>>(serviceProvider => key =>
             {

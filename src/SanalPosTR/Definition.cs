@@ -16,6 +16,7 @@ namespace SanalPosTR
             { BankTypes.FinansBank, typeof(NestPayProviderService) },
             { BankTypes.Isbank, typeof(NestPayProviderService) },
             { BankTypes.Ykb, typeof(YKBProviderServices) },
+            { BankTypes.KuveytTurk, typeof(KuveytTurkProviderServices) }
         };
 
         public static Dictionary<BankTypes, IProviderConfiguration> BankConfiguration = new Dictionary<BankTypes, IProviderConfiguration>
@@ -27,6 +28,7 @@ namespace SanalPosTR
             { BankTypes.HalkBank,  new NestPayConfiguration() },
             { BankTypes.Anadolubank,  new NestPayConfiguration() },
             { BankTypes.Ykb,  new YKBConfiguration() },
+            { BankTypes.KuveytTurk, new KuveytTurkConfiguration() },
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankTestUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
@@ -38,8 +40,9 @@ namespace SanalPosTR
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
 
-
-            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } }
+            
+            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } },
+            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{ BaseUrl= "https://entegrasyon.asseco-see.com.tr"} }
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankProdUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
@@ -50,7 +53,8 @@ namespace SanalPosTR
             {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.isbank.com.tr" } },
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.halkbank.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl=" https://anadolusanalpos.est.com.tr" } },
-            {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } }
+            {BankTypes.Ykb, new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } },
+            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } }
         };
 
 

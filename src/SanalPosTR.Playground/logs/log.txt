@@ -6840,3 +6840,918 @@ VALUES
 2020-12-10 17:32:33.048 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 962.078ms
 2020-12-10 17:32:33.048 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
 2020-12-10 17:32:33.048 +03:00 [INF] Request finished in 973.3237ms 200 application/json; charset=utf-8
+2022-09-27 22:37:27.700 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-09-27 22:37:38.859 +03:00 [INF] Starting create-react-app server on port 49268...
+2022-09-27 22:37:39.191 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-09-27 22:37:39.192 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0991593. Rows Count: 0.
+
+2022-09-27 22:37:39.241 +03:00 [INF] SanalPosTR Running
+2022-09-27 22:37:39.267 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-09-27 22:37:39.267 +03:00 [INF] Hosting environment: Development
+2022-09-27 22:37:39.267 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-09-27 22:37:39.309 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-09-27 22:37:41.469 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.5/
+
+2022-09-27 22:37:41.470 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-09-27 22:37:43.168 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-09-27 22:37:49.473 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-09-27 22:37:49.476 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-09-27 22:37:52.960 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 13646.4355ms
+2022-09-27 22:37:52.980 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-09-27 22:37:52.980 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-09-27 22:37:52.983 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-09-27 22:37:55.047 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2063.7486ms
+2022-09-27 22:37:55.051 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-09-27 22:37:55.060 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2079.5557ms
+2022-09-27 22:37:55.069 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-09-27 22:37:55.210 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2229.5829ms
+2022-09-27 22:37:55.224 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-09-27 22:37:55.276 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-09-27 22:37:55.279 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:37:55.383 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-09-27 22:37:55.416 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/favicon.ico - -
+2022-09-27 22:37:57.107 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2055.9673ms
+2022-09-27 22:37:57.117 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2047.6738ms
+2022-09-27 22:37:57.420 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2196.0231ms
+2022-09-27 22:37:57.447 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2064.0298ms
+2022-09-27 22:37:57.476 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/favicon.ico - - - 200 - image/x-icon 2060.2237ms
+2022-09-27 22:38:21.673 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22
+2022-09-27 22:38:21.673 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:38:21.675 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-09-27 22:38:21.708 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:38:32.426 +03:00 [INF] Total Execution Time (Completed): 00:00:10.1822397. Rows Count: 0.
+
+2022-09-27 22:38:32.486 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 10769.2412ms
+2022-09-27 22:38:32.488 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-09-27 22:38:32.490 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at LinqToDB.Async.AsyncDbConnection.Open()
+   at LinqToDB.Data.DataConnection.EnsureConnection()
+   at LinqToDB.Data.DataConnection.get_Connection()
+   at LinqToDB.Data.DataConnection.CreateCommand()
+   at LinqToDB.Data.DataConnection.get_Command()
+   at LinqToDB.Data.DataConnection.QueryRunner.AddParameter(DataConnection dataConnection, ICollection`1 parms, String name, SqlParameter parm)
+   at LinqToDB.Data.DataConnection.QueryRunner.GetParameters(DataConnection dataConnection, PreparedQuery pq)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery(DataConnection dataConnection, IQueryContext queryContext, Int32 startIndent)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery()
+   at LinqToDB.Linq.QueryRunnerBase.SetCommand(Boolean clearQueryHints)
+   at LinqToDB.Data.DataConnection.QueryRunner.ExecuteReader()
+   at LinqToDB.Linq.QueryRunner.ExecuteQuery[T](Query query, IDataContext dataContext, Mapper`1 mapper, Expression expression, Object[] ps, Object[] preambles, Int32 queryNumber)+MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at LinqToDB.Linq.Builder.FirstSingleBuilder.FirstSingleContext.<>c__DisplayClass4_0`1.<GetFirstOrDefaultElement>b__0(IDataContext db, Expression expr, Object[] ps, Object[] preambles)
+   at LinqToDB.Linq.ExpressionQuery`1.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at SanalPosTR.Playground.Data.DataServices.GetPosInstallments(String binNumber) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Data\DataServices.cs:line 44
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Installment(InstallmentModel model) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 174
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:b60b0eaa-a32b-43f0-9073-33dcdf9d418e
+Error Number:4060,State:1,Class:11
+2022-09-27 22:38:32.537 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22 - 500 - text/plain 10864.2344ms
+2022-09-27 22:38:32.553 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-09-27 22:38:34.603 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 304 - - 2049.5006ms
+2022-09-27 22:38:34.645 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-09-27 22:38:36.962 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 - application/json;+charset=utf-8 2316.4759ms
+2022-09-27 22:38:59.123 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:38:59.123 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:38:59.124 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:38:59.129 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:34.991 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:34.991 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-09-27 22:39:34.991 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:34.991 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:34.991 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:34.991 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:34.991 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:34.991 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:34.991 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:34.991 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:34.991 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:34.991 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:34.991 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:34.991 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:34.993 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:34.992 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:34.994 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:34.994 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:34.994 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:34.994 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:34.994 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:35.010 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-09-27 22:39:35.010 +03:00 [INF] CORS policy execution successful.
+2022-09-27 22:39:35.010 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-09-27 22:39:35.016 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-09-27 22:39:35.130 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/api/SanalPosTR/Installment - -
+2022-09-27 22:39:35.135 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js.map - -
+2022-09-27 22:39:35.140 +03:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2022-09-27 22:39:35.140 +03:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2022-09-27 22:39:35.145 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/api/SanalPosTR/Installment - - - 0 - - 14.6334ms
+2022-09-27 22:39:35.148 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-09-27 22:39:35.148 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js.map - -
+2022-10-02 16:35:47.487 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-02 16:35:58.611 +03:00 [INF] Starting create-react-app server on port 61076...
+2022-10-02 16:35:58.907 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-02 16:35:58.909 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0764900. Rows Count: 0.
+
+2022-10-02 16:35:58.946 +03:00 [INF] SanalPosTR Running
+2022-10-02 16:35:58.969 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-02 16:35:58.969 +03:00 [INF] Hosting environment: Development
+2022-10-02 16:35:58.969 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-02 16:35:59.025 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-02 16:36:03.472 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-02 16:36:03.472 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-02 16:36:08.023 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-02 16:36:09.718 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-02 16:36:09.720 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-02 16:36:11.908 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 12881.7012ms
+2022-10-02 16:36:11.941 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-02 16:36:11.943 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-02 16:36:11.946 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-02 16:36:14.018 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2074.7816ms
+2022-10-02 16:36:14.018 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2076.3926ms
+2022-10-02 16:36:14.021 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 304 - - 2074.6087ms
+2022-10-02 16:36:14.023 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-02 16:36:14.023 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-02 16:36:14.051 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-02 16:36:14.099 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-10-02 16:36:14.103 +03:00 [INF] CORS policy execution successful.
+2022-10-02 16:36:14.208 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-10-02 16:36:16.077 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2053.5163ms
+2022-10-02 16:36:16.077 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2054.0430ms
+2022-10-02 16:36:16.252 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2043.2257ms
+2022-10-02 16:36:16.261 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2210.0100ms
+2022-10-02 16:37:28.076 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22
+2022-10-02 16:37:28.077 +03:00 [INF] CORS policy execution successful.
+2022-10-02 16:37:28.082 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-02 16:37:28.182 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-02 16:37:38.525 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 290
+2022-10-02 16:37:38.525 +03:00 [INF] CORS policy execution successful.
+2022-10-02 16:37:38.529 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-02 16:37:38.540 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-02 16:40:36.971 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-02 16:40:48.814 +03:00 [INF] Starting create-react-app server on port 61513...
+2022-10-02 16:40:49.223 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-02 16:40:49.226 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0945101. Rows Count: 0.
+
+2022-10-02 16:40:49.280 +03:00 [INF] SanalPosTR Running
+2022-10-02 16:40:49.310 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-02 16:40:49.310 +03:00 [INF] Hosting environment: Development
+2022-10-02 16:40:49.310 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-02 16:40:49.343 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-02 16:40:54.486 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-02 16:40:54.486 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-02 16:40:58.488 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-02 16:41:01.024 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-02 16:41:01.026 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-02 16:41:03.763 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 14418.6746ms
+2022-10-02 16:41:03.784 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-02 16:41:03.785 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-02 16:41:03.785 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-02 16:41:05.868 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2082.6839ms
+2022-10-02 16:41:05.868 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2083.9404ms
+2022-10-02 16:41:05.974 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - -
+2022-10-02 16:41:06.130 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2344.8590ms
+2022-10-02 16:41:08.032 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - - - 200 33143 application/json;+charset=utf-8 2057.3029ms
+2022-10-02 16:41:08.536 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-02 16:41:10.681 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 3619384 application/json;+charset=utf-8 2144.3397ms
+2022-10-02 16:41:10.755 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - -
+2022-10-02 16:41:12.820 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - - - 200 21509 application/json;+charset=utf-8 2065.5919ms
+2022-10-02 16:41:12.928 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-10-02 16:41:12.935 +03:00 [INF] CORS policy execution successful.
+2022-10-02 16:41:13.222 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/favicon.ico - -
+2022-10-02 16:41:13.230 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-10-02 16:41:15.297 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2066.7105ms
+2022-10-02 16:41:15.298 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/favicon.ico - - - 200 - image/x-icon 2076.1131ms
+2022-10-02 16:42:34.858 +03:00 [INF]   Line 43:47:  Expected '===' and instead saw '=='  eqeqeq
+  Line 43:63:  Unexpected mix of '&' and '|'        no-mixed-operators
+  Line 43:69:  Unexpected mix of '&' and '|'        no-mixed-operators
+  Line 63:26:  Expected '===' and instead saw '=='  eqeqeq
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+Compiling...
+
+2022-10-02 16:42:44.024 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-02 16:42:56.373 +03:00 [INF] Starting create-react-app server on port 61738...
+2022-10-02 16:42:57.194 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-02 16:42:57.197 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.1216312. Rows Count: 0.
+
+2022-10-02 16:42:57.308 +03:00 [INF] SanalPosTR Running
+2022-10-02 16:42:57.367 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-02 16:42:57.367 +03:00 [INF] Hosting environment: Development
+2022-10-02 16:42:57.367 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-02 16:42:57.440 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-02 16:43:00.727 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-02 16:43:00.728 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-02 16:43:03.824 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-02 16:43:08.104 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-02 16:43:08.110 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-02 16:43:10.547 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 13107.0432ms
+2022-10-02 16:43:10.566 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-02 16:43:10.573 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-02 16:43:10.585 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-02 16:43:12.697 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2131.8427ms
+2022-10-02 16:43:12.697 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2112.7747ms
+2022-10-02 16:43:12.841 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - -
+2022-10-02 16:43:13.309 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2736.3195ms
+2022-10-02 16:43:14.909 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - - - 200 33143 application/json;+charset=utf-8 2067.8693ms
+2022-10-02 16:43:15.191 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-02 16:43:17.367 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 3619384 application/json;+charset=utf-8 2176.1821ms
+2022-10-02 16:43:17.548 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - -
+2022-10-02 16:43:19.595 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - - - 200 21510 application/json;+charset=utf-8 2046.9167ms
+2022-10-02 16:43:19.670 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-10-02 16:43:19.683 +03:00 [INF] CORS policy execution successful.
+2022-10-02 16:43:19.892 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-10-02 16:43:21.953 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2060.3331ms
+2022-10-05 22:05:01.933 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-05 22:05:13.839 +03:00 [INF] Starting create-react-app server on port 56219...
+2022-10-05 22:05:14.701 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-05 22:05:14.703 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.1893812. Rows Count: 0.
+
+2022-10-05 22:05:14.740 +03:00 [INF] SanalPosTR Running
+2022-10-05 22:05:14.805 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-05 22:05:14.806 +03:00 [INF] Hosting environment: Development
+2022-10-05 22:05:14.806 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-05 22:05:14.880 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-05 22:05:18.396 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-05 22:05:18.397 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-05 22:05:21.594 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-05 22:05:22.905 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-05 22:05:22.907 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-05 22:05:25.108 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 10227.6509ms
+2022-10-05 22:05:25.116 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-05 22:05:25.116 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-05 22:05:25.116 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-05 22:05:27.202 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2086.5245ms
+2022-10-05 22:05:27.202 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2086.5244ms
+2022-10-05 22:05:27.318 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - -
+2022-10-05 22:05:27.347 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2230.6911ms
+2022-10-05 22:05:29.372 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - - - 200 33143 application/json;+charset=utf-8 2053.7927ms
+2022-10-05 22:05:29.520 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-05 22:05:31.619 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 3619384 application/json;+charset=utf-8 2099.5607ms
+2022-10-05 22:05:31.662 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - -
+2022-10-05 22:05:33.704 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - - - 200 21510 application/json;+charset=utf-8 2042.3495ms
+2022-10-05 22:05:33.735 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-10-05 22:05:33.739 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:05:33.863 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-10-05 22:05:35.926 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2062.9109ms
+2022-10-05 22:06:10.872 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22
+2022-10-05 22:06:10.872 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:06:10.874 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-05 22:06:10.913 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-05 22:06:22.056 +03:00 [INF] Total Execution Time (Completed): 00:00:10.1206804. Rows Count: 0.
+
+2022-10-05 22:06:22.103 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 11181.7826ms
+2022-10-05 22:06:22.105 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-05 22:06:22.106 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at LinqToDB.Async.AsyncDbConnection.Open()
+   at LinqToDB.Data.DataConnection.EnsureConnection()
+   at LinqToDB.Data.DataConnection.get_Connection()
+   at LinqToDB.Data.DataConnection.CreateCommand()
+   at LinqToDB.Data.DataConnection.get_Command()
+   at LinqToDB.Data.DataConnection.QueryRunner.AddParameter(DataConnection dataConnection, ICollection`1 parms, String name, SqlParameter parm)
+   at LinqToDB.Data.DataConnection.QueryRunner.GetParameters(DataConnection dataConnection, PreparedQuery pq)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery(DataConnection dataConnection, IQueryContext queryContext, Int32 startIndent)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery()
+   at LinqToDB.Linq.QueryRunnerBase.SetCommand(Boolean clearQueryHints)
+   at LinqToDB.Data.DataConnection.QueryRunner.ExecuteReader()
+   at LinqToDB.Linq.QueryRunner.ExecuteQuery[T](Query query, IDataContext dataContext, Mapper`1 mapper, Expression expression, Object[] ps, Object[] preambles, Int32 queryNumber)+MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at LinqToDB.Linq.Builder.FirstSingleBuilder.FirstSingleContext.<>c__DisplayClass4_0`1.<GetFirstOrDefaultElement>b__0(IDataContext db, Expression expr, Object[] ps, Object[] preambles)
+   at LinqToDB.Linq.ExpressionQuery`1.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at SanalPosTR.Playground.Data.DataServices.GetPosInstallments(String binNumber) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Data\DataServices.cs:line 44
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Installment(InstallmentModel model) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 174
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:f78a340d-3435-46b9-a6ac-b75948dfb086
+Error Number:4060,State:1,Class:11
+2022-10-05 22:06:22.123 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22 - 500 - text/plain 11251.1912ms
+2022-10-05 22:06:22.127 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285
+2022-10-05 22:06:22.127 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:06:22.129 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:06:22.132 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-05 22:06:22.132 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-05 22:06:33.696 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 11562.4296ms
+2022-10-05 22:06:37.702 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-05 22:06:37.781 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 15649.004ms
+2022-10-05 22:06:37.786 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:06:37.790 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Collections.Generic.KeyNotFoundException: The given key 'KuveytTurk' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Pay(PaymentActionModel paymentModel) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 49
+   at lambda_method132(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-05 22:06:37.791 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285 - 500 - text/plain 15664.3580ms
+2022-10-05 22:06:39.892 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 - application/json;+charset=utf-8 2190.3337ms
+2022-10-05 22:07:00.208 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285
+2022-10-05 22:07:00.208 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:07:00.208 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:07:00.208 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-05 22:07:15.532 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 15323.3064ms
+2022-10-05 22:07:15.536 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:07:15.540 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Collections.Generic.KeyNotFoundException: The given key 'KuveytTurk' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Pay(PaymentActionModel paymentModel) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 49
+   at lambda_method132(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-05 22:07:15.541 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285 - 500 - text/plain 15333.0218ms
+2022-10-05 22:08:41.265 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285
+2022-10-05 22:08:41.266 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:08:41.267 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:08:41.267 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-05 22:10:08.436 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 87169.2348ms
+2022-10-05 22:10:08.436 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:10:08.437 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.Collections.Generic.KeyNotFoundException: The given key 'KuveytTurk' was not present in the dictionary.
+   at System.Collections.Generic.Dictionary`2.get_Item(TKey key)
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Pay(PaymentActionModel paymentModel)
+   at lambda_method132(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-05 22:10:08.438 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285 - 500 - text/plain 87172.8208ms
+2022-10-05 22:10:14.213 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 284
+2022-10-05 22:10:14.213 +03:00 [INF] CORS policy execution successful.
+2022-10-05 22:10:14.213 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-05 22:10:14.213 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-05 22:13:41.055 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-05 22:13:51.842 +03:00 [INF] Starting create-react-app server on port 56402...
+2022-10-05 22:14:02.843 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-05 22:14:02.844 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-05 22:14:02.994 +03:00 [INF] SanalPosTR Running
+2022-10-05 22:14:03.021 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-05 22:14:03.021 +03:00 [INF] Hosting environment: Development
+2022-10-05 22:14:03.021 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-05 22:14:03.034 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "SimplePayTR" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-05 22:14:03.036 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0757347. Rows Count: 0.
+
+2022-10-05 23:10:17.541 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-05 23:10:19.105 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'PaySession') SELECT 1 ELSE SELECT 0 
+
+2022-10-05 23:10:19.180 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0867268
+
+2022-10-05 23:10:19.384 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+CREATE TABLE [PaySession]
+(
+	[Id]                 UniqueIdentifier NOT NULL,
+	[CardNumber]         VarChar(20)          NULL,
+	[CardHolderName]     VarChar(60)          NULL,
+	[Status]             Bit              NOT NULL,
+	[OrderId]            VarChar(24)          NULL,
+	[UserId]             VarChar(60)          NULL,
+	[CustomerId]         VarChar(90)          NULL,
+	[Error]              VarChar(350)         NULL,
+	[EMail]              VarChar(50)          NULL,
+	[ErrorCode]          VarChar(20)          NULL,
+	[ProvisionNumber]    VarChar(10)          NULL,
+	[ReferanceNumber]    VarChar(32)          NULL,
+	[UseSecure3D]        Bit              NOT NULL,
+	[CreateOn]           DateTime         NOT NULL,
+	[Bank]               Int              NOT NULL,
+	[PosConfigurationId] UniqueIdentifier NOT NULL,
+	[Amount]             Decimal          NOT NULL,
+	[Installment]        Int                  NULL,
+	[TransferStatus]     Bit              NOT NULL,
+
+	CONSTRAINT [PK_PaySession] PRIMARY KEY CLUSTERED ([Id])
+)
+
+2022-10-05 23:10:19.397 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0130439. Records Affected: -1.
+
+2022-10-05 23:10:19.398 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0659316. Rows Count: 0.
+
+2022-10-05 23:10:19.410 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'PosConfiguration') SELECT 1 ELSE SELECT 0 
+
+2022-10-05 23:10:19.432 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0221618
+
+2022-10-05 23:10:19.434 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+CREATE TABLE [PosConfiguration]
+(
+	[Id]                UniqueIdentifier NOT NULL,
+	[Active]            Bit              NOT NULL,
+	[BankType]          Int              NOT NULL,
+	[Configuration]     VarChar(1000)        NULL,
+	[ForcePayRequest3D] Bit              NOT NULL,
+	[UseDefault]        Bit              NOT NULL,
+
+	CONSTRAINT [PK_PosConfiguration] PRIMARY KEY CLUSTERED ([Id])
+)
+
+2022-10-05 23:10:19.438 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0038403. Records Affected: -1.
+
+2022-10-05 23:10:19.438 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0041389. Rows Count: 0.
+
+2022-10-05 23:10:19.446 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'PosInstallment') SELECT 1 ELSE SELECT 0 
+
+2022-10-05 23:10:19.474 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0278937
+
+2022-10-05 23:10:19.475 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+CREATE TABLE [PosInstallment]
+(
+	[Id]           UniqueIdentifier NOT NULL,
+	[Active]       Bit              NOT NULL,
+	[BankType]     Int              NOT NULL,
+	[Installment]  Int              NOT NULL,
+	[Interest]     Decimal          NOT NULL,
+	[DisplayOrder] TinyInt          NOT NULL,
+	[ExtraInfo]    VarChar(30)          NULL,
+
+	CONSTRAINT [PK_PosInstallment] PRIMARY KEY CLUSTERED ([Id])
+)
+
+2022-10-05 23:10:19.480 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0050490. Records Affected: -1.
+
+2022-10-05 23:10:19.480 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0052272. Rows Count: 0.
+
+2022-10-05 23:10:19.487 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+ IF EXISTS (SELECT * FROM sys.tables WHERE name = 'PosBinNumber') SELECT 1 ELSE SELECT 0 
+
+2022-10-05 23:10:19.509 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0217428
+
+2022-10-05 23:10:19.511 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012
+
+CREATE TABLE [PosBinNumber]
+(
+	[Id]       UniqueIdentifier NOT NULL,
+	[Active]   Bit              NOT NULL,
+	[BankType] Int              NOT NULL,
+	[Number]   NVarChar(4000)       NULL,
+
+	CONSTRAINT [PK_PosBinNumber] PRIMARY KEY CLUSTERED ([Id])
+)
+
+2022-10-05 23:10:19.513 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0028928. Records Affected: -1.
+
+2022-10-05 23:10:19.514 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0031515. Rows Count: 0.
+
+2022-10-05 23:10:19.731 +03:00 [INF] Starting create-react-app server on port 58228...
+2022-10-05 23:40:57.652 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-05 23:40:57.654 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-05 23:40:57.780 +03:00 [INF] SanalPosTR Running
+2022-10-05 23:40:57.789 +03:00 [INF] BeforeExecute
+--  sqlserver SqlServer.2012 (asynchronously)
+
+SELECT
+	[t1].[Id],
+	[t1].[Active],
+	[t1].[BankType],
+	[t1].[Configuration],
+	[t1].[ForcePayRequest3D],
+	[t1].[UseDefault]
+FROM
+	[PosConfiguration] [t1]
+
+2022-10-05 23:40:57.800 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-05 23:40:57.800 +03:00 [INF] Hosting environment: Development
+2022-10-05 23:40:57.800 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-05 23:40:57.803 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0142778
+
+2022-10-05 23:40:57.815 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0564048. Rows Count: 0.
+
+2022-10-05 23:40:57.829 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-05 23:42:57.927 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.TimeoutException: The create-react-app server did not start listening for requests within the timeout period of 0 seconds. Check the log output for error information.
+   at Microsoft.AspNetCore.SpaServices.Extensions.Util.TaskTimeoutExtensions.WithTimeout[T](Task`1 task, TimeSpan timeoutDelay, String message)
+   at Microsoft.AspNetCore.SpaServices.Extensions.Proxy.SpaProxy.PerformProxyRequest(HttpContext context, HttpClient httpClient, Task`1 baseUriTask, CancellationToken applicationStoppingToken, Boolean proxy404s)
+   at Microsoft.AspNetCore.Builder.SpaProxyingExtensions.<>c__DisplayClass2_0.<<UseProxyToSpaDevelopmentServer>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-05 23:42:58.214 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 500 - text/html;+charset=utf-8 120383.8952ms
+2022-10-05 23:42:58.234 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/_framework/aspnetcore-browser-refresh.js - -
+2022-10-05 23:42:58.240 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/_framework/aspnetcore-browser-refresh.js - - - 200 12000 application/javascript;+charset=utf-8 5.3279ms
+2022-10-06 20:29:06.275 +03:00 [INF] User profile is available. Using 'C:\Users\User\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-06 20:29:18.616 +03:00 [INF] Starting create-react-app server on port 60259...
+2022-10-06 20:29:19.529 +03:00 [ERR] Error
+Exception: Microsoft.Data.SqlClient.SqlException
+Message  : Cannot open database "d" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.OpenAsync(CancellationToken cancellationToken)
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+2022-10-06 20:29:19.534 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.1726623. Rows Count: 0.
+
+2022-10-06 20:29:19.641 +03:00 [INF] SanalPosTR Running
+2022-10-06 20:29:19.687 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-06 20:29:19.687 +03:00 [INF] Hosting environment: Development
+2022-10-06 20:29:19.687 +03:00 [INF] Content root path: C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground
+2022-10-06 20:29:19.776 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/ - -
+2022-10-06 20:29:25.863 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://192.168.1.7/
+
+2022-10-06 20:29:25.864 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-06 20:29:34.011 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-06 20:29:39.022 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-06 20:29:39.028 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-06 20:29:41.495 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/ - - - 200 - text/html;+charset=utf-8 21719.5357ms
+2022-10-06 20:29:41.498 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/bundle.js - -
+2022-10-06 20:29:41.506 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-06 20:29:41.506 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - -
+2022-10-06 20:29:43.643 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2145.4537ms
+2022-10-06 20:29:43.643 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/main.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2137.6557ms
+2022-10-06 20:29:43.892 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - -
+2022-10-06 20:29:44.222 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2716.6437ms
+2022-10-06 20:29:45.964 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/bundle.js.map - - - 200 33143 application/json;+charset=utf-8 2071.4818ms
+2022-10-06 20:29:46.131 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-06 20:29:48.290 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 3619384 application/json;+charset=utf-8 2158.3350ms
+2022-10-06 20:29:48.454 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - -
+2022-10-06 20:29:50.521 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:44301/static/js/main.chunk.js.map - - - 200 21510 application/json;+charset=utf-8 2067.4104ms
+2022-10-06 20:29:50.575 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:44301/sockjs-node - -
+2022-10-06 20:29:50.585 +03:00 [INF] CORS policy execution successful.
+2022-10-06 20:29:50.725 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/manifest.json - -
+2022-10-06 20:29:52.809 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/manifest.json - - - 200 342 application/json;+charset=utf-8 2084.1609ms
+2022-10-06 20:29:56.238 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22
+2022-10-06 20:29:56.238 +03:00 [INF] CORS policy execution successful.
+2022-10-06 20:29:56.242 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-06 20:29:56.325 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-06 20:30:07.785 +03:00 [INF] Total Execution Time (Completed): 00:00:10.2899378. Rows Count: 0.
+
+2022-10-06 20:30:07.869 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 11531.3681ms
+2022-10-06 20:30:07.873 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-06 20:30:07.875 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot open database "d" requested by the login. The login failed.
+Login failed for user 'LAPTOP-L6KFK5J6\User'.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.TdsParser.Run(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.CompleteLogin(Boolean enlistOK)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionClosed.TryOpenConnection(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at Microsoft.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry, SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open(SqlConnectionOverrides overrides)
+   at Microsoft.Data.SqlClient.SqlConnection.Open()
+   at LinqToDB.Async.AsyncDbConnection.Open()
+   at LinqToDB.Data.DataConnection.EnsureConnection()
+   at LinqToDB.Data.DataConnection.get_Connection()
+   at LinqToDB.Data.DataConnection.CreateCommand()
+   at LinqToDB.Data.DataConnection.get_Command()
+   at LinqToDB.Data.DataConnection.QueryRunner.AddParameter(DataConnection dataConnection, ICollection`1 parms, String name, SqlParameter parm)
+   at LinqToDB.Data.DataConnection.QueryRunner.GetParameters(DataConnection dataConnection, PreparedQuery pq)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery(DataConnection dataConnection, IQueryContext queryContext, Int32 startIndent)
+   at LinqToDB.Data.DataConnection.QueryRunner.SetQuery()
+   at LinqToDB.Linq.QueryRunnerBase.SetCommand(Boolean clearQueryHints)
+   at LinqToDB.Data.DataConnection.QueryRunner.ExecuteReader()
+   at LinqToDB.Linq.QueryRunner.ExecuteQuery[T](Query query, IDataContext dataContext, Mapper`1 mapper, Expression expression, Object[] ps, Object[] preambles, Int32 queryNumber)+MoveNext()
+   at System.Linq.Enumerable.TryGetFirst[TSource](IEnumerable`1 source, Boolean& found)
+   at System.Linq.Enumerable.FirstOrDefault[TSource](IEnumerable`1 source)
+   at LinqToDB.Linq.Builder.FirstSingleBuilder.FirstSingleContext.<>c__DisplayClass4_0`1.<GetFirstOrDefaultElement>b__0(IDataContext db, Expression expr, Object[] ps, Object[] preambles)
+   at LinqToDB.Linq.ExpressionQuery`1.System.Linq.IQueryProvider.Execute[TResult](Expression expression)
+   at System.Linq.Queryable.FirstOrDefault[TSource](IQueryable`1 source)
+   at SanalPosTR.Playground.Data.DataServices.GetPosInstallments(String binNumber) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Data\DataServices.cs:line 44
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Installment(InstallmentModel model) in C:\Users\User\Documents\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 183
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+ClientConnectionId:cfe2214e-1de6-4070-8163-1ee5b93c63ea
+Error Number:4060,State:1,Class:11
+2022-10-06 20:30:07.937 +03:00 [INF] Request finished HTTP/2 POST https://localhost:44301/api/SanalPosTR/Installment application/json;charset=UTF-8 22 - 500 - text/plain 11699.8934ms
+2022-10-06 20:30:07.949 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - -
+2022-10-06 20:30:10.558 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js - - - 200 - application/javascript;+charset=UTF-8 2608.3835ms
+2022-10-06 20:30:10.602 +03:00 [INF] Request starting HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - -
+2022-10-06 20:30:13.236 +03:00 [INF] Request finished HTTP/2 GET https://localhost:44301/static/js/0.chunk.js.map - - - 200 - application/json;+charset=utf-8 2634.6235ms
+2022-10-06 20:30:26.606 +03:00 [INF] Request starting HTTP/2 POST https://localhost:44301/api/SanalPosTR/Pay application/json;charset=UTF-8 285
+2022-10-06 20:30:26.606 +03:00 [INF] CORS policy execution successful.
+2022-10-06 20:30:26.610 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-06 20:30:26.620 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).

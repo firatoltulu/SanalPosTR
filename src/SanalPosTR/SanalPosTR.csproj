@@ -26,6 +26,12 @@
     <None Remove="Providers\NestPay\Resources\3DEnd.xml" />
     <None Remove="Providers\NestPay\Resources\Pay.xml" />
     <None Remove="Providers\NestPay\Resources\Refund.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\3D.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\3DEnd.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\3D_before.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\3D_Resolve.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\Pay.xml" />
+    <None Remove="Providers\KuveytTurk\Resources\Refund.xml" />
     <None Remove="Providers\YKB\Resources\3D.xml" />
     <None Remove="Providers\YKB\Resources\3DEnd.xml" />
     <None Remove="Providers\YKB\Resources\3D_before.xml" />
@@ -45,6 +51,22 @@
     <EmbeddedResource Include="Providers\NestPay\Resources\3DEnd.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\3D.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\3DEnd.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\3D_before.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\3D_Resolve.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\Pay.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\KuveytTurk\Resources\Refund.xml" />
     <EmbeddedResource Include="Providers\YKB\Resources\3D_Resolve.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

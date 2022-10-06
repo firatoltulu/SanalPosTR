@@ -1,0 +1,25 @@
+﻿<KuveytTurkVPosMessage xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+ 
+  <APIVersion>1.0.0</APIVersion>
+  <OkUrl> okUrl + </OkUrl>
+  <FailUrl> failUrl + </FailUrl>
+  <HashData> hashData + </HashData>
+  <MerchantId>{{ Configuration.MerchantId }}</MerchantId>
+  <CustomerId>{{ Configuration.CustomerId }}</CustomerId>
+  <UserName>{{ Configuration.UserName }}</UserName>
+  <CardNumber>{{CreditCard.CardNumber}}</CardNumber>
+  <CardExpireDateYear>{{CreditCard.ExpireYear}}</CardExpireDateYear>
+  <CardExpireDateMonth>{{CreditCard.ExpireMonth}}</CardExpireDateMonth>
+  <CardCVV2>{{CreditCard.CVV2}}</CardCVV2>
+  <CardHolderName>{{CreditCard.CardHolderName}}</CardHolderName>
+  <CardType>Troy</CardType>
+  <BatchID>0</BatchID>
+  <TransactionType> transactionType + </TransactionType>
+  <InstallmentCount> installmentCount + </InstallmentCount>
+  <Amount>{{formatMoneyUS Order.Total}}</Amount>
+  <DisplayAmount>{{formatMoneyUS Order.Total}}</DisplayAmount>
+  <CurrencyCode>{{ Order.CurrencyCode }}</CurrencyCode>
+  <MerchantOrderId> merchantOrderId + </MerchantOrderId>
+  <TransactionSecurity> 3 </TransactionSecurity>
+  
+</KuveytTurkVPosMessage>

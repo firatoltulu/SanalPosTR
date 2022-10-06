@@ -59,6 +59,12 @@ namespace SanalPosTR
             return this;
         }
 
+        public IConfigurationService UseKuveytTurk(KuveytTurkConfiguration configuration)
+        {
+            Definition.BankConfiguration[BankTypes.KuveytTurk] = configuration;
+            return this;
+        }
+
         public IConfigurationService UseFromJSON(BankTypes bankTypes, string jsonValue)
         {
             var configuration = Definition.BankConfiguration[bankTypes];

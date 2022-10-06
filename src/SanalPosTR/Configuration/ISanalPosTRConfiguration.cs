@@ -21,5 +21,7 @@
         IConfigurationService UseYKB(YKBConfiguration configuration);
 
         IConfigurationService UseZiraat(NestPayConfiguration configuration);
+
+        IConfigurationService UseKuveytTurk(KuveytTurkConfiguration configuration);
     }
 }

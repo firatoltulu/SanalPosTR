@@ -13,6 +13,7 @@
         FinansBank,
         Anadolubank,
         TEB,
+        KuveytTurk,
         None
     }
 }

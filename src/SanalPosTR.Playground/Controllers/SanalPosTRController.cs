@@ -46,6 +46,15 @@ namespace SanalPosTR.Playground.Controllers
             using (_logger.BeginScope("Pay"))
             {
                 var bankProvider = _paymentServices(paymentModel.SelectedBank);
+                try
+                {
+                    var sdf = Program.PosConfiguration[paymentModel.SelectedBank];
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
                 var posConfiguration = Program.PosConfiguration[paymentModel.SelectedBank];
 
                 if (posConfiguration.ForcePayRequest3D)

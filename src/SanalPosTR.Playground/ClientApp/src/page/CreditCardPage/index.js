@@ -231,6 +231,7 @@ export default function CreditCardPage() {
                             <option value="0" >Ziraat</option>
                             <option value="2" >YKB</option>
                             <option value="3" >Akbank</option>
+                            <option value="11" >KuveytTürk</option>
                         </Select>
                     </InputGroup>
 
