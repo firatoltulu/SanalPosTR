@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Serilog;
 using SanalPosTR.Configuration;
 using SanalPosTR.Extensions;
 using SanalPosTR.Model;
+using Serilog;
 using System;
 using System.Threading.Tasks;
 
@@ -70,7 +70,7 @@ namespace SanalPosTR.Providers
             }, template);
         }
 
-        public async virtual Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
+        public virtual async Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
         {
             Log.Information($"ProcessPayment-Start");
 
@@ -113,17 +113,12 @@ namespace SanalPosTR.Providers
 
                     return paymentResult;
                 }
-
-
             }
             else
                 throw new ApplicationException($"{this.GetType().Name} template is empty");
-
-
-
         }
 
-        public async virtual Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
+        public virtual async Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
             Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Process");
 
@@ -134,7 +129,6 @@ namespace SanalPosTR.Providers
             postForm.Content = viewModel;
 
             Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Http Post");
-
 
             HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
 

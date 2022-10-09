@@ -22,6 +22,6 @@
     public partial class SanalPosTRAttribute
     {
         public string Key { get; set; }
-        public string Value { get; set; }
+        public object Value { get; set; }
     }
 }

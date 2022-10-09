@@ -1,9 +1,19 @@
-﻿<posnetRequest>
-  <mid>{{ Configuration.MerchantId }}</mid>
-  <tid>{{ Configuration.TerminalId }}</tid>
-  <oosTranData>
-    <bankData>{{bankpacket}}</bankData>
-    <mac>{{mac}}</mac>
-    <wpAmount>0</wpAmount>
-  </oosTranData>
-</posnetRequest>
+<?xml version="1.0" encoding="utf-8" ?>
+<KuveytTurkVPosMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<HashData>{{HashData}}</HashData>
+	<MerchantId>{{ Configuration.MerchantId }}</MerchantId>
+	<CustomerId>{{ Configuration.CustomerId }}</CustomerId>
+	<UserName>{{ Configuration.UserName }}</UserName>
+	<TransactionType>Sale</TransactionType>
+	<InstallmentCount>{{Installment}}</InstallmentCount>
+	<Amount>{{Total | formatMoneyUS}}</Amount>
+	<CurrencyCode>{{ CurrencyCode }}</CurrencyCode>
+	<MerchantOrderId>{{OrderId}}</MerchantOrderId>
+	<TransactionSecurity>3</TransactionSecurity>
+	<KuveytTurkVPosAdditionalData>
+		<AdditionalData>
+			<Key>MD</Key>
+			<Data>{{MD}}</Data>
+		</AdditionalData>
+	</KuveytTurkVPosAdditionalData>
+</KuveytTurkVPosMessage>

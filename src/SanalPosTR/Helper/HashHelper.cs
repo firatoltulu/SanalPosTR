@@ -76,7 +76,14 @@ namespace SanalPosTR
             var hashValue = sha.ComputeHash(message);
             return Convert.ToBase64String(hashValue);
         }
+        public static string GetSHA1WithUTF8(string text)
+        {
+            byte[] message = Encoding.UTF8.GetBytes(text);
 
+            SHA1 sha = new SHA1CryptoServiceProvider();
+            var hashValue = sha.ComputeHash(message);
+            return Convert.ToBase64String(hashValue);
+        }
         private static string GetHexaDecimal(byte[] bytes)
         {
             StringBuilder s = new StringBuilder();

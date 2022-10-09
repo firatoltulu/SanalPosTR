@@ -1,4 +1,4 @@
-﻿<form id="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
+﻿<form id="SanalPosTR" name="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
 
     <input type="hidden" name="pan" value="{{CreditCard.CardNumber}}" size="20" />
     <input type="hidden" name="cv2" size="4" value="{{CreditCard.CVV2}}" />

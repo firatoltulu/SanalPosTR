@@ -1,15 +1,31 @@
-﻿<form id="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
-    <input name="mid" type="hidden" id="mid" value="{{ Configuration.MerchantId }}" />
-    <input name="posnetID" type="hidden" id="PosnetID" value="{{ Configuration.PosnetId }}" />
-
-    <input name="posnetData" type="hidden" id="posnetData" value="{{Data1}}" />
-    <input name="posnetData2" type="hidden" id="posnetData2" value="{{Data2}}" />
-    <input name="digest" type="hidden" id="sign" value="{{Sign}}" />
-
-    <input name="vftCode" type="hidden" id="vftCode" value="" />
-    <input name="useJokerVadaa" type="hidden" id="useJokerVadaa" value="0" />
-    <input name="merchantReturnURL" type="hidden" id="merchantReturnURL" value="{{SiteSuccessUrl}}" />
-    <input name="lang" type="hidden" id="lang" value="tr" />
-    <input name="url" type="hidden" id="url" value="" />
-</form>
-
+﻿<KuveytTurkVPosMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <APIVersion>1.0.0</APIVersion>
+  <OkUrl>{{SiteSuccessUrl}}</OkUrl>
+  <FailUrl>{{SiteFailUrl}}</FailUrl>
+  <HashData>{{Hash}}</HashData>
+	
+  <MerchantId>{{ Configuration.MerchantId }}</MerchantId>
+  <CustomerId>{{ Configuration.CustomerId }}</CustomerId>
+  <UserName>{{ Configuration.UserName }}</UserName>
+	
+  <CardNumber>{{CreditCard.CardNumber}}</CardNumber>
+  <CardExpireDateYear>{{CreditCard.ExpireYear}}</CardExpireDateYear>
+  <CardExpireDateMonth>{{CreditCard.ExpireMonth}}</CardExpireDateMonth>
+  <CardCVV2>{{CreditCard.CVV2}}</CardCVV2>
+  <CardHolderName>{{CreditCard.CardHolderName}}</CardHolderName>
+  <CardType>Visa</CardType>
+  <BatchID>0</BatchID>
+  <TransactionType>Sale</TransactionType>
+	
+	{% if Order.Installment %}
+		<InstallmentCount>{{Order.Installment}}</InstallmentCount>
+	{% else %}
+		<InstallmentCount>0</InstallmentCount>
+	{% endif %}
+	
+  <Amount>{{Order.Total | formatMoneyUS}}</Amount>
+  <DisplayAmount>{{Order.Total | formatMoneyUS}}</DisplayAmount>
+  <CurrencyCode>{{ Order.CurrencyCode }}</CurrencyCode>
+  <MerchantOrderId>{{Order.OrderId}}</MerchantOrderId>
+  <TransactionSecurity>3</TransactionSecurity>
+</KuveytTurkVPosMessage>

@@ -2,6 +2,7 @@
 {
     public interface IEnvironmentConfiguration
     {
+
         string BaseUrl { get; set; }
 
         /// <summary>

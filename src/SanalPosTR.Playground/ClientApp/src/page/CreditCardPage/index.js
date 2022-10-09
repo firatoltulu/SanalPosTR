@@ -39,10 +39,10 @@ function getRndInteger(min, max) {
     return Math.floor(Math.random() * (max - min)) + min;
 }
 function uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
         var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
         return v.toString(16);
-    }).replace(/[^A-Za-z0-9]/g,"");
+    }).replace(/[^A-Za-z0-9]/g, "");
 }
 
 export class ShadowView extends React.Component {
@@ -118,7 +118,15 @@ export default function CreditCardPage() {
                     setHTML(result.data.content);
                     setOpen(true);
 
-                    setTimeout(() => { document.getElementById("SanalPosTR").submit() }, 0);
+                    setTimeout(() => {
+                        if (document.getElementById("SanalPosTR"))
+                            document.getElementById("SanalPosTR").submit()
+
+                        if (document.SanalPosTR)
+                            document.SanalPosTR.submit()
+
+
+                    }, 0);
 
                 }
             } else {
@@ -134,7 +142,7 @@ export default function CreditCardPage() {
 
     const GetInstallment = (e) => {
         Axios.post("api/SanalPosTR/Installment", { binNumber: number.substring(0, 6) }).then(x => x.data).then(result => {
-            
+
             setInstallments(result.map(v => {
                 return {
                     "Text": v.installment === 1 ? "Peşin" : v.installment,

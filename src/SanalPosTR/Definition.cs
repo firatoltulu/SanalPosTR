@@ -1,5 +1,4 @@
 ﻿using SanalPosTR.Configuration;
-using SanalPosTR.Providers;
 using SanalPosTR.Providers.Est;
 using SanalPosTR.Providers.Ykb;
 using System;
@@ -40,9 +39,14 @@ namespace SanalPosTR
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
 
-            
             {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } },
-            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{ BaseUrl= "https://entegrasyon.asseco-see.com.tr"} }
+            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration
+                {
+                    BaseUrl= "https://boatest.kuveytturk.com.tr",
+                    SecureEndPointApi="boa.virtualpos.services/Home/ThreeDModelPayGate",
+                    SecureReturnEndPoint="boa.virtualpos.services/Home/ThreeDModelProvisionGate"
+                }
+            }
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankProdUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
@@ -54,9 +58,11 @@ namespace SanalPosTR
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.halkbank.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl=" https://anadolusanalpos.est.com.tr" } },
             {BankTypes.Ykb, new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } },
-            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } }
+            {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{
+                BaseUrl="https://sanalpos.kuveytturk.com.tr",
+                SecureEndPointApi="ServiceGateWay/Home/ThreeDModelPayGate",
+                SecureReturnEndPoint="ServiceGateWay/Home/ThreeDModelProvisionGate"
+            } }
         };
-
-
     }
 }

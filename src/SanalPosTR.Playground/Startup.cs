@@ -10,13 +10,12 @@ using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Serilog;
-using SanalPosTR;
 using SanalPosTR.Playground.Caching;
 using SanalPosTR.Playground.Data;
 using SanalPosTR.Playground.Data.DB;
 using SanalPosTR.Playground.Data.Entities;
 using SanalPosTR.Playground.Models;
+using Serilog;
 using System;
 using System.Linq;
 using System.Net;
@@ -55,7 +54,7 @@ namespace SanalPosTR.Playground
             services.AddLinqToDbContext<DatabaseConnection>((provider, options) =>
             {
                 options
-                .UseConnectionString(new LinqToDB.DataProvider.SqlServer.SqlServerDataProvider("sqlserver", LinqToDB.DataProvider.SqlServer.SqlServerVersion.v2012), Configuration.GetConnectionString("Default"))
+                .UseConnectionString(new LinqToDB.DataProvider.PostgreSQL.PostgreSQLDataProvider("psql", LinqToDB.DataProvider.PostgreSQL.PostgreSQLVersion.v95), Configuration.GetConnectionString("Default"))
                 .UseDefaultLogging(provider);
             });
 
@@ -83,8 +82,8 @@ namespace SanalPosTR.Playground
 
         private bool TableExists(DatabaseConnection databaseConnection, string tableName)
         {
-            var command = new CommandInfo(databaseConnection, @$" IF EXISTS (SELECT * FROM sys.tables WHERE name = '{tableName}') SELECT 1 ELSE SELECT 0 ");
-            return command.Execute<int>() == 1;
+            var command = new CommandInfo(databaseConnection, @$" SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = '{tableName}')");
+            return command.Execute<bool>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -132,8 +131,6 @@ namespace SanalPosTR.Playground
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-
-        
 
                 endpoints.MapPost("/fail", (v) =>
                 {
