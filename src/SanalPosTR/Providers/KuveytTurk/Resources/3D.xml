@@ -1,0 +1,31 @@
+﻿<KuveytTurkVPosMessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <APIVersion>1.0.0</APIVersion>
+  <OkUrl>{{SiteSuccessUrl}}</OkUrl>
+  <FailUrl>{{SiteFailUrl}}</FailUrl>
+  <HashData>{{Hash}}</HashData>
+	
+  <MerchantId>{{ Configuration.MerchantId }}</MerchantId>
+  <CustomerId>{{ Configuration.CustomerId }}</CustomerId>
+  <UserName>{{ Configuration.UserName }}</UserName>
+	
+  <CardNumber>{{CreditCard.CardNumber}}</CardNumber>
+  <CardExpireDateYear>{{CreditCard.ExpireYear}}</CardExpireDateYear>
+  <CardExpireDateMonth>{{CreditCard.ExpireMonth}}</CardExpireDateMonth>
+  <CardCVV2>{{CreditCard.CVV2}}</CardCVV2>
+  <CardHolderName>{{CreditCard.CardHolderName}}</CardHolderName>
+  <CardType>Visa</CardType>
+  <BatchID>0</BatchID>
+  <TransactionType>Sale</TransactionType>
+	
+	{% if Order.Installment %}
+		<InstallmentCount>{{Order.Installment}}</InstallmentCount>
+	{% else %}
+		<InstallmentCount>0</InstallmentCount>
+	{% endif %}
+	
+  <Amount>{{Order.Total | formatMoneyUS}}</Amount>
+  <DisplayAmount>{{Order.Total | formatMoneyUS}}</DisplayAmount>
+  <CurrencyCode>{{ Order.CurrencyCode }}</CurrencyCode>
+  <MerchantOrderId>{{Order.OrderId}}</MerchantOrderId>
+  <TransactionSecurity>3</TransactionSecurity>
+</KuveytTurkVPosMessage>

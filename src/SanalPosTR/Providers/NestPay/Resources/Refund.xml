@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CC5Request>
+  <Name>{{ Configuration.Name }}</Name>
+  <Password>{{Configuration.Password }}</Password>
+  <ClientId>{{Configuration.ClientId }}</ClientId>
+  <Mode>P</Mode>
+  <OrderId>{{ Refund.OrderId }}</OrderId>
+  <Total> {{Refund.RefundAmount | formatMoneyUS}}</Total>
+  <Type>Credit</Type>
+  <Currency>{{ Refund.CurrencyCode }}</Currency>
+  <email></email>
+</CC5Request>

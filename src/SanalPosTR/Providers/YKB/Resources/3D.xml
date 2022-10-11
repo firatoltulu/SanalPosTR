@@ -1,0 +1,14 @@
+﻿<form name="SanalPosTR" id="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
+    <input name="mid" type="hidden" id="mid" value="{{ Configuration.MerchantId }}" />
+    <input name="posnetID" type="hidden" id="PosnetID" value="{{ Configuration.PosnetId }}" />
+
+    <input name="posnetData" type="hidden" id="posnetData" value="{{Data1}}" />
+    <input name="posnetData2" type="hidden" id="posnetData2" value="{{Data2}}" />
+    <input name="digest" type="hidden" id="sign" value="{{Sign}}" />
+
+    <input name="vftCode" type="hidden" id="vftCode" value="" />
+    <input name="useJokerVadaa" type="hidden" id="useJokerVadaa" value="0" />
+    <input name="merchantReturnURL" type="hidden" id="merchantReturnURL" value="{{SiteSuccessUrl}}" />
+    <input name="lang" type="hidden" id="lang" value="tr" />
+    <input name="url" type="hidden" id="url" value="" />
+</form>

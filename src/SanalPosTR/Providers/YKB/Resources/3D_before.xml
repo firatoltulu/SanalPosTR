@@ -1,0 +1,22 @@
+﻿<posnetRequest>
+  <mid>{{ Configuration.MerchantId }}</mid>
+  <tid>{{ Configuration.TerminalId }}</tid>
+  <oosRequestData>
+    <posnetid>{{ Configuration.PosnetId }}</posnetid>
+    <ccno>{{CreditCard.CardNumber}}</ccno>
+    <expDate>{{CreditCard.ExpireYear}}{{CreditCard.ExpireMonth}}</expDate>
+    <cvc>{{CreditCard.CVV2}}</cvc>
+    <amount>{{formatMoneyUS Order.Total}}</amount>
+    <currencyCode>{{ Order.CurrencyCode }}</currencyCode>
+    <XID>{{ Order.OrderId }}</XID>
+    <cardHolderName><![CDATA[{{CreditCard.CardHolderName}}]]></cardHolderName>
+    
+    {% if Order.Installment %}
+      <installment>{{Order.Installment | formatInstallment}}</installment>
+    {% else %}
+      <installment>00</installment>
+    {% endif %}
+    
+    <tranType>Sale</tranType>
+  </oosRequestData>
+</posnetRequest>
