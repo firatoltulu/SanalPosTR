@@ -24272,3 +24272,1857 @@ WHERE
 2022-10-11 13:44:10.607 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground) in 24486.3925ms
 2022-10-11 13:44:10.607 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
 2022-10-11 13:44:10.608 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/fc6a11e9fdb2473fac537a825526caf3 application/x-www-form-urlencoded 1579 - 302 0 - 24494.6414ms
+2022-10-11 15:03:31.547 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:03:33.087 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:03:33.097 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0317182
+
+2022-10-11 15:03:33.179 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:03:33.220 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0417170
+
+2022-10-11 15:03:33.231 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:03:33.256 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0244723
+
+2022-10-11 15:03:33.265 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:03:33.286 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0205871
+
+2022-10-11 15:03:34.252 +03:00 [INF] Starting create-react-app server on port 54833...
+2022-10-11 15:03:34.997 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:03:35.030 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0335673
+
+2022-10-11 15:03:35.036 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:03:35.120 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.2422918. Rows Count: 2.
+
+2022-10-11 15:03:35.123 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:03:35.154 +03:00 [INF] Garanti Loaded
+2022-10-11 15:03:35.365 +03:00 [FTL] Unable to start Kestrel.
+System.IO.IOException: Failed to bind to address https://127.0.0.1:5001: address already in use.
+ ---> Microsoft.AspNetCore.Connections.AddressInUseException: Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+ ---> System.Net.Sockets.SocketException (10048): Normal olarak her yuva adresi (iletişim kuralı/ağ adresi/bağlantı noktası) için yalnızca bir kullanıma izin veriliyor.
+   at System.Net.Sockets.Socket.UpdateStatusAfterSocketErrorAndThrowException(SocketError error, String callerName)
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.<Bind>g__BindSocket|13_0(<>c__DisplayClass13_0& )
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.<Bind>g__BindSocket|13_0(<>c__DisplayClass13_0& )
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketConnectionListener.Bind()
+   at Microsoft.AspNetCore.Server.Kestrel.Transport.Sockets.SocketTransportFactory.BindAsync(EndPoint endpoint, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Infrastructure.TransportManager.BindAsync(EndPoint endPoint, ConnectionDelegate connectionDelegate, EndpointConfig endpointConfig)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.<>c__DisplayClass29_0`1.<<StartAsync>g__OnBind|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context)
+   --- End of inner exception stack trace ---
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindEndpointAsync(ListenOptions endpoint, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.LocalhostListenOptions.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.AddressesStrategy.BindAsync(AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.Internal.AddressBinder.BindAsync(IEnumerable`1 listenOptions, AddressBindContext context)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.BindAsync(CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Server.Kestrel.Core.KestrelServerImpl.StartAsync[TContext](IHttpApplication`1 application, CancellationToken cancellationToken)
+2022-10-11 15:07:58.110 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:07:58.840 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:07:58.842 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0070953
+
+2022-10-11 15:07:58.862 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:07:58.863 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0012597
+
+2022-10-11 15:07:58.867 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:07:58.867 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007667
+
+2022-10-11 15:07:58.870 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:07:58.871 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007482
+
+2022-10-11 15:07:58.938 +03:00 [INF] Starting create-react-app server on port 62135...
+2022-10-11 15:07:59.114 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:07:59.117 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0031061
+
+2022-10-11 15:07:59.133 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0623069. Rows Count: 2.
+
+2022-10-11 15:07:59.135 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:07:59.145 +03:00 [INF] Garanti Loaded
+2022-10-11 15:07:59.148 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:07:59.267 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 15:07:59.270 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 15:07:59.270 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 15:07:59.270 +03:00 [INF] Hosting environment: Development
+2022-10-11 15:07:59.270 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 15:08:00.067 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 15:08:01.307 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 15:08:01.307 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 15:08:02.624 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 15:08:03.662 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 15:08:03.664 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 15:10:40.895 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:10:41.500 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:10:41.502 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0060901
+
+2022-10-11 15:10:41.521 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:10:41.522 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0010032
+
+2022-10-11 15:10:41.526 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:10:41.527 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007387
+
+2022-10-11 15:10:41.530 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:10:41.530 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007735
+
+2022-10-11 15:10:41.601 +03:00 [INF] Starting create-react-app server on port 62205...
+2022-10-11 15:10:41.787 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:10:41.798 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0111938
+
+2022-10-11 15:10:41.802 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:10:41.827 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0800017. Rows Count: 2.
+
+2022-10-11 15:10:41.829 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:10:41.840 +03:00 [INF] Garanti Loaded
+2022-10-11 15:10:41.918 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 15:10:41.918 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 15:10:41.921 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 15:10:41.921 +03:00 [INF] Hosting environment: Development
+2022-10-11 15:10:41.921 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 15:10:42.403 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 15:10:43.976 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 15:10:43.977 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 15:10:45.361 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 15:10:46.394 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 15:10:46.396 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 15:10:48.550 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 6146.4631ms
+2022-10-11 15:10:48.577 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 15:10:48.577 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 15:10:48.577 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 15:10:48.584 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 6.2624ms
+2022-10-11 15:10:50.641 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2063.9374ms
+2022-10-11 15:10:50.644 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 2066.4488ms
+2022-10-11 15:10:50.686 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 15:10:50.690 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:10:52.135 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22
+2022-10-11 15:10:52.136 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:10:52.137 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:10:52.166 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:10:52.677 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text(6) -- String
+SET     @binNumber = '428220'
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 15:10:52.685 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0139129
+
+2022-10-11 15:10:52.685 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0318986. Rows Count: 0.
+
+2022-10-11 15:10:52.733 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 15:10:52.734 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0012589
+
+2022-10-11 15:10:52.739 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0067368. Rows Count: 1.
+
+2022-10-11 15:10:52.759 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 15:10:52.761 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0023127
+
+2022-10-11 15:10:52.777 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0179226. Rows Count: 1.
+
+2022-10-11 15:10:52.782 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 15:10:52.829 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 659.5106ms
+2022-10-11 15:10:52.830 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:10:52.830 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22 - 200 - application/json;+charset=utf-8 694.9616ms
+2022-10-11 15:11:02.907 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287
+2022-10-11 15:11:02.907 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:11:02.908 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:11:02.911 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:11:02.959 +03:00 [INF] ProcessPayment-Start
+2022-10-11 15:11:02.959 +03:00 [INF] ProcessPayment-ReadEmbedResource
+2022-10-11 15:11:03.213 +03:00 [INF] ProcessPayment-CompiledTemplate
+2022-10-11 15:11:03.214 +03:00 [INF] ProcessPayment-HttpPost - Use3DSecure
+2022-10-11 15:11:03.251 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @Id Uuid -- Guid
+SET     @Id = 'df3f32df-ffb8-4b95-917a-5521a9388fa7'
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(12) -- AnsiString
+SET     @CardHolderName = 'fırat oltulu'
+DECLARE @Status Boolean
+SET     @Status = False
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '23859664'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text -- AnsiString
+SET     @ProvisionNumber = NULL
+DECLARE @ReferanceNumber Text -- AnsiString
+SET     @ReferanceNumber = NULL
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 15:11:03.215'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(3, 0) -- Decimal
+SET     @Amount = 199
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+
+INSERT INTO "PaySession"
+(
+	"Id",
+	"CardNumber",
+	"CardHolderName",
+	"Status",
+	"OrderId",
+	"UserId",
+	"CustomerId",
+	"Error",
+	"EMail",
+	"ErrorCode",
+	"ProvisionNumber",
+	"ReferanceNumber",
+	"UseSecure3D",
+	"CreateOn",
+	"Bank",
+	"PosConfigurationId",
+	"Amount",
+	"Installment",
+	"TransferStatus"
+)
+VALUES
+(
+	:Id,
+	:CardNumber,
+	:CardHolderName,
+	:Status,
+	:OrderId,
+	:UserId,
+	:CustomerId,
+	:Error,
+	:EMail,
+	:ErrorCode,
+	:ProvisionNumber,
+	:ReferanceNumber,
+	:UseSecure3D,
+	:CreateOn,
+	:Bank,
+	:PosConfigurationId,
+	:Amount,
+	:Installment,
+	:TransferStatus
+)
+
+2022-10-11 15:11:03.265 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0165203. Records Affected: 1.
+
+2022-10-11 15:11:03.266 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0249119. Rows Count: 0.
+
+2022-10-11 15:11:03.429 +03:00 [INF] Executing ObjectResult, writing value of type 'SanalPosTR.Playground.Models.PaymentActionResult'.
+2022-10-11 15:11:03.438 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 527.0336ms
+2022-10-11 15:11:03.438 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:11:03.439 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287 - 200 - application/json;+charset=utf-8 532.0567ms
+2022-10-11 15:11:03.582 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/sockjs-node - - - 101 - - 12895.9098ms
+2022-10-11 15:11:03.664 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/08fdd87c129d4a949d74da8b3291d299 application/x-www-form-urlencoded 1587
+2022-10-11 15:11:03.665 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:11:03.666 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 15:11:03.673 +03:00 [INF] Route matched with {action = "ValidatePayment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidatePayment(System.String, Microsoft.AspNetCore.Http.IFormCollection) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:11:03.727 +03:00 [INF] 08fdd87c129d4a949d74da8b3291d299 - Load From Cache
+2022-10-11 15:11:03.729 +03:00 [INF] 08fdd87c129d4a949d74da8b3291d299 - Cache Removed
+2022-10-11 15:11:03.729 +03:00 [INF] 08fdd87c129d4a949d74da8b3291d299 - BankProvider - $Garanti
+2022-10-11 15:11:10.421 +03:00 [INF] 23859664 - VerifyPayment Process
+2022-10-11 15:11:10.467 +03:00 [INF] 23859664 - VerifyPayment Http Post
+2022-10-11 15:11:10.482 +03:00 [INF] HTTPPost:https://sanalposprovtest.garanti.com.tr//VPServlet
+2022-10-11 15:11:10.763 +03:00 [INF] HTTPPosted:https://sanalposprovtest.garanti.com.tr//VPServlet, StatusCode = OK
+2022-10-11 15:11:22.297 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(12) -- AnsiString
+SET     @CardHolderName = 'fırat oltulu'
+DECLARE @Status Boolean
+SET     @Status = True
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '23859664'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text(6) -- AnsiString
+SET     @ProvisionNumber = '304919'
+DECLARE @ReferanceNumber Text(12) -- AnsiString
+SET     @ReferanceNumber = '228408181359'
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 15:11:03.215'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(4, 1) -- Decimal
+SET     @Amount = 199.0
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+DECLARE @Id Uuid -- Guid
+SET     @Id = 'df3f32df-ffb8-4b95-917a-5521a9388fa7'
+
+UPDATE
+	"PaySession"
+SET
+	"CardNumber" = :CardNumber,
+	"CardHolderName" = :CardHolderName,
+	"Status" = :Status,
+	"OrderId" = :OrderId,
+	"UserId" = :UserId,
+	"CustomerId" = :CustomerId,
+	"Error" = :Error,
+	"EMail" = :EMail,
+	"ErrorCode" = :ErrorCode,
+	"ProvisionNumber" = :ProvisionNumber,
+	"ReferanceNumber" = :ReferanceNumber,
+	"UseSecure3D" = :UseSecure3D,
+	"CreateOn" = :CreateOn,
+	"Bank" = :Bank,
+	"PosConfigurationId" = :PosConfigurationId,
+	"Amount" = :Amount,
+	"Installment" = :Installment,
+	"TransferStatus" = :TransferStatus
+WHERE
+	"PaySession"."Id" = :Id
+
+2022-10-11 15:11:22.301 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0044460. Records Affected: 1.
+
+2022-10-11 15:11:22.301 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0080969. Rows Count: 0.
+
+2022-10-11 15:11:22.303 +03:00 [INF] Executing RedirectResult, redirecting to http://localhost:5001/paymentcomplete?message=304919.
+2022-10-11 15:11:22.304 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground) in 18630.4771ms
+2022-10-11 15:11:22.304 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 15:11:22.304 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/08fdd87c129d4a949d74da8b3291d299 application/x-www-form-urlencoded 1587 - 302 0 - 18639.8770ms
+2022-10-11 15:14:40.401 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:14:41.152 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:14:41.154 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0059527
+
+2022-10-11 15:14:41.171 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:14:41.172 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009928
+
+2022-10-11 15:14:41.176 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:14:41.177 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007729
+
+2022-10-11 15:14:41.180 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:14:41.180 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0006633
+
+2022-10-11 15:14:41.291 +03:00 [INF] Starting create-react-app server on port 61101...
+2022-10-11 15:14:41.495 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:14:41.507 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0117504
+
+2022-10-11 15:14:41.510 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:14:41.539 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0918588. Rows Count: 2.
+
+2022-10-11 15:14:41.540 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:14:41.552 +03:00 [INF] Garanti Loaded
+2022-10-11 15:14:41.629 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 15:14:41.633 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 15:14:41.633 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 15:14:41.633 +03:00 [INF] Hosting environment: Development
+2022-10-11 15:14:41.633 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 15:14:42.027 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 15:14:43.779 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 15:14:43.779 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 15:14:45.144 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 15:14:46.172 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 15:14:46.173 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 15:14:48.323 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 6296.2271ms
+2022-10-11 15:14:48.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 15:14:48.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 15:14:48.363 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 15:14:48.373 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 9.5875ms
+2022-10-11 15:14:50.411 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2048.6732ms
+2022-10-11 15:14:50.412 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 2049.0860ms
+2022-10-11 15:14:50.486 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 15:14:50.490 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:15:14.671 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22
+2022-10-11 15:15:14.671 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:15:14.672 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:15:14.715 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:15:15.111 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text(6) -- String
+SET     @binNumber = '428220'
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 15:15:15.120 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0159756
+
+2022-10-11 15:15:15.120 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0255378. Rows Count: 0.
+
+2022-10-11 15:15:15.161 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 15:15:15.162 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0008091
+
+2022-10-11 15:15:15.166 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0060916. Rows Count: 1.
+
+2022-10-11 15:15:15.181 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 15:15:15.183 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0015053
+
+2022-10-11 15:15:15.195 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0132764. Rows Count: 1.
+
+2022-10-11 15:15:15.199 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 15:15:15.254 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 529.474ms
+2022-10-11 15:15:15.255 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:15:15.256 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22 - 200 - application/json;+charset=utf-8 585.2235ms
+2022-10-11 15:15:31.228 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287
+2022-10-11 15:15:31.228 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:15:31.229 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:15:31.232 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:15:31.280 +03:00 [INF] ProcessPayment-Start
+2022-10-11 15:15:31.281 +03:00 [INF] ProcessPayment-ReadEmbedResource
+2022-10-11 15:15:31.518 +03:00 [INF] ProcessPayment-CompiledTemplate
+2022-10-11 15:15:31.519 +03:00 [INF] ProcessPayment-HttpPost - Use3DSecure
+2022-10-11 15:15:31.562 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @Id Uuid -- Guid
+SET     @Id = '63a9354e-aa5e-41df-9ad9-1f82b1219d9e'
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(12) -- AnsiString
+SET     @CardHolderName = 'fırat oltulu'
+DECLARE @Status Boolean
+SET     @Status = False
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '68063455'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text -- AnsiString
+SET     @ProvisionNumber = NULL
+DECLARE @ReferanceNumber Text -- AnsiString
+SET     @ReferanceNumber = NULL
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 15:15:31.520'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(3, 0) -- Decimal
+SET     @Amount = 199
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+
+INSERT INTO "PaySession"
+(
+	"Id",
+	"CardNumber",
+	"CardHolderName",
+	"Status",
+	"OrderId",
+	"UserId",
+	"CustomerId",
+	"Error",
+	"EMail",
+	"ErrorCode",
+	"ProvisionNumber",
+	"ReferanceNumber",
+	"UseSecure3D",
+	"CreateOn",
+	"Bank",
+	"PosConfigurationId",
+	"Amount",
+	"Installment",
+	"TransferStatus"
+)
+VALUES
+(
+	:Id,
+	:CardNumber,
+	:CardHolderName,
+	:Status,
+	:OrderId,
+	:UserId,
+	:CustomerId,
+	:Error,
+	:EMail,
+	:ErrorCode,
+	:ProvisionNumber,
+	:ReferanceNumber,
+	:UseSecure3D,
+	:CreateOn,
+	:Bank,
+	:PosConfigurationId,
+	:Amount,
+	:Installment,
+	:TransferStatus
+)
+
+2022-10-11 15:15:31.579 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0207090. Records Affected: 1.
+
+2022-10-11 15:15:31.580 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0362894. Rows Count: 0.
+
+2022-10-11 15:15:31.707 +03:00 [INF] Executing ObjectResult, writing value of type 'SanalPosTR.Playground.Models.PaymentActionResult'.
+2022-10-11 15:15:31.716 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 483.6527ms
+2022-10-11 15:15:31.716 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:15:31.716 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287 - 200 - application/json;+charset=utf-8 488.2352ms
+2022-10-11 15:15:31.872 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/sockjs-node - - - 101 - - 41385.8975ms
+2022-10-11 15:15:31.982 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/66bbebf7d64e436695a9424b637b335d application/x-www-form-urlencoded 1593
+2022-10-11 15:15:31.986 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:15:31.987 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 15:15:31.993 +03:00 [INF] Route matched with {action = "ValidatePayment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidatePayment(System.String, Microsoft.AspNetCore.Http.IFormCollection) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:15:32.059 +03:00 [INF] 66bbebf7d64e436695a9424b637b335d - Load From Cache
+2022-10-11 15:15:32.061 +03:00 [INF] 66bbebf7d64e436695a9424b637b335d - Cache Removed
+2022-10-11 15:15:32.061 +03:00 [INF] 66bbebf7d64e436695a9424b637b335d - BankProvider - $Garanti
+2022-10-11 15:15:37.325 +03:00 [INF] 68063455 - VerifyPayment Process
+2022-10-11 15:19:40.835 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:19:41.575 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:19:41.577 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0061035
+
+2022-10-11 15:19:41.596 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:19:41.597 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009770
+
+2022-10-11 15:19:41.601 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:19:41.602 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009680
+
+2022-10-11 15:19:41.605 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:19:41.606 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0006786
+
+2022-10-11 15:19:41.679 +03:00 [INF] Starting create-react-app server on port 61197...
+2022-10-11 15:19:41.907 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:19:41.912 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0045972
+
+2022-10-11 15:19:41.928 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0731263. Rows Count: 2.
+
+2022-10-11 15:19:41.929 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:19:41.940 +03:00 [INF] Garanti Loaded
+2022-10-11 15:19:41.944 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:19:42.162 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 15:19:42.162 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 15:19:42.166 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 15:19:42.166 +03:00 [INF] Hosting environment: Development
+2022-10-11 15:19:42.166 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 15:19:43.970 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 15:19:43.970 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 15:19:47.190 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 15:19:47.968 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 15:19:47.970 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0061152
+
+2022-10-11 15:19:47.988 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 15:19:47.989 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009133
+
+2022-10-11 15:19:47.993 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 15:19:47.994 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007888
+
+2022-10-11 15:19:47.996 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 15:19:47.997 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007020
+
+2022-10-11 15:19:48.066 +03:00 [INF] Starting create-react-app server on port 61205...
+2022-10-11 15:19:48.241 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 15:19:48.251 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0095544
+
+2022-10-11 15:19:48.254 +03:00 [INF] SanalPosTR Running
+2022-10-11 15:19:48.280 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0759904. Rows Count: 2.
+
+2022-10-11 15:19:48.281 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 15:19:48.292 +03:00 [INF] Garanti Loaded
+2022-10-11 15:19:48.377 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 15:19:48.377 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 15:19:48.377 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 15:19:48.377 +03:00 [INF] Hosting environment: Development
+2022-10-11 15:19:48.377 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 15:19:48.772 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 15:19:50.466 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 15:19:50.467 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 15:19:51.863 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 15:19:53.042 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 15:19:53.043 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 15:19:55.188 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 6416.5217ms
+2022-10-11 15:19:55.235 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 15:19:55.235 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 15:19:55.235 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 15:19:55.244 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 9.0619ms
+2022-10-11 15:19:57.281 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2046.0806ms
+2022-10-11 15:19:57.283 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 2048.2653ms
+2022-10-11 15:19:57.385 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 15:19:57.390 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:20:05.268 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22
+2022-10-11 15:20:05.268 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:20:05.270 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:20:05.309 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:20:05.728 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text(6) -- String
+SET     @binNumber = '428220'
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 15:20:05.736 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0138671
+
+2022-10-11 15:20:05.736 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0284782. Rows Count: 0.
+
+2022-10-11 15:20:05.761 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 15:20:05.762 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009331
+
+2022-10-11 15:20:05.765 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0037959. Rows Count: 1.
+
+2022-10-11 15:20:05.775 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 15:20:05.777 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0018185
+
+2022-10-11 15:20:05.788 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0127468. Rows Count: 1.
+
+2022-10-11 15:20:05.791 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 15:20:05.825 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 511.0066ms
+2022-10-11 15:20:05.826 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 15:20:05.826 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22 - 200 - application/json;+charset=utf-8 558.6455ms
+2022-10-11 15:20:34.210 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 280
+2022-10-11 15:20:34.210 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:20:34.211 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:20:34.215 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:20:34.261 +03:00 [INF] ProcessPayment-Start
+2022-10-11 15:20:34.263 +03:00 [INF] ProcessPayment-ReadEmbedResource
+2022-10-11 15:20:34.488 +03:00 [INF] ProcessPayment-CompiledTemplate
+2022-10-11 15:20:34.488 +03:00 [INF] ProcessPayment-HttpPost - Use3DSecure
+2022-10-11 15:20:34.527 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @Id Uuid -- Guid
+SET     @Id = '50c15b60-1bd8-41d2-bfcb-e2312f94e8f2'
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(5) -- AnsiString
+SET     @CardHolderName = 'FIRAT'
+DECLARE @Status Boolean
+SET     @Status = False
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '62748538'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text -- AnsiString
+SET     @ProvisionNumber = NULL
+DECLARE @ReferanceNumber Text -- AnsiString
+SET     @ReferanceNumber = NULL
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 15:20:34.489'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(3, 0) -- Decimal
+SET     @Amount = 199
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+
+INSERT INTO "PaySession"
+(
+	"Id",
+	"CardNumber",
+	"CardHolderName",
+	"Status",
+	"OrderId",
+	"UserId",
+	"CustomerId",
+	"Error",
+	"EMail",
+	"ErrorCode",
+	"ProvisionNumber",
+	"ReferanceNumber",
+	"UseSecure3D",
+	"CreateOn",
+	"Bank",
+	"PosConfigurationId",
+	"Amount",
+	"Installment",
+	"TransferStatus"
+)
+VALUES
+(
+	:Id,
+	:CardNumber,
+	:CardHolderName,
+	:Status,
+	:OrderId,
+	:UserId,
+	:CustomerId,
+	:Error,
+	:EMail,
+	:ErrorCode,
+	:ProvisionNumber,
+	:ReferanceNumber,
+	:UseSecure3D,
+	:CreateOn,
+	:Bank,
+	:PosConfigurationId,
+	:Amount,
+	:Installment,
+	:TransferStatus
+)
+
+2022-10-11 15:20:34.542 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0189975. Records Affected: 1.
+
+2022-10-11 15:20:34.543 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0303575. Rows Count: 0.
+
+2022-10-11 15:20:34.681 +03:00 [INF] Executing ObjectResult, writing value of type 'SanalPosTR.Playground.Models.PaymentActionResult'.
+2022-10-11 15:20:34.692 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 476.0772ms
+2022-10-11 15:20:34.692 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 15:20:34.692 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 280 - 200 - application/json;+charset=utf-8 482.0081ms
+2022-10-11 15:20:34.872 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/sockjs-node - - - 101 - - 37487.3097ms
+2022-10-11 15:20:34.984 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/177eb6dcc115432cbdceb459320d5f03 application/x-www-form-urlencoded 1587
+2022-10-11 15:20:34.986 +03:00 [INF] CORS policy execution successful.
+2022-10-11 15:20:34.986 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 15:20:34.991 +03:00 [INF] Route matched with {action = "ValidatePayment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidatePayment(System.String, Microsoft.AspNetCore.Http.IFormCollection) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 15:20:35.048 +03:00 [INF] 177eb6dcc115432cbdceb459320d5f03 - Load From Cache
+2022-10-11 15:20:35.050 +03:00 [INF] 177eb6dcc115432cbdceb459320d5f03 - Cache Removed
+2022-10-11 15:20:35.050 +03:00 [INF] 177eb6dcc115432cbdceb459320d5f03 - BankProvider - $Garanti
+2022-10-11 15:20:38.663 +03:00 [INF] 62748538 - VerifyPayment Process
+2022-10-11 15:20:38.665 +03:00 [INF] 62748538 - VerifyPayment Http Post
+2022-10-11 15:20:38.675 +03:00 [INF] HTTPPost:https://sanalposprovtest.garanti.com.tr//VPServlet
+2022-10-11 15:20:38.983 +03:00 [INF] HTTPPosted:https://sanalposprovtest.garanti.com.tr//VPServlet, StatusCode = OK
+2022-10-11 15:20:44.897 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(5) -- AnsiString
+SET     @CardHolderName = 'FIRAT'
+DECLARE @Status Boolean
+SET     @Status = True
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '62748538'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text(6) -- AnsiString
+SET     @ProvisionNumber = '304919'
+DECLARE @ReferanceNumber Text(12) -- AnsiString
+SET     @ReferanceNumber = '228408181424'
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 15:20:34.489'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(4, 1) -- Decimal
+SET     @Amount = 199.0
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+DECLARE @Id Uuid -- Guid
+SET     @Id = '50c15b60-1bd8-41d2-bfcb-e2312f94e8f2'
+
+UPDATE
+	"PaySession"
+SET
+	"CardNumber" = :CardNumber,
+	"CardHolderName" = :CardHolderName,
+	"Status" = :Status,
+	"OrderId" = :OrderId,
+	"UserId" = :UserId,
+	"CustomerId" = :CustomerId,
+	"Error" = :Error,
+	"EMail" = :EMail,
+	"ErrorCode" = :ErrorCode,
+	"ProvisionNumber" = :ProvisionNumber,
+	"ReferanceNumber" = :ReferanceNumber,
+	"UseSecure3D" = :UseSecure3D,
+	"CreateOn" = :CreateOn,
+	"Bank" = :Bank,
+	"PosConfigurationId" = :PosConfigurationId,
+	"Amount" = :Amount,
+	"Installment" = :Installment,
+	"TransferStatus" = :TransferStatus
+WHERE
+	"PaySession"."Id" = :Id
+
+2022-10-11 15:20:44.911 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0143401. Records Affected: 1.
+
+2022-10-11 15:20:44.912 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0198396. Rows Count: 0.
+
+2022-10-11 15:20:44.917 +03:00 [INF] Executing RedirectResult, redirecting to http://localhost:5001/paymentcomplete?message=304919.
+2022-10-11 15:20:44.917 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground) in 9925.838ms
+2022-10-11 15:20:44.917 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 15:20:44.918 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/177eb6dcc115432cbdceb459320d5f03 application/x-www-form-urlencoded 1587 - 302 0 - 9934.1698ms
+2022-10-11 15:21:08.091 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 15:21:10.153 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 2062.0304ms
+2022-10-11 15:21:10.190 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 15:21:10.190 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 15:21:10.190 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 15:21:10.195 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 200 - application/javascript;+charset=UTF-8 4.4815ms
+2022-10-11 15:21:11.995 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon.ico - -
+2022-10-11 15:21:11.997 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon.ico - - - 0 - - 2.4408ms
+2022-10-11 15:21:12.242 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 2051.3033ms
+2022-10-11 15:21:12.246 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2056.2681ms
+2022-10-11 15:21:12.306 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 15:21:12.306 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:16:17.259 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 16:16:20.038 +03:00 [INF] Starting create-react-app server on port 54565...
+2022-10-11 16:16:20.266 +03:00 [INF] SanalPosTR Running
+2022-10-11 16:16:20.414 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 16:16:20.414 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 16:16:20.417 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 16:16:20.417 +03:00 [INF] Hosting environment: Development
+2022-10-11 16:16:20.418 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 16:16:21.870 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 16:16:22.336 +03:00 [ERR] Error
+Exception: Npgsql.NpgsqlException
+Message  : Exception while connecting
+   at Npgsql.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnector.RawOpen(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnector.Open(NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.ConnectorPool.AllocateLong(NpgsqlConnection conn, NpgsqlTimeout timeout, Boolean async, CancellationToken cancellationToken)
+   at Npgsql.NpgsqlConnection.<>c__DisplayClass32_0.<<Open>g__OpenLong|0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at LinqToDB.Data.DataConnection.EnsureConnectionAsync(CancellationToken cancellationToken)
+
+Exception: System.Net.Sockets.SocketException
+Message  : Hedef makine etkin olarak reddettiğinden bağlantı kurulamadı.
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.ThrowException(SocketError error, CancellationToken cancellationToken)
+   at System.Net.Sockets.Socket.AwaitableSocketAsyncEventArgs.System.Threading.Tasks.Sources.IValueTaskSource.GetResult(Int16 token)
+   at System.Threading.Tasks.ValueTask.ValueTaskSourceAsTask.<>c.<.cctor>b__4_0(Object state)
+--- End of stack trace from previous location ---
+   at Npgsql.TaskExtensions.WithCancellation(Task task, CancellationToken cancellationToken)
+   at Npgsql.TaskExtensions.WithTimeout(Task task, NpgsqlTimeout timeout)
+   at Npgsql.NpgsqlConnector.ConnectAsync(NpgsqlTimeout timeout, CancellationToken cancellationToken)
+
+2022-10-11 16:16:22.338 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:02.0891753. Rows Count: 0.
+
+2022-10-11 16:16:23.285 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 16:16:23.286 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 16:16:25.419 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 16:16:26.661 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 16:16:26.663 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 16:16:28.813 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 6944.5595ms
+2022-10-11 16:16:28.881 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 16:16:28.881 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 16:16:28.881 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 16:16:28.887 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 6.6404ms
+2022-10-11 16:16:30.705 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon.ico - -
+2022-10-11 16:16:30.713 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon.ico - - - 0 - - 8.8028ms
+2022-10-11 16:16:30.937 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 304 - - 2056.4074ms
+2022-10-11 16:16:30.941 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2060.4661ms
+2022-10-11 16:16:31.018 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 16:16:31.021 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:16:38.172 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16
+2022-10-11 16:16:38.172 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:16:38.173 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:16:38.218 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:20.892 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16
+2022-10-11 16:17:20.893 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16
+2022-10-11 16:17:20.893 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:20.893 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:20.893 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22
+2022-10-11 16:17:20.898 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:20.902 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:20.902 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:20.902 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:20.902 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:20.902 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:20.902 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:20.920 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 42697.0083ms
+2022-10-11 16:17:20.924 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:20.924 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+StackExchange.Redis.RedisConnectionException: It was not possible to connect to the redis server(s). UnableToConnect on 127.0.0.1:6379/Interactive, Initializing/NotStarted, last: NONE, origin: BeginConnectAsync, outstanding: 0, last-read: 2s ago, last-write: 2s ago, keep-alive: 60s, state: Connecting, mgr: 10 of 10 available, last-heartbeat: never, global: 4s ago, v: 2.2.4.27433
+   at StackExchange.Redis.ConnectionMultiplexer.ConnectImpl(ConfigurationOptions configuration, TextWriter log) in /_/src/StackExchange.Redis/ConnectionMultiplexer.cs:line 1163
+   at StackExchange.Redis.ConnectionMultiplexer.Connect(ConfigurationOptions configuration, TextWriter log) in /_/src/StackExchange.Redis/ConnectionMultiplexer.cs:line 1032
+   at StackExchange.Redis.ConnectionMultiplexer.Connect(String configuration, TextWriter log) in /_/src/StackExchange.Redis/ConnectionMultiplexer.cs:line 1015
+   at SanalPosTR.Playground.Caching.RedisCache..ctor(AppConfig setting) in E:\Projects\SanalPosTR\src\SanalPosTR.Playground\Caching\RedisCache.cs:line 21
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Object[] arguments, Signature sig, Boolean constructor, Boolean wrapExceptions)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitConstructor(ConstructorCallSite constructorCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.Resolve(ServiceCallSite callSite, ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass1_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method85(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass4_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass5_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-11 16:17:20.956 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16 - 500 - text/plain 42784.9815ms
+2022-10-11 16:17:20.973 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 16:17:21.571 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text(6) -- String
+SET     @binNumber = '428220'
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.571 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text -- String
+SET     @binNumber = ''
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.571 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text -- String
+SET     @binNumber = ''
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.576 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0095553
+
+2022-10-11 16:17:21.576 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0095780
+
+2022-10-11 16:17:21.576 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0095582
+
+2022-10-11 16:17:21.576 +03:00 [INF] Total Execution Time (Completed): 00:00:00.4329677. Rows Count: 0.
+
+2022-10-11 16:17:21.576 +03:00 [INF] Total Execution Time (Completed): 00:00:00.4284371. Rows Count: 0.
+
+2022-10-11 16:17:21.576 +03:00 [INF] Total Execution Time (Completed): 00:00:00.4284509. Rows Count: 0.
+
+2022-10-11 16:17:21.598 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.598 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.598 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:21.600 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0015272
+
+2022-10-11 16:17:21.600 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0015345
+
+2022-10-11 16:17:21.600 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0015366
+
+2022-10-11 16:17:21.623 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0249417. Rows Count: 1.
+
+2022-10-11 16:17:21.623 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0249536. Rows Count: 1.
+
+2022-10-11 16:17:21.623 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0249677. Rows Count: 1.
+
+2022-10-11 16:17:21.638 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 16:17:21.638 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 16:17:21.638 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 16:17:21.648 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0099330
+
+2022-10-11 16:17:21.648 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0098686
+
+2022-10-11 16:17:21.648 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0099761
+
+2022-10-11 16:17:21.664 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0271574. Rows Count: 1.
+
+2022-10-11 16:17:21.664 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0271463. Rows Count: 1.
+
+2022-10-11 16:17:21.664 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0271398. Rows Count: 1.
+
+2022-10-11 16:17:21.667 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 16:17:21.667 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 16:17:21.667 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 16:17:21.695 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 792.9076ms
+2022-10-11 16:17:21.695 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 793.0826ms
+2022-10-11 16:17:21.695 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 793.0038ms
+2022-10-11 16:17:21.696 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:21.696 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:21.696 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:21.697 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22 - 200 - application/json;+charset=utf-8 804.5234ms
+2022-10-11 16:17:21.697 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16 - 200 - application/json;+charset=utf-8 805.4159ms
+2022-10-11 16:17:21.697 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 16 - 200 - application/json;+charset=utf-8 805.8773ms
+2022-10-11 16:17:23.025 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2053.5764ms
+2022-10-11 16:17:23.088 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js.map - -
+2022-10-11 16:17:23.093 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js.map - - - 304 - - 5.3063ms
+2022-10-11 16:17:24.090 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287
+2022-10-11 16:17:24.090 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:24.090 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 16:17:24.093 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:27.703 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 3609.6199ms
+2022-10-11 16:17:27.704 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 16:17:27.704 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at SanalPosTR.Playground.Controllers.SanalPosTRController.Pay(PaymentActionModel paymentModel) in E:\Projects\SanalPosTR\src\SanalPosTR.Playground\Controllers\SanalPosTRController.cs:line 48
+   at lambda_method534(Closure , Object )
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2022-10-11 16:17:27.706 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287 - 500 - text/plain 3616.1329ms
+2022-10-11 16:17:35.114 +03:00 [INF] User profile is available. Using 'C:\Users\firat\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2022-10-11 16:17:35.850 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PaySession')
+
+2022-10-11 16:17:35.858 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0133518
+
+2022-10-11 16:17:35.877 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosConfiguration')
+
+2022-10-11 16:17:35.878 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0010740
+
+2022-10-11 16:17:35.883 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosInstallment')
+
+2022-10-11 16:17:35.884 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0009270
+
+2022-10-11 16:17:35.887 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+
+ SELECT EXISTS (SELECT * FROM pg_tables WHERE schemaname = 'public' AND tablename = 'PosBinNumber')
+
+2022-10-11 16:17:35.887 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0007541
+
+2022-10-11 16:17:35.974 +03:00 [INF] Starting create-react-app server on port 54604...
+2022-10-11 16:17:36.200 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+
+SELECT
+	t1."Id",
+	t1."Active",
+	t1."BankType",
+	t1."Configuration",
+	t1."ForcePayRequest3D",
+	t1."UseDefault"
+FROM
+	"PosConfiguration" t1
+
+2022-10-11 16:17:36.214 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0135657
+
+2022-10-11 16:17:36.218 +03:00 [INF] SanalPosTR Running
+2022-10-11 16:17:36.281 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.1465197. Rows Count: 2.
+
+2022-10-11 16:17:36.283 +03:00 [INF] KuveytTurk Loaded
+2022-10-11 16:17:36.297 +03:00 [INF] Garanti Loaded
+2022-10-11 16:17:36.388 +03:00 [INF] Now listening on: https://localhost:5001
+2022-10-11 16:17:36.388 +03:00 [INF] Now listening on: http://localhost:5000
+2022-10-11 16:17:36.391 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2022-10-11 16:17:36.391 +03:00 [INF] Hosting environment: Development
+2022-10-11 16:17:36.391 +03:00 [INF] Content root path: E:\Projects\SanalPosTR\src\SanalPosTR.Playground
+2022-10-11 16:17:37.573 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/ - -
+2022-10-11 16:17:38.468 +03:00 [INF] > SanalPosTR.Playground@0.1.0 start E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp
+> rimraf ./build && react-scripts start
+
+i ´¢ówds´¢ú: Project is running at http://172.21.64.1/
+
+2022-10-11 16:17:38.469 +03:00 [INF] i ´¢ówds´¢ú: webpack output is served from 
+
+2022-10-11 16:17:39.879 +03:00 [ERR] Browserslist: caniuse-lite is outdated. Please run:
+
+2022-10-11 16:17:40.998 +03:00 [INF] i ´¢ówds´¢ú: Content not from webpack is served from E:\Projects\SanalPosTR\src\SanalPosTR.Playground\ClientApp\public
+i ´¢ówds´¢ú: 404s will fallback to /
+Starting the development server...
+
+Compiled with warnings.
+
+2022-10-11 16:17:41.000 +03:00 [INF] 
+./src/page/CreditCardPage/index.js
+
+2022-10-11 16:17:43.183 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/ - - - 200 - text/html;+charset=utf-8 5609.5850ms
+2022-10-11 16:17:43.221 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - -
+2022-10-11 16:17:43.221 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - -
+2022-10-11 16:17:43.221 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/static/js/bundle.js - -
+2022-10-11 16:17:43.239 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/bundle.js - - - 304 - - 17.2365ms
+2022-10-11 16:17:45.058 +03:00 [INF] Request starting HTTP/2 GET https://localhost:5001/favicon.ico - -
+2022-10-11 16:17:45.067 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/favicon.ico - - - 0 - - 8.4217ms
+2022-10-11 16:17:45.298 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/0.chunk.js - - - 304 - - 2076.3022ms
+2022-10-11 16:17:45.301 +03:00 [INF] Request finished HTTP/2 GET https://localhost:5001/static/js/main.chunk.js - - - 304 - - 2079.8346ms
+2022-10-11 16:17:45.386 +03:00 [INF] Request starting HTTP/1.1 GET https://localhost:5001/sockjs-node - -
+2022-10-11 16:17:45.394 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:47.058 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22
+2022-10-11 16:17:47.059 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:47.062 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:47.130 +03:00 [INF] Route matched with {action = "Installment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Installment(SanalPosTR.Playground.Models.InstallmentModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:48.108 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @binNumber Text(6) -- String
+SET     @binNumber = '428220'
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Number"
+FROM
+	"PosBinNumber" whr
+WHERE
+	whr."Number" = :binNumber AND whr."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:48.120 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0218074
+
+2022-10-11 16:17:48.120 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0505761. Rows Count: 0.
+
+2022-10-11 16:17:48.174 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL
+DECLARE @take Integer -- Int32
+SET     @take = 1
+
+SELECT
+	t."BankType"
+FROM
+	"PosConfiguration" t
+WHERE
+	t."UseDefault" = True AND t."Active" = True
+LIMIT :take
+
+2022-10-11 16:17:48.175 +03:00 [INF] Query Execution Time (AfterExecute): 00:00:00.0013174
+
+2022-10-11 16:17:48.179 +03:00 [INF] Total Execution Time (Completed): 00:00:00.0066892. Rows Count: 1.
+
+2022-10-11 16:17:48.200 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @bankType_1 Integer -- Int32
+SET     @bankType_1 = 11
+
+SELECT
+	whr."Id",
+	whr."Active",
+	whr."BankType",
+	whr."Installment",
+	whr."Interest",
+	whr."DisplayOrder",
+	whr."ExtraInfo"
+FROM
+	"PosInstallment" whr
+WHERE
+	whr."BankType" = :bankType_1 AND whr."Installment" = 1
+ORDER BY
+	whr."DisplayOrder"
+
+2022-10-11 16:17:48.204 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0032200
+
+2022-10-11 16:17:48.224 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0239984. Rows Count: 1.
+
+2022-10-11 16:17:48.233 +03:00 [INF] Executing JsonResult, writing value of type 'System.Collections.Generic.List`1[[SanalPosTR.Playground.Data.Entities.PosInstallment, SanalPosTR.Playground, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2022-10-11 16:17:48.328 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground) in 1185.9614ms
+2022-10-11 16:17:48.330 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Installment (SanalPosTR.Playground)'
+2022-10-11 16:17:48.331 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Installment application/json;charset=utf-8 22 - 200 - application/json;+charset=utf-8 1272.9457ms
+2022-10-11 16:17:57.924 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287
+2022-10-11 16:17:57.924 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:17:57.926 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 16:17:57.934 +03:00 [INF] Route matched with {action = "Pay", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[System.Object] Pay(SanalPosTR.Playground.Models.PaymentActionModel) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:17:58.050 +03:00 [INF] ProcessPayment-Start
+2022-10-11 16:17:58.051 +03:00 [INF] ProcessPayment-ReadEmbedResource
+2022-10-11 16:17:58.070 +03:00 [INF] ProcessPayment - Garanti Before Use3DSecure - BAF0BF326B0261A4288A7273F18674FF35E9826F
+2022-10-11 16:17:58.260 +03:00 [INF] ProcessPayment - Garanti After Use3DSecure - 306912978625978019900https://localhost:5001/api/SanalPosTR/ValidatePayment/d2cfaa243d5048f69b33b2dba10ab776https://localhost:5001/api/SanalPosTR/ValidatePayment/d2cfaa243d5048f69b33b2dba10ab776sales12345678BAF0BF326B0261A4288A7273F18674FF35E9826F
+2022-10-11 16:17:58.553 +03:00 [INF] ProcessPayment-CompiledTemplate
+2022-10-11 16:17:58.554 +03:00 [INF] ProcessPayment-HttpPost - Use3DSecure
+2022-10-11 16:17:58.662 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @Id Uuid -- Guid
+SET     @Id = '2b2ac2ce-319e-4791-818c-d3e39cdd420c'
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(12) -- AnsiString
+SET     @CardHolderName = 'fırat oltulu'
+DECLARE @Status Boolean
+SET     @Status = False
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '86259780'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text -- AnsiString
+SET     @ProvisionNumber = NULL
+DECLARE @ReferanceNumber Text -- AnsiString
+SET     @ReferanceNumber = NULL
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 16:17:58.556'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(3, 0) -- Decimal
+SET     @Amount = 199
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+
+INSERT INTO "PaySession"
+(
+	"Id",
+	"CardNumber",
+	"CardHolderName",
+	"Status",
+	"OrderId",
+	"UserId",
+	"CustomerId",
+	"Error",
+	"EMail",
+	"ErrorCode",
+	"ProvisionNumber",
+	"ReferanceNumber",
+	"UseSecure3D",
+	"CreateOn",
+	"Bank",
+	"PosConfigurationId",
+	"Amount",
+	"Installment",
+	"TransferStatus"
+)
+VALUES
+(
+	:Id,
+	:CardNumber,
+	:CardHolderName,
+	:Status,
+	:OrderId,
+	:UserId,
+	:CustomerId,
+	:Error,
+	:EMail,
+	:ErrorCode,
+	:ProvisionNumber,
+	:ReferanceNumber,
+	:UseSecure3D,
+	:CreateOn,
+	:Bank,
+	:PosConfigurationId,
+	:Amount,
+	:Installment,
+	:TransferStatus
+)
+
+2022-10-11 16:17:58.694 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0394341. Records Affected: 1.
+
+2022-10-11 16:17:58.696 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0620600. Rows Count: 0.
+
+2022-10-11 16:17:58.992 +03:00 [INF] Executing ObjectResult, writing value of type 'SanalPosTR.Playground.Models.PaymentActionResult'.
+2022-10-11 16:17:59.005 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground) in 1070.6148ms
+2022-10-11 16:17:59.005 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.Pay (SanalPosTR.Playground)'
+2022-10-11 16:17:59.005 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/Pay application/json;charset=utf-8 287 - 200 - application/json;+charset=utf-8 1081.8736ms
+2022-10-11 16:17:59.215 +03:00 [INF] Request finished HTTP/1.1 GET https://localhost:5001/sockjs-node - - - 101 - - 13829.4267ms
+2022-10-11 16:18:36.921 +03:00 [INF] Request starting HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/d2cfaa243d5048f69b33b2dba10ab776 application/x-www-form-urlencoded 1593
+2022-10-11 16:18:36.923 +03:00 [INF] CORS policy execution successful.
+2022-10-11 16:18:36.923 +03:00 [INF] Executing endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 16:18:36.935 +03:00 [INF] Route matched with {action = "ValidatePayment", controller = "SanalPosTR"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] ValidatePayment(System.String, Microsoft.AspNetCore.Http.IFormCollection) on controller SanalPosTR.Playground.Controllers.SanalPosTRController (SanalPosTR.Playground).
+2022-10-11 16:18:37.064 +03:00 [INF] d2cfaa243d5048f69b33b2dba10ab776 - Load From Cache
+2022-10-11 16:18:37.066 +03:00 [INF] d2cfaa243d5048f69b33b2dba10ab776 - Cache Removed
+2022-10-11 16:18:37.066 +03:00 [INF] d2cfaa243d5048f69b33b2dba10ab776 - BankProvider - $Garanti
+2022-10-11 16:18:37.070 +03:00 [INF] 86259780 - VerifyPayment Process
+2022-10-11 16:18:37.072 +03:00 [INF] 86259780 - VerifyPayment Http Post
+2022-10-11 16:18:37.102 +03:00 [INF] HTTPPost:https://sanalposprovtest.garanti.com.tr//VPServlet
+2022-10-11 16:18:37.602 +03:00 [INF] HTTPPosted:https://sanalposprovtest.garanti.com.tr//VPServlet, StatusCode = OK
+2022-10-11 16:18:37.723 +03:00 [INF] BeforeExecute
+--  psql PostgreSQL (asynchronously)
+DECLARE @CardNumber Text(19) -- AnsiString
+SET     @CardNumber = '4282 **** **** 8015'
+DECLARE @CardHolderName Text(12) -- AnsiString
+SET     @CardHolderName = 'fırat oltulu'
+DECLARE @Status Boolean
+SET     @Status = True
+DECLARE @OrderId Text(8) -- AnsiString
+SET     @OrderId = '86259780'
+DECLARE @UserId Text -- AnsiString
+SET     @UserId = NULL
+DECLARE @CustomerId Text -- AnsiString
+SET     @CustomerId = NULL
+DECLARE @Error Text -- AnsiString
+SET     @Error = NULL
+DECLARE @EMail Text -- AnsiString
+SET     @EMail = NULL
+DECLARE @ErrorCode Text -- AnsiString
+SET     @ErrorCode = NULL
+DECLARE @ProvisionNumber Text(6) -- AnsiString
+SET     @ProvisionNumber = '304919'
+DECLARE @ReferanceNumber Text(12) -- AnsiString
+SET     @ReferanceNumber = '228408181801'
+DECLARE @UseSecure3D Boolean
+SET     @UseSecure3D = True
+DECLARE @CreateOn Timestamp -- DateTime
+SET     @CreateOn = '2022-10-11 16:17:58.556'::timestamp
+DECLARE @Bank Integer -- Int32
+SET     @Bank = 1
+DECLARE @PosConfigurationId Uuid -- Guid
+SET     @PosConfigurationId = '860302e2-1749-43d5-b69c-72eaa6242326'
+DECLARE @Amount Numeric(4, 1) -- Decimal
+SET     @Amount = 199.0
+DECLARE @Installment Integer -- Int32
+SET     @Installment = 0
+DECLARE @TransferStatus Boolean
+SET     @TransferStatus = False
+DECLARE @Id Uuid -- Guid
+SET     @Id = '2b2ac2ce-319e-4791-818c-d3e39cdd420c'
+
+UPDATE
+	"PaySession"
+SET
+	"CardNumber" = :CardNumber,
+	"CardHolderName" = :CardHolderName,
+	"Status" = :Status,
+	"OrderId" = :OrderId,
+	"UserId" = :UserId,
+	"CustomerId" = :CustomerId,
+	"Error" = :Error,
+	"EMail" = :EMail,
+	"ErrorCode" = :ErrorCode,
+	"ProvisionNumber" = :ProvisionNumber,
+	"ReferanceNumber" = :ReferanceNumber,
+	"UseSecure3D" = :UseSecure3D,
+	"CreateOn" = :CreateOn,
+	"Bank" = :Bank,
+	"PosConfigurationId" = :PosConfigurationId,
+	"Amount" = :Amount,
+	"Installment" = :Installment,
+	"TransferStatus" = :TransferStatus
+WHERE
+	"PaySession"."Id" = :Id
+
+2022-10-11 16:18:37.728 +03:00 [INF] Query Execution Time (AfterExecute) (async): 00:00:00.0055838. Records Affected: 1.
+
+2022-10-11 16:18:37.729 +03:00 [INF] Total Execution Time (Completed) (async): 00:00:00.0115242. Rows Count: 0.
+
+2022-10-11 16:18:37.738 +03:00 [INF] Executing RedirectResult, redirecting to http://localhost:5001/paymentcomplete?message=304919.
+2022-10-11 16:18:37.738 +03:00 [INF] Executed action SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground) in 802.8352ms
+2022-10-11 16:18:37.738 +03:00 [INF] Executed endpoint 'SanalPosTR.Playground.Controllers.SanalPosTRController.ValidatePayment (SanalPosTR.Playground)'
+2022-10-11 16:18:37.739 +03:00 [INF] Request finished HTTP/2 POST https://localhost:5001/api/SanalPosTR/ValidatePayment/d2cfaa243d5048f69b33b2dba10ab776 application/x-www-form-urlencoded 1593 - 302 0 - 818.3262ms
