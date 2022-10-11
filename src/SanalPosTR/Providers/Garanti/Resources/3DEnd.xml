@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<GVPSRequest>
+	<Mode>TEST</Mode>
+	<Version>v0.00</Version>
+	<Terminal>
+		<ProvUserID>{{Configuration.ProvUserId}}</ProvUserID>
+		<HashData>hesaplanıp yazılacak</HashData>
+		<UserID>{{Configuration.UserId}}</UserID>
+		<ID>{{Configuration.TerminalId}}</ID>
+		<MerchantID>{{Configuration.MerchantId}}</MerchantID>
+	</Terminal>
+	<Customer>
+		<IPAddress>{{CustomerIpAddress}}</IPAddress>
+		<EmailAddress>{{CustomerEmailAddress}}</EmailAddress>
+	</Customer>
+	<Card>
+		<Number></Number>
+		<ExpireDate></ExpireDate>
+		<CVV2></CVV2>
+	</Card>
+	<Order>
+		<OrderID>{{OrderId}}</OrderID>
+		<GroupID></GroupID>
+	</Order>
+	<Transaction>
+		<Type>{{Configuration.Type}}</Type>
+		<InstallmentCnt>{{Installment}}</InstallmentCnt>
+		<Amount>{{Total}}</Amount>
+		<CurrencyCode>{{CurrencyCode}}</CurrencyCode>
+		<CardholderPresentCode>13</CardholderPresentCode>	///3D için 13 olacaktır.
+		<MotoInd>H</MotoInd>
+		<Description></Description>
+		<Secure3D>
+			<AuthenticationCode>{{AuthenticationCode}}</AuthenticationCode>
+			<SecurityLevel>{{SecurityLevel}}</SecurityLevel>
+			<TxnID>{{TxnID}}</TxnID>
+			<Md>{{Md}}</Md> //// Kart bilgileri yerine bu alan kullanılıyor.
+		</Secure3D>
+	</Transaction>
+</GVPSRequest>

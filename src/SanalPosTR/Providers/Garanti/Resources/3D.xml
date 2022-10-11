@@ -1,0 +1,36 @@
+﻿ <form id="SanalPosTR" name="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
+
+	<input type="hidden" name="mode" value="PROD" />
+	<input type="hidden" name="apiversion" value="v0.01" />
+	<input type="hidden" name="terminalprovuserid" value="{{Configuration.ProvUserId}}" />
+	<input type="hidden" name="terminalid" value="{{Configuration.TerminalId}}" />
+	<input type="hidden" name="terminaluserid" value="{{Configuration.UserId}}" />
+	<input type="hidden" name="terminalmerchantid" value="{{Configuration.MerchantId}}" />
+	<input type="hidden" name="txntype" value="{{Configuration.Type}}" />
+	<input type="hidden" name="txnamount" value="{{Order.Total | formatMoneyUS}}" />
+	<input type="hidden" name="txncurrencycode" value="{{ Order.CurrencyCode }}" />
+	
+	 <input type="text" name="cardnumber" value="{{CreditCard.CardNumber}}" />
+	 <input type="text" name="cardcvv2" value="{{CreditCard.CVV2}}" />
+	 <input type="text" name="cardexpiredatemonth" value="{{CreditCard.ExpireMonth}}" />
+	 <input type="text" name="cardexpiredateyear" value="{{CreditCard.ExpireYear}}" />
+	 
+
+
+	 {% if Order.Installment %}
+	 <input type="hidden" name="txninstallmentcount" value="{{Order.Installment}}" />
+	{% else %}
+	<input type="hidden" name="txninstallmentcount" value="{{Order.Installment}}" />
+	{% endif %}
+	
+	<input type="hidden" name="orderid" value="{{Order.OrderId}}" />
+	<input type="hidden" name="successurl" value="{{SiteSuccessUrl}}" />
+	<input type="hidden" name="errorurl" value="{{SiteFailUrl}}" />
+	<input type="hidden" name="customeripaddress" value="{{Order.IP}}" />
+	<input type="hidden" name="customeremailaddress" value="{{Order.EMail}}" />
+	<input type="hidden" name="secure3dhash" value="{{Hash}}" />
+	<input type="hidden" name="secure3dsecuritylevel" value="3D" />
+	<input type="hidden" name="lang" value="tr" />
+ 	 
+
+</form>

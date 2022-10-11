@@ -22,6 +22,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Providers\Garanti\Resources\3D.xml" />
+    <None Remove="Providers\Garanti\Resources\3DEnd.xml" />
+    <None Remove="Providers\Garanti\Resources\Pay.xml" />
+    <None Remove="Providers\Garanti\Resources\Refund.xml" />
     <None Remove="Providers\KuveytTurk\Resources\3D.xml" />
     <None Remove="Providers\KuveytTurk\Resources\3DEnd.xml" />
     <None Remove="Providers\NestPay\Resources\3D.xml" />
@@ -39,6 +43,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Providers\Garanti\Resources\3D.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\Garanti\Resources\3DEnd.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\Garanti\Resources\Pay.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Providers\Garanti\Resources\Refund.xml" />
     <EmbeddedResource Include="Providers\NestPay\Resources\Refund.xml" />
     <EmbeddedResource Include="Providers\NestPay\Resources\Pay.xml">
       <SubType>Designer</SubType>

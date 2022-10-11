@@ -240,6 +240,8 @@ export default function CreditCardPage() {
                             <option value="2" >YKB</option>
                             <option value="3" >Akbank</option>
                             <option value="11" >KuveytTürk</option>
+                            <option value="1" >Garanti</option>
+
                         </Select>
                     </InputGroup>
 

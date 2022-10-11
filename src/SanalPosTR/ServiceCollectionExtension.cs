@@ -13,7 +13,7 @@ namespace SanalPosTR
         public static IServiceCollection AddSanalPosTR(this IServiceCollection services)
         {
 
-            services.AddScoped<NestPayProviderService>();
+            services.AddScoped<GarantiProviderService>();
             services.AddScoped<YKBProviderServices>();
             services.AddScoped<KuveytTurkProviderServices>();
 

@@ -15,7 +15,9 @@ namespace SanalPosTR
             { BankTypes.FinansBank, typeof(NestPayProviderService) },
             { BankTypes.Isbank, typeof(NestPayProviderService) },
             { BankTypes.Ykb, typeof(YKBProviderServices) },
-            { BankTypes.KuveytTurk, typeof(KuveytTurkProviderServices) }
+            { BankTypes.KuveytTurk, typeof(KuveytTurkProviderServices) },
+            { BankTypes.Garanti, typeof(GarantiProviderService) }
+
         };
 
         public static Dictionary<BankTypes, IProviderConfiguration> BankConfiguration = new Dictionary<BankTypes, IProviderConfiguration>
@@ -28,6 +30,8 @@ namespace SanalPosTR
             { BankTypes.Anadolubank,  new NestPayConfiguration() },
             { BankTypes.Ykb,  new YKBConfiguration() },
             { BankTypes.KuveytTurk, new KuveytTurkConfiguration() },
+            { BankTypes.Garanti, new GarantiConfiguration() },
+
         };
 
         public static Dictionary<BankTypes, IEnvironmentConfiguration> BankTestUrls = new Dictionary<BankTypes, IEnvironmentConfiguration>
@@ -38,7 +42,7 @@ namespace SanalPosTR
             {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
-
+            {BankTypes.Garanti,new GarantiEndPointConfiguration{ BaseUrl="https://sanalposprovtest.garanti.com.tr" } },
             {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } },
             {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration
                 {
