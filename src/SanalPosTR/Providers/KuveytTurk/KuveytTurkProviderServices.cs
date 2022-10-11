@@ -66,6 +66,12 @@ namespace SanalPosTR.Providers.Est
 
         public override async Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
         {
+
+            if (paymentModel.Use3DSecure == false)
+            {
+                return new PaymentResult() { Status = false, Error = "3d siz işlemi desteklemektedir" };
+            }
+
             var cloneObj = paymentModel.Clone();
 
             if (cloneObj.Order.Installment.HasValue && (cloneObj.Order.Installment == 1 || cloneObj.Order.Installment == 0))
@@ -154,6 +160,17 @@ namespace SanalPosTR.Providers.Est
                 return false;
         }
 
+        public override Task<PaymentResult> ProcessRefound(Refund refund)
+        {
+            return Task.FromResult(new PaymentResult
+            {
+                Status = false,
+                Error = "İade desteği henüz tamamlanmamıştır"
+            });
+
+            return base.ProcessRefound(refund);
+        }
+
         #endregion Pay
 
         #region Handler
@@ -166,8 +183,8 @@ namespace SanalPosTR.Providers.Est
             if (hostResponse == "00")
             {
                 result.Status = true;
-                result.ProvisionNumber = TemplateHelper.GetInlineContent(serverResponse, "AuthCode");
-                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "HostRefNum");
+                result.ProvisionNumber = TemplateHelper.GetInlineContent(serverResponse, "ProvisionNumber");
+                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "RRN");
             }
             else
             {

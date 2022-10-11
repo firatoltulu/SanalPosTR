@@ -12,7 +12,7 @@ namespace SanalPosTR.Configuration
 
         public string SecureEndPointApi => "servlet/gt3dengine";
 
-        public string SecureReturnEndPoint => "servlet/gt3dengine";
+        public string SecureReturnEndPoint => "VPServlet";
 
         public string RefundEndPoint => "VPServlet";
     }

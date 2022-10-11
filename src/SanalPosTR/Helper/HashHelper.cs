@@ -69,13 +69,24 @@ namespace SanalPosTR
             return hex;
         }
 
-        public static string GetSHA1(string text)
+        private static byte[] GetSHA1Bytes(string text)
         {
             byte[] message = System.Text.Encoding.GetEncoding("ISO-8859-9").GetBytes(text);
             SHA1 sha = new SHA1CryptoServiceProvider();
             var hashValue = sha.ComputeHash(message);
-            return Convert.ToBase64String(hashValue);
+            return hashValue;
         }
+
+        public static string GetSHA1(string text)
+        {
+            return Convert.ToBase64String(GetSHA1Bytes(text));
+        }
+
+        public static string GetSHA1WithHexaDecimal(string text)
+        {
+            return GetHexaDecimal(GetSHA1Bytes(text));
+        }
+
         public static string GetSHA1WithUTF8(string text)
         {
             byte[] message = Encoding.UTF8.GetBytes(text);
@@ -84,6 +95,7 @@ namespace SanalPosTR
             var hashValue = sha.ComputeHash(message);
             return Convert.ToBase64String(hashValue);
         }
+
         private static string GetHexaDecimal(byte[] bytes)
         {
             StringBuilder s = new StringBuilder();

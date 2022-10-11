@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <GVPSRequest>
-	<Mode>TEST</Mode>
+	<Mode>{{Mode}}</Mode>
 	<Version>v0.00</Version>
 	<Terminal>
 		<ProvUserID>{{Configuration.ProvUserId}}</ProvUserID>
-		<HashData>hesaplanıp yazılacak</HashData>
+		<HashData>{{Hash}}</HashData>
 		<UserID>{{Configuration.UserId}}</UserID>
 		<ID>{{Configuration.TerminalId}}</ID>
 		<MerchantID>{{Configuration.MerchantId}}</MerchantID>
@@ -27,14 +27,14 @@
 		<InstallmentCnt>{{Installment}}</InstallmentCnt>
 		<Amount>{{Total}}</Amount>
 		<CurrencyCode>{{CurrencyCode}}</CurrencyCode>
-		<CardholderPresentCode>13</CardholderPresentCode>	///3D için 13 olacaktır.
-		<MotoInd>H</MotoInd>
+		<CardholderPresentCode>13</CardholderPresentCode>
+		<MotoInd>N</MotoInd>
 		<Description></Description>
 		<Secure3D>
 			<AuthenticationCode>{{AuthenticationCode}}</AuthenticationCode>
 			<SecurityLevel>{{SecurityLevel}}</SecurityLevel>
 			<TxnID>{{TxnID}}</TxnID>
-			<Md>{{Md}}</Md> //// Kart bilgileri yerine bu alan kullanılıyor.
+			<Md>{{Md}}</Md>
 		</Secure3D>
 	</Transaction>
 </GVPSRequest>

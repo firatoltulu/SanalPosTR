@@ -13,9 +13,12 @@ namespace SanalPosTR.Configuration
         public string MerchantId { get; set; }
         public string SiteSuccessUrl { get; set; }
 
+        [Display(Order = 4)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
         public string SiteFailUrl { get; set; }
 
-        [Display(Order = 4)]
+        [Display(Order = 5)]
         public bool UseTestEndPoint { get; set; }
 
         [Display(Order = 3)]

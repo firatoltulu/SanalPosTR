@@ -25,7 +25,8 @@ namespace SanalPosTR.Providers.Est
                 var garantiConfiguration = (GarantiConfiguration)ProviderConfiguration;
                 var installment = (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0)) ? "" : paymentModel.Order.Installment.ToString();
                 var amount = paymentModel.Order.Total.ToString(new CultureInfo("en-US"));
-                string securityData = HashHelper.GetSHA1(garantiConfiguration.ProvUserId + garantiConfiguration.TerminalId).ToUpper();
+
+                string securityData = HashHelper.GetSHA1WithHexaDecimal(String.Concat(garantiConfiguration.Password, "0", garantiConfiguration.TerminalId)).ToUpper();
 
                 var hashStr = string.Concat(
                                 garantiConfiguration.TerminalId,
@@ -42,7 +43,7 @@ namespace SanalPosTR.Providers.Est
                 paymentModel.Attributes.Add(new SanalPosTRAttribute()
                 {
                     Key = "Hash",
-                    Value = HashHelper.GetSHA1(hashStr)
+                    Value = HashHelper.GetSHA1WithHexaDecimal(hashStr).ToUpper()
                 });
             }
             return base.OnCompilingTemplate(paymentModel, template);
@@ -55,7 +56,7 @@ namespace SanalPosTR.Providers.Est
             PostForm postForm = new PostForm();
             postForm.ContentType = "application/x-www-form-urlencoded";
             postForm.RequestFormat = RestSharp.DataFormat.Xml;
-            postForm.PreTag = "DATA=";
+            postForm.PreTag = "";
             postForm.SendParameterType = SendParameterType.RequestBody;
             return postForm;
         }
@@ -74,6 +75,8 @@ namespace SanalPosTR.Providers.Est
             if (cloneObj.Order.CurrencyCode.IsEmpty())
                 cloneObj.Order.CurrencyCode = "949";
 
+            cloneObj.Order.Total *= 100;
+
             return base.ProcessPayment(cloneObj);
         }
 
@@ -91,14 +94,27 @@ namespace SanalPosTR.Providers.Est
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "SecurityLevel", Value = collection["eci"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "TxnID", Value = collection["xid"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Md", Value = collection["md"] });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Mode", Value = ProviderConfiguration.UseTestEndPoint ? "TEST" : "PROD" });
 
-               
+
+                var garantiConfiguration = (GarantiConfiguration)ProviderConfiguration;
+
+                string securityData = HashHelper.GetSHA1WithHexaDecimal(String.Concat(garantiConfiguration.Password, "0", garantiConfiguration.TerminalId)).ToUpper();
+
+                var hashStr = string.Concat(
+                                collection["oid"],
+                                garantiConfiguration.TerminalId,
+                                collection["txnamount"],
+                                securityData
+                            );
+
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Hash", Value = HashHelper.GetSHA1WithHexaDecimal(hashStr).ToUpper() });
+
                 return await base.VerifyPayment(paymentModel, collection);
             }
             else
             {
                 string message = "3-D Secure doğrulanamadı";
-
 
                 switch (collection["mdstatus"].ToString())
                 {
@@ -181,17 +197,17 @@ namespace SanalPosTR.Providers.Est
         {
             PaymentResult result = new PaymentResult();
 
-            var hostResponse = TemplateHelper.GetInlineContent(serverResponse, "Response");
-            if (hostResponse == "Approved")
+            var hostResponse = TemplateHelper.GetInlineContent(serverResponse, "Code");
+            if (hostResponse == "00")
             {
                 result.Status = true;
                 result.ProvisionNumber = TemplateHelper.GetInlineContent(serverResponse, "AuthCode");
-                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "HostRefNum");
+                result.ReferanceNumber = TemplateHelper.GetInlineContent(serverResponse, "RetrefNum");
             }
             else
             {
-                result.Error = TemplateHelper.GetInlineContent(serverResponse, "ErrMsg");
-                result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "ERRORCODE");
+                result.Error = TemplateHelper.GetInlineContent(serverResponse, "ErrorMsg");
+                result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "ReasonCode");
             }
 
             return result;

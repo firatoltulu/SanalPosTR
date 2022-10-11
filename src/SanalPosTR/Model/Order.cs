@@ -2,6 +2,7 @@
 {
     public class OrderInfo
     {
+        public string IP { get; set; }
         public string OrderId { get; set; }
 
         public string UserId { get; set; }
