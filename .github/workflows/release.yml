@@ -1,0 +1,29 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ release ]
+  pull_request:
+    branches: [ release ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.201
+    - name: Install dependencies
+      run: dotnet restore ./src
+    - name: Build
+      run: dotnet build ./src --configuration Release --no-restore
+    - name: publish on version change
+      run: dotnet pack ./src/SanalPosTR/SanalPosTR.csproj --configuration Release --no-build --output bin/Release/Publish
+    - name: Publish to Nuget
+      run: dotnet nuget push bin/Release/Publish/**/*.nupkg --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+   
+    
