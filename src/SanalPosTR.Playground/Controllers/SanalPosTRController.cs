@@ -61,7 +61,7 @@ namespace SanalPosTR.Playground.Controllers
                     paymentModel.Use3DSecure = posConfiguration.ForcePayRequest3D;
 
                 paymentModel.PosConfigurationId = posConfiguration.Id;
-                paymentModel.Order.IP = "88.227.66.254";
+                paymentModel.Order.IP = "127.0.0.1";
                 paymentModel.Order.EMail = "sanalpostr@post.com.tr";
 
                 var bankResponse = await bankProvider.ProcessPayment(paymentModel);

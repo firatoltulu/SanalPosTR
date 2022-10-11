@@ -2,6 +2,7 @@
 using SanalPosTR.Configuration;
 using SanalPosTR.Extensions;
 using SanalPosTR.Model;
+using Serilog;
 using System;
 using System.Globalization;
 using System.Threading.Tasks;
@@ -24,14 +25,15 @@ namespace SanalPosTR.Providers.Est
             {
                 var garantiConfiguration = (GarantiConfiguration)ProviderConfiguration;
                 var installment = (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0)) ? "" : paymentModel.Order.Installment.ToString();
-                var amount = paymentModel.Order.Total.ToString(new CultureInfo("en-US"));
 
                 string securityData = HashHelper.GetSHA1WithHexaDecimal(String.Concat(garantiConfiguration.Password, "0", garantiConfiguration.TerminalId)).ToUpper();
+
+                Log.Information($"ProcessPayment - Garanti Before Use3DSecure - {securityData}");
 
                 var hashStr = string.Concat(
                                 garantiConfiguration.TerminalId,
                                 paymentModel.Order.OrderId,
-                                amount,
+                                paymentModel.Order.Total.ToString("0", new CultureInfo("en-US")),
                                 garantiConfiguration.SiteSuccessUrl.CompileOrderLink(paymentModel),
                                 garantiConfiguration.SiteFailUrl.CompileOrderLink(paymentModel),
                                 garantiConfiguration.Type,
@@ -39,6 +41,8 @@ namespace SanalPosTR.Providers.Est
                                 garantiConfiguration.SecureKey,
                                 securityData
                             );
+
+                Log.Information($"ProcessPayment - Garanti After Use3DSecure - {hashStr}");
 
                 paymentModel.Attributes.Add(new SanalPosTRAttribute()
                 {
@@ -72,6 +76,12 @@ namespace SanalPosTR.Providers.Est
             if (cloneObj.Order.Installment.HasValue && (cloneObj.Order.Installment == 1 || cloneObj.Order.Installment == 0))
                 cloneObj.Order.Installment = null;
 
+            if (cloneObj.CreditCard.ExpireMonth.Length == 1)
+                cloneObj.CreditCard.ExpireMonth = $"0{cloneObj.CreditCard.ExpireMonth}";
+
+            if (cloneObj.CreditCard.ExpireYear.Length == 4)
+                cloneObj.CreditCard.ExpireYear = cloneObj.CreditCard.ExpireYear.Substring(2);
+
             if (cloneObj.Order.CurrencyCode.IsEmpty())
                 cloneObj.Order.CurrencyCode = "949";
 
@@ -95,7 +105,6 @@ namespace SanalPosTR.Providers.Est
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "TxnID", Value = collection["xid"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Md", Value = collection["md"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Mode", Value = ProviderConfiguration.UseTestEndPoint ? "TEST" : "PROD" });
-
 
                 var garantiConfiguration = (GarantiConfiguration)ProviderConfiguration;
 
@@ -139,6 +148,7 @@ namespace SanalPosTR.Providers.Est
                 paymentResult.Error = message;
                 paymentResult.ErrorCode = collection["mdstatus"];
                 paymentResult.Status = false;
+
                 return paymentResult;
             }
         }
