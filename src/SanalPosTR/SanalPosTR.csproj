@@ -4,10 +4,13 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>SanalPosTR</AssemblyName>
     <RootNamespace>SanalPosTR</RootNamespace>
-    <Version>1.0.7</Version>
+    <Version>1.0.8</Version>
     <Authors>Fırat Oltulu</Authors>
     <Company />
-    <Description>Türkiye için tüm sanalposlar bir arada, tek arayüz.</Description>
+    <Description>
+		    Türkiye için tüm sanalposlar bir arada, tek arayüz.
+			Garanti, Kuveyturk 3D modeli ödeme alt yapısı eklendi.
+	</Description>
   </PropertyGroup>
 
   <ItemGroup>
