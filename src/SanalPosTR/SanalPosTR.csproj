@@ -4,11 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>SanalPosTR</AssemblyName>
     <RootNamespace>SanalPosTR</RootNamespace>
-    <Version>1.0.10</Version>
+    <Version>1.0.11</Version>
     <Authors>Fırat Oltulu</Authors>
     <Company />
     <Description>
-		    1.0.10 : SetBankEnvironment Metodu Eklendi
+		    1.0.11 : SetBankEnvironment Metodu Eklendi
 	</Description>
   </PropertyGroup>
 
