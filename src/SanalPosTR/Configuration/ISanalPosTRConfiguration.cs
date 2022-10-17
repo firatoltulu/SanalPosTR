@@ -23,5 +23,6 @@
         IConfigurationService UseZiraat(NestPayConfiguration configuration);
 
         IConfigurationService UseKuveytTurk(KuveytTurkConfiguration configuration);
+        IConfigurationService SetBankEnvironment(BankTypes bankTypes, bool useTest);
     }
 }
