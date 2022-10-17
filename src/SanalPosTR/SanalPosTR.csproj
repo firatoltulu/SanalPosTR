@@ -4,12 +4,11 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>SanalPosTR</AssemblyName>
     <RootNamespace>SanalPosTR</RootNamespace>
-    <Version>1.0.9</Version>
+    <Version>1.0.10</Version>
     <Authors>Fırat Oltulu</Authors>
     <Company />
     <Description>
-		    Türkiye için tüm sanalposlar bir arada, tek arayüz.
-			Garanti, Kuveyturk 3D modeli ödeme alt yapısı eklendi.
+		    1.0.10 : SetBankEnvironment Metodu Eklendi
 	</Description>
   </PropertyGroup>
 
