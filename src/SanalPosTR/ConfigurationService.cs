@@ -1,5 +1,4 @@
 ﻿using SanalPosTR.Configuration;
-using SanalPosTR.Helper;
 using System;
 
 namespace SanalPosTR
@@ -78,11 +77,24 @@ namespace SanalPosTR
             Definition.BankConfiguration[nestBanks] = configuration;
         }
 
+        public IConfigurationService SetBankEnvironment(BankTypes bankTypes, bool useTest)
+        {
+            foreach (var item in Definition.BankConfiguration)
+            {
+                if (item.Key == bankTypes)
+                {
+                    if (item.Value is I3DConfiguration)
+                        (item.Value as I3DConfiguration).UseTestEndPoint = useTest;
+                }
+            }
+            return this;
+        }
+
         public IConfigurationService SetSuccessReturnUrl(string url)
         {
             foreach (var item in Definition.BankConfiguration)
             {
-                if(item.Value is I3DConfiguration)
+                if (item.Value is I3DConfiguration)
                     (item.Value as I3DConfiguration).SiteSuccessUrl = url;
             }
 
