@@ -6,7 +6,7 @@
 	<UserName>{{ Configuration.UserName }}</UserName>
 	<TransactionType>Sale</TransactionType>
 	<InstallmentCount>{{Installment}}</InstallmentCount>
-	<Amount>{{Total | formatMoneyUS}}</Amount>
+	<Amount>{{Total}}</Amount>
 	<CurrencyCode>{{ CurrencyCode }}</CurrencyCode>
 	<MerchantOrderId>{{OrderId}}</MerchantOrderId>
 	<TransactionSecurity>3</TransactionSecurity>

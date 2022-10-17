@@ -23,8 +23,8 @@
 		<InstallmentCount>0</InstallmentCount>
 	{% endif %}
 	
-  <Amount>{{Order.Total | formatMoneyUS}}</Amount>
-  <DisplayAmount>{{Order.Total | formatMoneyUS}}</DisplayAmount>
+  <Amount>{{Order.Total}}</Amount>
+  <DisplayAmount>{{Order.Total}}</DisplayAmount>
   <CurrencyCode>{{ Order.CurrencyCode }}</CurrencyCode>
   <MerchantOrderId>{{Order.OrderId}}</MerchantOrderId>
   <TransactionSecurity>3</TransactionSecurity>
