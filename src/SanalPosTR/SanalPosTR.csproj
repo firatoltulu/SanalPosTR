@@ -4,7 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>SanalPosTR</AssemblyName>
     <RootNamespace>SanalPosTR</RootNamespace>
-    <Version>1.0.8</Version>
+    <Version>1.0.9</Version>
     <Authors>Fırat Oltulu</Authors>
     <Company />
     <Description>

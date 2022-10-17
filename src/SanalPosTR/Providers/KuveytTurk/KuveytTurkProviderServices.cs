@@ -24,19 +24,16 @@ namespace SanalPosTR.Providers.Est
         {
             if (paymentModel.Use3DSecure)
             {
-                var nestConf = (KuveytTurkConfiguration)ProviderConfiguration;
-                var rnd = Guid.NewGuid().ToString("N").Substring(0, 20).ToUpper();
-                var installment = (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0)) ? "" : paymentModel.Order.Installment.ToString();
-                var amount = paymentModel.Order.Total.ToString(new CultureInfo("en-US"));
+                var kuveytTurkConfiguration = (KuveytTurkConfiguration)ProviderConfiguration;
 
                 var hashStr = string.Concat(
-                                nestConf.MerchantId,
+                                kuveytTurkConfiguration.MerchantId,
                                 paymentModel.Order.OrderId,
-                                amount,
-                                nestConf.SiteSuccessUrl.CompileOrderLink(paymentModel),
-                                nestConf.SiteFailUrl.CompileOrderLink(paymentModel),
-                                nestConf.UserName,
-                                HashHelper.GetSHA1WithUTF8(nestConf.Password)
+                                paymentModel.Order.Total.ToString("0", new CultureInfo("en-US")),
+                                kuveytTurkConfiguration.SiteSuccessUrl.CompileOrderLink(paymentModel),
+                                kuveytTurkConfiguration.SiteFailUrl.CompileOrderLink(paymentModel),
+                                kuveytTurkConfiguration.UserName,
+                                HashHelper.GetSHA1WithUTF8(kuveytTurkConfiguration.Password)
                             );
 
                 paymentModel.Attributes.Add(new SanalPosTRAttribute()
@@ -80,6 +77,14 @@ namespace SanalPosTR.Providers.Est
             if (cloneObj.Order.CurrencyCode.IsEmpty())
                 cloneObj.Order.CurrencyCode = "0949";
 
+            if (cloneObj.CreditCard.ExpireMonth.Length == 1)
+                cloneObj.CreditCard.ExpireMonth = $"0{cloneObj.CreditCard.ExpireMonth}";
+
+            if (cloneObj.CreditCard.ExpireYear.Length == 4)
+                cloneObj.CreditCard.ExpireYear = cloneObj.CreditCard.ExpireYear.Substring(2);
+
+            cloneObj.Order.Total *= 100;
+
             HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
 
             var xmlTemplate = await base.ProcessPayment(cloneObj);
@@ -108,7 +113,6 @@ namespace SanalPosTR.Providers.Est
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "OrderId", Value = vPosTransactionResponseContract.MerchantOrderId });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "CurrencyCode", Value = vPosTransactionResponseContract.VPosMessage.CurrencyCode });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Total", Value = vPosTransactionResponseContract.VPosMessage.Amount });
-                //  paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "HashData", Value = vPosTransactionResponseContract.HashData });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "MD", Value = vPosTransactionResponseContract.MD });
 
                 var nestConf = (KuveytTurkConfiguration)ProviderConfiguration;
@@ -116,7 +120,7 @@ namespace SanalPosTR.Providers.Est
                 var hashStr = string.Concat(
                                nestConf.MerchantId,
                                vPosTransactionResponseContract.MerchantOrderId,
-                               vPosTransactionResponseContract.VPosMessage.Amount,
+                               vPosTransactionResponseContract.VPosMessage.Amount.ToString("0", new CultureInfo("en-US")),
                                nestConf.UserName,
                                vPosTransactionResponseContract.VPosMessage.HashPassword
                            );
@@ -154,7 +158,7 @@ namespace SanalPosTR.Providers.Est
             if (formCollection.Keys.Contains("AuthenticationResponse"))
             {
                 var vPosTransactionResponseContract = GetVPosTransactionResponseContract(formCollection["AuthenticationResponse"]);
-                return vPosTransactionResponseContract.ResponseCode == "00" && vPosTransactionResponseContract.VPosMessage.Amount == paymentModel.Order.Total;
+                return vPosTransactionResponseContract.ResponseCode == "00";
             }
             else
                 return false;
