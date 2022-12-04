@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <AssemblyName>SanalPosTR</AssemblyName>
     <RootNamespace>SanalPosTR</RootNamespace>
-    <Version>1.0.11</Version>
+    <Version>1.1.0</Version>
     <Authors>Fırat Oltulu</Authors>
     <Company />
     <Description>
