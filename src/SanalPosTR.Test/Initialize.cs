@@ -56,6 +56,18 @@ namespace SanalPosTR.Test
                     SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
                 });
             });
+
+            Definition.BankConfiguration[BankTypes.Garanti] = new GarantiConfiguration()
+            {
+                TerminalId = "x",
+                UserId = "x",
+                MerchantId = "x",
+                SecureKey = "x",
+                Password = "x",
+                UseTestEndPoint = true,
+                SiteFailUrl = "http://x.com/Fail/{{OrderId}}",
+                SiteSuccessUrl = "http://x.com/Success/{{OrderId}}"
+            };
         }
     }
 }

@@ -11,7 +11,7 @@ namespace SanalPosTR.Providers.Est
 {
     public class GarantiProviderService : BaseProviderService, IProviderService
     {
-        public GarantiProviderService(Func<BankTypes, IProviderConfiguration> ziraatConfiguration) : base()
+        public GarantiProviderService(Func<BankTypes, IProviderConfiguration> ziraatConfiguration, SanalPosHttpClient httpClient) : base(httpClient)
         {
         }
 
@@ -59,7 +59,7 @@ namespace SanalPosTR.Providers.Est
         {
             PostForm postForm = new PostForm();
             postForm.ContentType = "application/x-www-form-urlencoded";
-            postForm.RequestFormat = RestSharp.DataFormat.Xml;
+            postForm.RequestFormat = RequestDataFormat.Xml;
             postForm.PreTag = "";
             postForm.SendParameterType = SendParameterType.RequestBody;
             return postForm;
@@ -178,7 +178,7 @@ namespace SanalPosTR.Providers.Est
                     }
                     digestData += storekey;
 
-                    System.Security.Cryptography.SHA1 sha = new System.Security.Cryptography.SHA1CryptoServiceProvider();
+                    System.Security.Cryptography.SHA1 sha = System.Security.Cryptography.SHA1.Create();
                     byte[] hashbytes = System.Text.Encoding.GetEncoding("ISO-8859-9").GetBytes(digestData);
                     byte[] inputbytes = sha.ComputeHash(hashbytes);
                     String hashCalculated = Convert.ToBase64String(inputbytes);

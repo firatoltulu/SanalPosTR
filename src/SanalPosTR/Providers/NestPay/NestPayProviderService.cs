@@ -3,14 +3,17 @@ using SanalPosTR.Configuration;
 using SanalPosTR.Extensions;
 using SanalPosTR.Model;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SanalPosTR.Providers.Est
 {
     public class NestPayProviderService : BaseProviderService, IProviderService
     {
-        public NestPayProviderService(Func<BankTypes, IProviderConfiguration> ziraatConfiguration) : base()
+        public NestPayProviderService(Func<BankTypes, IProviderConfiguration> ziraatConfiguration, SanalPosHttpClient httpClient) : base(httpClient)
         {
         }
 
@@ -27,31 +30,56 @@ namespace SanalPosTR.Providers.Est
                 var installment = (paymentModel.Order.Installment.HasValue && (paymentModel.Order.Installment == 1 || paymentModel.Order.Installment == 0)) ? "" : paymentModel.Order.Installment.ToString();
                 var amount = paymentModel.Order.Total.ToString(new CultureInfo("en-US"));
 
-                var hashStr = string.Concat(
-                                nestConf.ClientId,
-                                paymentModel.Order.OrderId,
-                                amount,
-                                nestConf.SiteSuccessUrl.CompileOrderLink(paymentModel),
-                                nestConf.SiteFailUrl.CompileOrderLink(paymentModel),
-                                nestConf.Type,
-                                installment,
-                                rnd,
-                                nestConf.HashKey
-                            );
-
-                paymentModel.Attributes.Add(new SanalPosTRAttribute()
+                var formParams = new Dictionary<string, string>
                 {
-                    Key = "Hash",
-                    Value = HashHelper.GetSHA1(hashStr)
-                });
+                    { "pan", paymentModel.CreditCard.CardNumber },
+                    { "cv2", paymentModel.CreditCard.CVV2 },
+                    { "Ecom_Payment_Card_ExpDate_Year", paymentModel.CreditCard.ExpireYear },
+                    { "Ecom_Payment_Card_ExpDate_Month", paymentModel.CreditCard.ExpireMonth },
+                    { "currency", paymentModel.Order.CurrencyCode },
+                    { "clientid", nestConf.ClientId },
+                    { "amount", amount },
+                    { "oid", paymentModel.Order.OrderId },
+                    { "okUrl", nestConf.SiteSuccessUrl.CompileOrderLink(paymentModel) },
+                    { "failUrl", nestConf.SiteFailUrl.CompileOrderLink(paymentModel) },
+                    { "rnd", rnd },
+                    { "islemtipi", nestConf.Type ?? "Auth" },
+                    { "taksit", installment },
+                    { "storetype", "3D" },
+                    { "lang", "tr" },
+                    { "hashAlgorithm", "ver3" }
+                };
 
-                paymentModel.Attributes.Add(new SanalPosTRAttribute()
-                {
-                    Key = "Random",
-                    Value = rnd.ToString()
-                });
+                var hashValue = ComputeVer3Hash(formParams, nestConf.HashKey);
+
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Hash", Value = hashValue });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Random", Value = rnd });
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "HashAlgorithm", Value = "ver3" });
             }
             return base.OnCompilingTemplate(paymentModel, template);
+        }
+
+        public static string ComputeVer3Hash(Dictionary<string, string> formParams, string storeKey)
+        {
+            var enUS = new CultureInfo("en-US");
+            var sortedKeys = formParams.Keys
+                .OrderBy(k => k.ToLower(enUS), StringComparer.Ordinal)
+                .ToList();
+
+            var hashBuilder = new StringBuilder();
+            foreach (var key in sortedKeys)
+            {
+                var escapedValue = EscapeVer3Value(formParams[key]);
+                hashBuilder.Append(escapedValue).Append('|');
+            }
+            hashBuilder.Append(EscapeVer3Value(storeKey));
+
+            return HashHelper.GetSHA512Base64(hashBuilder.ToString());
+        }
+
+        private static string EscapeVer3Value(string value)
+        {
+            return (value ?? "").Replace("\\", "\\\\").Replace("|", "\\|");
         }
 
         public override string EmbededDirectory => "NestPay.Resources";
@@ -60,7 +88,7 @@ namespace SanalPosTR.Providers.Est
         {
             PostForm postForm = new PostForm();
             postForm.ContentType = "application/x-www-form-urlencoded";
-            postForm.RequestFormat = RestSharp.DataFormat.Xml;
+            postForm.RequestFormat = RequestDataFormat.Xml;
             postForm.PreTag = "DATA=";
             postForm.SendParameterType = SendParameterType.RequestBody;
             return postForm;
@@ -112,40 +140,26 @@ namespace SanalPosTR.Providers.Est
         {
             var nestPayConfiguration = ((NestPayConfiguration)ProviderConfiguration);
 
-            string hashparams = formCollection["HASHPARAMS"];
-            string hashparamsval = formCollection["HASHPARAMSVAL"];
-            string paramsval = "";
+            var excludeKeys = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+                { "hash", "encoding", "countdown" };
 
-            int index1 = 0;
-            int index2 = 0;
-
-            do
+            var paramDict = new Dictionary<string, string>();
+            foreach (var key in formCollection.Keys)
             {
-                string val;
-                index2 = hashparams.IndexOf(":", index1);
-                string string1 = formCollection[hashparams.Substring(index1, index2 - index1)];
-
-                if (string1 == null)
-                    val = string1;
-                else
-                    val = formCollection[hashparams.Substring(index1, index2 - index1)];
-
-                paramsval += val;
-                index1 = index2 + 1;
+                if (!excludeKeys.Contains(key))
+                {
+                    paramDict[key] = formCollection[key];
+                }
             }
-            while (index1 < hashparams.Length);
 
-            string hashval = paramsval + nestPayConfiguration.HashKey;
-            string hashparam = formCollection["HASH"];
-            string hash = TemplateHelper.GetSHA1(hashval);
-            if (!paramsval.Equals(hashparamsval) || !hash.Equals(hashparam))
-            {
+            var calculatedHash = ComputeVer3Hash(paramDict, nestPayConfiguration.HashKey);
+            var receivedHash = formCollection["HASH"].ToString();
+
+            if (!calculatedHash.Equals(receivedHash))
                 return false;
-            }
 
-            var mdstatus = formCollection["mdStatus"];
-            var result = (mdstatus.Equals("1") || mdstatus.Equals("2") || mdstatus.Equals("3") || mdstatus.Equals("4"));
-            return result;
+            var mdstatus = formCollection["mdStatus"].ToString();
+            return (mdstatus == "1" || mdstatus == "2" || mdstatus == "3" || mdstatus == "4");
         }
 
         #endregion Pay

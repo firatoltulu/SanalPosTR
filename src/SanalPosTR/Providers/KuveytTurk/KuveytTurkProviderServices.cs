@@ -12,7 +12,7 @@ namespace SanalPosTR.Providers.Est
 {
     public class KuveytTurkProviderServices : BaseProviderService, IProviderService
     {
-        public KuveytTurkProviderServices(Func<BankTypes, IProviderConfiguration> Configuration) : base()
+        public KuveytTurkProviderServices(Func<BankTypes, IProviderConfiguration> Configuration, SanalPosHttpClient httpClient) : base(httpClient)
         {
         }
 
@@ -51,7 +51,7 @@ namespace SanalPosTR.Providers.Est
         {
             PostForm postForm = new PostForm();
             postForm.ContentType = "application/xml";
-            postForm.RequestFormat = RestSharp.DataFormat.None;
+            postForm.RequestFormat = RequestDataFormat.None;
             postForm.PreTag = String.Empty;
             postForm.SendParameterType = SendParameterType.RequestBody;
             return postForm;
@@ -85,8 +85,6 @@ namespace SanalPosTR.Providers.Est
 
             cloneObj.Order.Total *= 100;
 
-            HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
-
             var xmlTemplate = await base.ProcessPayment(cloneObj);
 
             if (xmlTemplate.IsRedirectContent)
@@ -94,7 +92,7 @@ namespace SanalPosTR.Providers.Est
                 var post = GetPostForm();
                 post.Content = xmlTemplate.ServerResponseRaw;
 
-                xmlTemplate.ServerResponseRaw = (await client.Post(EndPointConfiguration.SecureEndPointApi, post, (result) =>
+                xmlTemplate.ServerResponseRaw = (await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.SecureEndPointApi, post, (result) =>
                 {
                     return result.Replace("downloadForm", "SanalPosTR");
                 }));
