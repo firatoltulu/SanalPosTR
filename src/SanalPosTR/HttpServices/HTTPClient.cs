@@ -1,112 +1,122 @@
-﻿using RestSharp;
 using Serilog;
 using System;
-using System.Net;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace SanalPosTR
 {
-    public class HTTPClient
+    public class SanalPosHttpClient
     {
-        public HTTPClient(string baseUrl)
+        private readonly HttpClient _httpClient;
+
+        public SanalPosHttpClient(HttpClient httpClient)
         {
-            this.BaseUrl = baseUrl;
+            _httpClient = httpClient;
         }
 
-        public string BaseUrl
+        public async Task<T> Post<T>(string baseUrl, string resource, PostForm post, Func<string, T> handler)
         {
-            get;
-            set;
-        }
+            var requestUri = CombineUrl(baseUrl, resource);
 
-        public async Task<T> Post<T>(string resource, PostForm post, Func<string, T> handler)
-        {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            var content = BuildContent(post);
 
-            RestClient client = new RestClient(BaseUrl);
-            RestRequest request = new RestRequest(resource, Method.POST);
+            Log.Information($"HTTPPost:{requestUri}");
 
-            request.RequestFormat = post.RequestFormat;
+            var response = await _httpClient.PostAsync(requestUri, content);
 
-            if (post.SendParameterType == SendParameterType.RequestBody)
+            Log.Information($"HTTPPosted:{requestUri}, StatusCode = {response.StatusCode}");
+
+            if (response.IsSuccessStatusCode)
             {
-                if (string.IsNullOrEmpty(post.PreTag))
-                    request.AddParameter(post.ContentType, post.Content, ParameterType.RequestBody);
-                else
-                    request.AddParameter(post.ContentType, post.PreTag + post.Content, ParameterType.RequestBody);
+                var responseBody = await response.Content.ReadAsStringAsync();
+                return handler(responseBody);
             }
             else
             {
-                if (post.Parameters.Count == 0)
-                    request.AddParameter(post.PreTag, post.Content);
-                else
-                    foreach (var item in post.Parameters)
-                        request.AddParameter(item.Key, item.Value, ParameterType.QueryString);
-            }
-
-            Log.Information($"HTTPPost:{client.BaseUrl}/{request.Resource}");
-
-            var serverResponse = client.Execute(request);
-
-            Log.Information($"HTTPPosted:{client.BaseUrl}/{request.Resource}, StatusCode = {serverResponse.StatusCode}");
-
-            if (serverResponse.StatusCode == HttpStatusCode.OK)
-                return await Task.FromResult(handler(serverResponse.Content));
-            else
-            {
-                Log.Information(serverResponse.Content);
+                var responseBody = await response.Content.ReadAsStringAsync();
+                Log.Information(responseBody);
                 return default;
             }
         }
 
-        public Task<PaymentResult> Post(string resource, PostForm post, Func<string, PaymentResult> handler)
+        public async Task<PaymentResult> Post(string baseUrl, string resource, PostForm post, Func<string, PaymentResult> handler)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+            var requestUri = CombineUrl(baseUrl, resource);
+
+            var content = BuildContent(post);
+
+            Log.Information($"HTTPPost:{requestUri}");
 
             PaymentResult paymentResult;
-            RestClient client = new RestClient(BaseUrl);
-            RestRequest request = new RestRequest(resource, Method.POST);
 
-            request.RequestFormat = post.RequestFormat;
+            var response = await _httpClient.PostAsync(requestUri, content);
 
-            if (post.SendParameterType == SendParameterType.RequestBody)
+            Log.Information($"HTTPPosted:{requestUri}, StatusCode = {response.StatusCode}");
+
+            var responseBody = await response.Content.ReadAsStringAsync();
+
+            if (response.IsSuccessStatusCode)
             {
-                if (string.IsNullOrEmpty(post.PreTag))
-                    request.AddParameter(post.ContentType, post.Content, ParameterType.RequestBody);
-                else
-                    request.AddParameter(post.ContentType, post.PreTag + post.Content, ParameterType.RequestBody);
+                paymentResult = handler(responseBody);
             }
             else
             {
-                if (post.Parameters.Count == 0)
-                    request.AddParameter(post.PreTag, post.Content);
-                else
-                    foreach (var item in post.Parameters)
-                        request.AddParameter(item.Key, item.Value, ParameterType.QueryString);
-            }
-
-            Log.Information($"HTTPPost:{client.BaseUrl}/{request.Resource}");
-
-            var serverResponse = client.Execute(request);
-
-            Log.Information($"HTTPPosted:{client.BaseUrl}/{request.Resource}, StatusCode = {serverResponse.StatusCode}");
-
-            if (serverResponse.StatusCode == HttpStatusCode.OK)
-                paymentResult = handler(serverResponse.Content);
-            else
-            {
-                Log.Information(serverResponse.Content);
+                Log.Information(responseBody);
 
                 paymentResult = new PaymentResult();
                 paymentResult.Status = false;
                 paymentResult.Error = "[TIMEOUT]";
-                paymentResult.ServerResponseRaw = serverResponse.Content;
+                paymentResult.ServerResponseRaw = responseBody;
             }
 
-            paymentResult.ServerResponseRaw = serverResponse.Content;
+            paymentResult.ServerResponseRaw = responseBody;
             paymentResult.OrderContentRaw = post.Content;
 
-            return Task.FromResult(paymentResult);
+            return paymentResult;
+        }
+
+        private static HttpContent BuildContent(PostForm post)
+        {
+            string body;
+
+            if (post.SendParameterType == SendParameterType.RequestBody)
+            {
+                body = string.IsNullOrEmpty(post.PreTag)
+                    ? post.Content
+                    : post.PreTag + post.Content;
+            }
+            else
+            {
+                if (post.Parameters.Count == 0)
+                    body = post.PreTag + post.Content;
+                else
+                {
+                    var sb = new StringBuilder();
+                    for (int i = 0; i < post.Parameters.Count; i++)
+                    {
+                        if (i > 0) sb.Append('&');
+                        sb.Append(Uri.EscapeDataString(post.Parameters[i].Key));
+                        sb.Append('=');
+                        sb.Append(Uri.EscapeDataString(post.Parameters[i].Value?.ToString() ?? ""));
+                    }
+                    body = sb.ToString();
+                }
+            }
+
+            var mediaType = string.IsNullOrEmpty(post.ContentType) ? "application/x-www-form-urlencoded" : post.ContentType;
+
+            return new StringContent(body, Encoding.UTF8, mediaType);
+        }
+
+        private static string CombineUrl(string baseUrl, string resource)
+        {
+            if (string.IsNullOrEmpty(resource))
+                return baseUrl;
+
+            baseUrl = baseUrl.TrimEnd('/');
+            resource = resource.TrimStart('/');
+            return $"{baseUrl}/{resource}";
         }
     }
 }

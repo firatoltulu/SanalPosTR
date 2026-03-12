@@ -26,7 +26,7 @@ namespace SanalPosTR.Providers.Ykb
             public string ErrorCode { get; set; }
         }
 
-        public YKBProviderServices(Func<BankTypes, IProviderConfiguration> ziraatConfiguration) : base()
+        public YKBProviderServices(Func<BankTypes, IProviderConfiguration> ziraatConfiguration, SanalPosHttpClient httpClient) : base(httpClient)
         {
         }
 
@@ -39,7 +39,7 @@ namespace SanalPosTR.Providers.Ykb
         {
             PostForm postForm = new PostForm();
             postForm.ContentType = "application/x-www-form-urlencoded";
-            postForm.RequestFormat = RestSharp.DataFormat.Xml;
+            postForm.RequestFormat = RequestDataFormat.Xml;
             postForm.PreTag = "xmldata=";
             postForm.SendParameterType = SendParameterType.RequestBody;
             return postForm;
@@ -81,8 +81,7 @@ namespace SanalPosTR.Providers.Ykb
 
                 Log.Information("ProcessPayment - YKB Use3DSecure - POST");
 
-                HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
-                var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler3D);
+                var result = await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint, post, Handler3D);
 
                 if (result.Status)
                 {
@@ -172,8 +171,7 @@ namespace SanalPosTR.Providers.Ykb
             var post = GetPostForm();
             post.Content = System.Net.WebUtility.UrlEncode(postData);
 
-            HTTPClient client = new HTTPClient(EndPointConfiguration.BaseUrl);
-            var result = await client.Post(EndPointConfiguration.ApiEndPoint, post, Handler);
+            var result = await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint, post, Handler);
 
             if (TemplateHelper.GetInlineContent(result.ServerResponseRaw, "mdStatus") != "1")
             {
