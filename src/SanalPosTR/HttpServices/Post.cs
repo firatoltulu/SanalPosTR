@@ -1,16 +1,22 @@
-﻿using RestSharp;
 using SanalPosTR.Model;
 using System.Collections.Generic;
 
 namespace SanalPosTR
 {
+    public enum RequestDataFormat
+    {
+        Xml,
+        Json,
+        None
+    }
+
     public class PostForm
     {
         public PostForm()
         {
         }
 
-        public DataFormat RequestFormat { get; set; }
+        public RequestDataFormat RequestFormat { get; set; }
 
         public string ContentType { get; set; }
 

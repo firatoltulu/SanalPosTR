@@ -116,6 +116,16 @@ namespace SanalPosTR
             }
         }
 
+        public static string GetSHA512Base64(string text)
+        {
+            using (SHA512 sha = SHA512.Create())
+            {
+                byte[] hashbytes = Encoding.UTF8.GetBytes(text);
+                byte[] inputbytes = sha.ComputeHash(hashbytes);
+                return Convert.ToBase64String(inputbytes);
+            }
+        }
+
         public static string GetSHA512(string text)
         {
             UnicodeEncoding UE = new UnicodeEncoding();

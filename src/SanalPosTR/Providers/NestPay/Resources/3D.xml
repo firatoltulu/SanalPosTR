@@ -16,6 +16,7 @@
     <input type="hidden" name="failUrl" value="{{SiteFailUrl}}" />
     <input type="hidden" name="rnd" value="{{Random}}" />
     <input type="hidden" name="hash" value="{{Hash}}" />
+    <input type="hidden" name="hashAlgorithm" value="{{HashAlgorithm}}" />
   
     <input type="hidden" name="islemtipi" value="Auth" />
 

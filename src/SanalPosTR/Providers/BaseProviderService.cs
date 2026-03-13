@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using SanalPosTR.Configuration;
 using SanalPosTR.Extensions;
 using SanalPosTR.Model;
@@ -10,6 +10,13 @@ namespace SanalPosTR.Providers
 {
     public abstract class BaseProviderService : IProviderService
     {
+        protected readonly SanalPosHttpClient HttpClient;
+
+        protected BaseProviderService(SanalPosHttpClient httpClient)
+        {
+            HttpClient = httpClient;
+        }
+
         public abstract string EmbededDirectory { get; }
 
         public virtual IProviderConfiguration ProviderConfiguration { get; }
@@ -99,8 +106,7 @@ namespace SanalPosTR.Providers
                 {
                     Log.Information($"ProcessPayment-HttpPost - NonUse3DSecure");
 
-                    HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
-                    return await httpClient.Post(EndPointConfiguration.ApiEndPoint, form, Handler);
+                    return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint, form, Handler);
                 }
                 else
                 {
@@ -130,9 +136,7 @@ namespace SanalPosTR.Providers
 
             Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Http Post");
 
-            HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
-
-            return await httpClient.Post(EndPointConfiguration.SecureReturnEndPoint, postForm, Handler);
+            return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.SecureReturnEndPoint, postForm, Handler);
         }
 
         public virtual async Task<PaymentResult> ProcessRefound(Refund refund)
@@ -145,8 +149,7 @@ namespace SanalPosTR.Providers
             var form = GetPostForm();
             form.Content = viewModel;
 
-            HTTPClient httpClient = new HTTPClient(EndPointConfiguration.BaseUrl);
-            return await httpClient.Post(EndPointConfiguration.RefundEndPoint, form, Handler);
+            return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.RefundEndPoint, form, Handler);
         }
 
         public abstract PostForm GetPostForm();
