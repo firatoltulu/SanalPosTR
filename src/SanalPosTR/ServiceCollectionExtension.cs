@@ -13,7 +13,9 @@ namespace SanalPosTR
         public static IServiceCollection AddSanalPosTR(this IServiceCollection services)
         {
 
-            services.AddHttpClient<SanalPosHttpClient>();
+            services.AddTransient<HttpLoggingHandler>();
+            services.AddHttpClient<SanalPosHttpClient>()
+                .AddHttpMessageHandler<HttpLoggingHandler>();
 
             services.AddScoped<GarantiProviderService>();
             services.AddScoped<YKBProviderServices>();

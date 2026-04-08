@@ -42,7 +42,7 @@ namespace SanalPosTR
             {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl="https://entegrasyon.asseco-see.com.tr" } },
-            {BankTypes.Garanti,new GarantiEndPointConfiguration{ BaseUrl="https://sanalposprovtest.garanti.com.tr" } },
+            {BankTypes.Garanti,new GarantiEndPointConfiguration{ BaseUrl="https://sanalposprovtest.garantibbva.com.tr" } },
             {BankTypes.Ykb,new YKBEndPointConfiguration{ BaseUrl="https://setmpos.ykb.com" } },
             {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration
                 {
@@ -61,6 +61,7 @@ namespace SanalPosTR
             {BankTypes.Isbank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.isbank.com.tr" } },
             {BankTypes.HalkBank, new NestPayEndPointConfiguration{ BaseUrl="https://sanalpos.halkbank.com.tr" } },
             {BankTypes.Anadolubank, new NestPayEndPointConfiguration{ BaseUrl=" https://anadolusanalpos.est.com.tr" } },
+            {BankTypes.Garanti, new GarantiEndPointConfiguration{ BaseUrl="https://sanalposprov.garantibbva.com.tr" } },
             {BankTypes.Ykb, new YKBEndPointConfiguration{ BaseUrl="https://posnet.yapikredi.com.tr" } },
             {BankTypes.KuveytTurk, new KuveytTurkEndPointConfiguration{
                 BaseUrl="https://sanalpos.kuveytturk.com.tr",
