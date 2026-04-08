@@ -18,14 +18,9 @@ namespace SanalPosTR
         public async Task<T> Post<T>(string baseUrl, string resource, PostForm post, Func<string, T> handler)
         {
             var requestUri = CombineUrl(baseUrl, resource);
-
             var content = BuildContent(post);
 
-            Log.Information($"HTTPPost:{requestUri}");
-
             var response = await _httpClient.PostAsync(requestUri, content);
-
-            Log.Information($"HTTPPosted:{requestUri}, StatusCode = {response.StatusCode}");
 
             if (response.IsSuccessStatusCode)
             {
@@ -35,7 +30,7 @@ namespace SanalPosTR
             else
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
-                Log.Information(responseBody);
+                Log.Warning("HTTP POST failed. Uri: {RequestUri}, StatusCode: {StatusCode}, Response: {ResponseBody}", requestUri, (int)response.StatusCode, responseBody);
                 return default;
             }
         }
@@ -43,17 +38,11 @@ namespace SanalPosTR
         public async Task<PaymentResult> Post(string baseUrl, string resource, PostForm post, Func<string, PaymentResult> handler)
         {
             var requestUri = CombineUrl(baseUrl, resource);
-
             var content = BuildContent(post);
-
-            Log.Information($"HTTPPost:{requestUri}");
 
             PaymentResult paymentResult;
 
             var response = await _httpClient.PostAsync(requestUri, content);
-
-            Log.Information($"HTTPPosted:{requestUri}, StatusCode = {response.StatusCode}");
-
             var responseBody = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)
@@ -62,7 +51,7 @@ namespace SanalPosTR
             }
             else
             {
-                Log.Information(responseBody);
+                Log.Warning("HTTP POST failed. Uri: {RequestUri}, StatusCode: {StatusCode}, Response: {ResponseBody}", requestUri, (int)response.StatusCode, responseBody);
 
                 paymentResult = new PaymentResult();
                 paymentResult.Status = false;

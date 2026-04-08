@@ -1,12 +1,12 @@
 # SanalPosTR - Project Guide
 
 ## Project Overview
-Turkish virtual POS (payment gateway) integration library for .NET 6. Provides a unified API for processing payments through multiple Turkish banks.
+Turkish virtual POS (payment gateway) integration library. Multi-targets `netstandard2.0` and `net8.0`. Provides a unified API for processing payments through multiple Turkish banks.
 
 ## Tech Stack
-- .NET 6.0 (C#)
+- C# (multi-target: netstandard2.0 + net8.0)
 - DotLiquid (XML template engine)
-- RestSharp (HTTP client)
+- HttpClient via `IHttpClientFactory` (HTTP client)
 - Serilog (logging)
 - NUnit (testing)
 - GitHub Actions (CI/CD)
@@ -24,7 +24,7 @@ src/
 │   │   └── KuveytTurk/         # Kuveyt Türk
 │   ├── Model/                   # Payment, order, card models
 │   ├── Helper/                  # Hash, template, string utilities
-│   ├── HttpServices/            # RestSharp HTTP client wrapper
+│   ├── HttpServices/            # SanalPosHttpClient (HttpClient wrapper)
 │   ├── Configuration/           # Bank configurations & endpoints
 │   └── Resources/               # DotLiquid XML templates (embedded)
 ├── SanalPosTR.Test/             # NUnit tests
