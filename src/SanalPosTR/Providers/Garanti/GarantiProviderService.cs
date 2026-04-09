@@ -28,7 +28,7 @@ namespace SanalPosTR.Providers.Est
 
                 string securityData = HashHelper.GetSHA1WithHexaDecimal(String.Concat(garantiConfiguration.Password, "0", garantiConfiguration.TerminalId)).ToUpper();
 
-                Log.Information($"ProcessPayment - Garanti Before Use3DSecure - {securityData}");
+                Log.Debug("OnCompilingTemplate - Garanti - SecurityData generated: {SecurityData}", securityData);
 
                 var hashStr = string.Concat(
                                 garantiConfiguration.TerminalId,
@@ -42,7 +42,7 @@ namespace SanalPosTR.Providers.Est
                                 securityData
                             );
 
-                Log.Information($"ProcessPayment - Garanti After Use3DSecure - {hashStr}");
+                Log.Debug("OnCompilingTemplate - Garanti - Hash input: {HashInput}", hashStr);
 
                 paymentModel.Attributes.Add(new SanalPosTRAttribute()
                 {
@@ -92,8 +92,12 @@ namespace SanalPosTR.Providers.Est
 
         public override async Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
+            Log.Information("VerifyPayment - Garanti started. mdstatus: {MdStatus}, oid: {OrderId}", collection["mdstatus"], collection["oid"]);
+
             if (Validate3D(collection))
             {
+                Log.Debug("VerifyPayment - Garanti - 3D validation successful. oid: {OrderId}, txnamount: {Amount}, txncurrencycode: {Currency}", collection["oid"], collection["txnamount"], collection["txncurrencycode"]);
+
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "OrderId", Value = collection["oid"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "CustomerIpAddress", Value = collection["customeripaddress"] });
                 paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "CustomerEmailAddress", Value = collection["customeremailaddress"] });
@@ -110,6 +114,8 @@ namespace SanalPosTR.Providers.Est
 
                 string securityData = HashHelper.GetSHA1WithHexaDecimal(String.Concat(garantiConfiguration.Password, "0", garantiConfiguration.TerminalId)).ToUpper();
 
+                Log.Debug("VerifyPayment - Garanti - SecurityData generated: {SecurityData}", securityData);
+
                 var hashStr = string.Concat(
                                 collection["oid"],
                                 garantiConfiguration.TerminalId,
@@ -117,12 +123,23 @@ namespace SanalPosTR.Providers.Est
                                 securityData
                             );
 
-                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Hash", Value = HashHelper.GetSHA1WithHexaDecimal(hashStr).ToUpper() });
+                Log.Debug("VerifyPayment - Garanti - Hash input: {HashInput}", hashStr);
 
-                return await base.VerifyPayment(paymentModel, collection);
+                var hashValue = HashHelper.GetSHA1WithHexaDecimal(hashStr).ToUpper();
+                Log.Debug("VerifyPayment - Garanti - Hash calculated: {Hash}", hashValue);
+
+                paymentModel.Attributes.Add(new SanalPosTRAttribute { Key = "Hash", Value = hashValue });
+
+                Log.Debug("VerifyPayment - Garanti - Calling base.VerifyPayment");
+                var result = await base.VerifyPayment(paymentModel, collection);
+
+                Log.Information("VerifyPayment - Garanti completed. oid: {OrderId}, Status: {Status}", collection["oid"], result.Status);
+
+                return result;
             }
             else
             {
+                Log.Information("VerifyPayment - Garanti completed (3D validation failed). mdstatus: {MdStatus}, mderrormessage: {MdError}", collection["mdstatus"], collection["mderrormessage"]);
                 string message = "3-D Secure doğrulanamadı";
 
                 switch (collection["mdstatus"].ToString())
@@ -216,8 +233,14 @@ namespace SanalPosTR.Providers.Est
             }
             else
             {
-                result.Error = TemplateHelper.GetInlineContent(serverResponse, "ErrorMsg");
+                result.Error = TemplateHelper.GetInlineContent(serverResponse, "ErrorMsg") ;
                 result.ErrorCode = TemplateHelper.GetInlineContent(serverResponse, "ReasonCode");
+
+                var sysErrMsg = TemplateHelper.GetInlineContent(serverResponse, "SysErrMsg");
+                if(!sysErrMsg.IsEmpty())
+                {
+                    result.Error += $" - {sysErrMsg}";
+                }
             }
 
             return result;

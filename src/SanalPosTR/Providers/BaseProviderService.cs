@@ -79,23 +79,19 @@ namespace SanalPosTR.Providers
 
         public virtual async Task<PaymentResult> ProcessPayment(PaymentModel paymentModel)
         {
-            Log.Information($"ProcessPayment-Start");
+            Log.Information("ProcessPayment started. Provider: {Provider}, Use3DSecure: {Use3DSecure}, OrderId: {OrderId}", GetType().Name, paymentModel.Use3DSecure, paymentModel.Order.OrderId);
 
-            //after may be fluent validation here
-            string resource = string.Empty;
-
-            if (paymentModel.Use3DSecure)
-                resource = $"{EmbededDirectory}.3D.xml";
-            else
-                resource = $"{EmbededDirectory}.Pay.xml";
+            string resource = paymentModel.Use3DSecure
+                ? $"{EmbededDirectory}.3D.xml"
+                : $"{EmbededDirectory}.Pay.xml";
 
             string embededResource = TemplateHelper.ReadEmbedResource(resource);
 
-            Log.Information($"ProcessPayment-ReadEmbedResource");
+            Log.Debug("ProcessPayment - EmbeddedResource loaded: {Resource}", resource);
 
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
 
-            Log.Information($"ProcessPayment-CompiledTemplate");
+            Log.Debug("ProcessPayment - Template compiled");
 
             if (viewModel.IsEmpty() == false)
             {
@@ -104,18 +100,24 @@ namespace SanalPosTR.Providers
 
                 if (paymentModel.Use3DSecure == false)
                 {
-                    Log.Information($"ProcessPayment-HttpPost - NonUse3DSecure");
+                    Log.Debug("ProcessPayment - Posting to bank endpoint: {BaseUrl}{Endpoint}", EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint);
 
-                    return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint, form, Handler);
+                    var result = await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.ApiEndPoint, form, Handler);
+
+                    Log.Information("ProcessPayment completed. Provider: {Provider}, OrderId: {OrderId}, Status: {Status}", GetType().Name, paymentModel.Order.OrderId, result.Status);
+
+                    return result;
                 }
                 else
                 {
-                    Log.Information($"ProcessPayment-HttpPost - Use3DSecure");
+                    Log.Debug("ProcessPayment - 3DSecure redirect content prepared");
 
                     PaymentResult paymentResult = new PaymentResult();
                     paymentResult.IsRedirectContent = true;
                     paymentResult.ServerResponseRaw = viewModel;
                     paymentResult.Status = true;
+
+                    Log.Information("ProcessPayment completed (3DSecure redirect). Provider: {Provider}, OrderId: {OrderId}", GetType().Name, paymentModel.Order.OrderId);
 
                     return paymentResult;
                 }
@@ -126,7 +128,7 @@ namespace SanalPosTR.Providers
 
         public virtual async Task<PaymentResult> VerifyPayment(VerifyPaymentModel paymentModel, IFormCollection collection)
         {
-            Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Process");
+            Log.Information("VerifyPayment started. Provider: {Provider}, OrderId: {OrderId}", GetType().Name, paymentModel.Order.OrderId);
 
             var postForm = GetPostForm();
             var resource = $"{EmbededDirectory}.3DEnd.xml";
@@ -134,13 +136,19 @@ namespace SanalPosTR.Providers
             string viewModel = OnCompilingTemplate(paymentModel, embededResource);
             postForm.Content = viewModel;
 
-            Log.Information($"{paymentModel.Order.OrderId} - VerifyPayment Http Post");
+            Log.Debug("VerifyPayment - Template compiled. Posting to: {BaseUrl}{Endpoint}", EndPointConfiguration.BaseUrl, EndPointConfiguration.SecureReturnEndPoint);
 
-            return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.SecureReturnEndPoint, postForm, Handler);
+            var result = await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.SecureReturnEndPoint, postForm, Handler);
+
+            Log.Information("VerifyPayment completed. Provider: {Provider}, OrderId: {OrderId}, Status: {Status}", GetType().Name, paymentModel.Order.OrderId, result.Status);
+
+            return result;
         }
 
         public virtual async Task<PaymentResult> ProcessRefound(Refund refund)
         {
+            Log.Information("ProcessRefund started. Provider: {Provider}", GetType().Name);
+
             var resource = $"{EmbededDirectory}.Refund.xml";
 
             string embededResource = TemplateHelper.ReadEmbedResource(resource);
@@ -149,7 +157,13 @@ namespace SanalPosTR.Providers
             var form = GetPostForm();
             form.Content = viewModel;
 
-            return await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.RefundEndPoint, form, Handler);
+            Log.Debug("ProcessRefund - Template compiled. Posting to: {BaseUrl}{Endpoint}", EndPointConfiguration.BaseUrl, EndPointConfiguration.RefundEndPoint);
+
+            var result = await HttpClient.Post(EndPointConfiguration.BaseUrl, EndPointConfiguration.RefundEndPoint, form, Handler);
+
+            Log.Information("ProcessRefund completed. Provider: {Provider}, Status: {Status}", GetType().Name, result.Status);
+
+            return result;
         }
 
         public abstract PostForm GetPostForm();
