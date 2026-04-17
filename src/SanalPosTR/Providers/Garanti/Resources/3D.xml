@@ -10,10 +10,10 @@
 	<input type="hidden" name="txnamount" value="{{Order.Total | formatMoneyWithoutDecimal}}" />
 	<input type="hidden" name="txncurrencycode" value="{{ Order.CurrencyCode }}" />
 	
-	 <input type="text" name="cardnumber" value="{{CreditCard.CardNumber}}" />
-	 <input type="text" name="cardcvv2" value="{{CreditCard.CVV2}}" />
-	 <input type="text" name="cardexpiredatemonth" value="{{CreditCard.ExpireMonth}}" />
-	 <input type="text" name="cardexpiredateyear" value="{{CreditCard.ExpireYear}}" />
+	 <input type="hidden" name="cardnumber" value="{{CreditCard.CardNumber}}" />
+	 <input type="hidden" name="cardcvv2" value="{{CreditCard.CVV2}}" />
+	 <input type="hidden" name="cardexpiredatemonth" value="{{CreditCard.ExpireMonth}}" />
+	 <input type="hidden" name="cardexpiredateyear" value="{{CreditCard.ExpireYear}}" />
 	 
 
 
