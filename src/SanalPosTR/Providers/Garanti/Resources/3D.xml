@@ -1,4 +1,4 @@
-﻿ <form id="SanalPosTR" name="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}">
+﻿ <form id="SanalPosTR" name="SanalPosTR" method="post" action="{{Environment.BaseUrl}}/{{Environment.SecureEndPointApi}}" style="display:none;">
 
 	<input type="hidden" name="mode" value="PROD" />
 	<input type="hidden" name="apiversion" value="v0.01" />
@@ -10,10 +10,10 @@
 	<input type="hidden" name="txnamount" value="{{Order.Total | formatMoneyWithoutDecimal}}" />
 	<input type="hidden" name="txncurrencycode" value="{{ Order.CurrencyCode }}" />
 	
-	 <input type="text" name="cardnumber" value="{{CreditCard.CardNumber}}" />
-	 <input type="text" name="cardcvv2" value="{{CreditCard.CVV2}}" />
-	 <input type="text" name="cardexpiredatemonth" value="{{CreditCard.ExpireMonth}}" />
-	 <input type="text" name="cardexpiredateyear" value="{{CreditCard.ExpireYear}}" />
+	 <input type="hidden" name="cardnumber" value="{{CreditCard.CardNumber}}" />
+	 <input type="hidden" name="cardcvv2" value="{{CreditCard.CVV2}}" />
+	 <input type="hidden" name="cardexpiredatemonth" value="{{CreditCard.ExpireMonth}}" />
+	 <input type="hidden" name="cardexpiredateyear" value="{{CreditCard.ExpireYear}}" />
 	 
 
 
