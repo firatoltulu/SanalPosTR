@@ -116,6 +116,15 @@ namespace SanalPosTR
             }
         }
 
+        public static string GetSHA256WithISO88599(string text)
+        {
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                byte[] bytes = sha256Hash.ComputeHash(Encoding.GetEncoding("ISO-8859-9").GetBytes(text));
+                return Convert.ToBase64String(bytes);
+            }
+        }
+
         public static string GetSHA512Base64(string text)
         {
             using (SHA512 sha = SHA512.Create())
@@ -123,6 +132,19 @@ namespace SanalPosTR
                 byte[] hashbytes = Encoding.UTF8.GetBytes(text);
                 byte[] inputbytes = sha.ComputeHash(hashbytes);
                 return Convert.ToBase64String(inputbytes);
+            }
+        }
+
+        public static string GetHMACSHA512Base64(string text, string key)
+        {
+            return GetHMACSHA512Base64(Encoding.UTF8.GetBytes(text), key);
+        }
+
+        public static string GetHMACSHA512Base64(byte[] data, string key)
+        {
+            using (var hmac = new HMACSHA512(Encoding.UTF8.GetBytes(key)))
+            {
+                return Convert.ToBase64String(hmac.ComputeHash(data));
             }
         }
 

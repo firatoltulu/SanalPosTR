@@ -64,6 +64,18 @@ namespace SanalPosTR
             return this;
         }
 
+        public IConfigurationService UseAkbankPos(AkbankPosConfiguration configuration)
+        {
+            Definition.BankConfiguration[BankTypes.AkbankPos] = configuration;
+            return this;
+        }
+
+        public IConfigurationService UseVakifBank(VakifBankConfiguration configuration)
+        {
+            Definition.BankConfiguration[BankTypes.VakifBank] = configuration;
+            return this;
+        }
+
         public IConfigurationService UseFromJSON(BankTypes bankTypes, string jsonValue)
         {
             var configuration = Definition.BankConfiguration[bankTypes];

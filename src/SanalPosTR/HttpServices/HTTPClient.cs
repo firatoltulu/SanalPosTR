@@ -1,5 +1,6 @@
 using Serilog;
 using System;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,52 +18,71 @@ namespace SanalPosTR
 
         public async Task<T> Post<T>(string baseUrl, string resource, PostForm post, Func<string, T> handler)
         {
-            var requestUri = CombineUrl(baseUrl, resource);
-            var content = BuildContent(post);
+            var response = await Send(baseUrl, resource, post);
 
-            var response = await _httpClient.PostAsync(requestUri, content);
-
-            if (response.IsSuccessStatusCode)
-            {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                return handler(responseBody);
-            }
-            else
-            {
-                var responseBody = await response.Content.ReadAsStringAsync();
-                Log.Warning("HTTP POST failed. Uri: {RequestUri}, StatusCode: {StatusCode}, Response: {ResponseBody}", requestUri, (int)response.StatusCode, responseBody);
-                return default;
-            }
+            return response.IsSuccess ? handler(response.Body) : default;
         }
 
         public async Task<PaymentResult> Post(string baseUrl, string resource, PostForm post, Func<string, PaymentResult> handler)
         {
-            var requestUri = CombineUrl(baseUrl, resource);
-            var content = BuildContent(post);
+            var response = await Send(baseUrl, resource, post);
 
-            PaymentResult paymentResult;
+            var paymentResult = response.IsSuccess
+                ? handler(response.Body)
+                : new PaymentResult { Status = false, Error = "[TIMEOUT]" };
 
-            var response = await _httpClient.PostAsync(requestUri, content);
-            var responseBody = await response.Content.ReadAsStringAsync();
-
-            if (response.IsSuccessStatusCode)
-            {
-                paymentResult = handler(responseBody);
-            }
-            else
-            {
-                Log.Warning("HTTP POST failed. Uri: {RequestUri}, StatusCode: {StatusCode}, Response: {ResponseBody}", requestUri, (int)response.StatusCode, responseBody);
-
-                paymentResult = new PaymentResult();
-                paymentResult.Status = false;
-                paymentResult.Error = "[TIMEOUT]";
-                paymentResult.ServerResponseRaw = responseBody;
-            }
-
-            paymentResult.ServerResponseRaw = responseBody;
+            paymentResult.ServerResponseRaw = response.Body;
             paymentResult.OrderContentRaw = post.Content;
 
             return paymentResult;
+        }
+
+        /// <summary>
+        /// İsteği gönderir ve yanıtı yorumlamadan döndürür; başarı ve hata anlamını çağıran belirler.
+        /// </summary>
+        public async Task<SanalPosHttpResponse> Send(string baseUrl, string resource, PostForm post)
+        {
+            var requestUri = CombineUrl(baseUrl, resource);
+
+            using (var request = BuildRequest(requestUri, post))
+            using (var response = await _httpClient.SendAsync(request))
+            {
+                var result = new SanalPosHttpResponse
+                {
+                    StatusCode = (int)response.StatusCode,
+                    IsSuccess = response.IsSuccessStatusCode,
+                    Body = await response.Content.ReadAsStringAsync(),
+                    RawBody = await response.Content.ReadAsByteArrayAsync()
+                };
+
+                foreach (var header in response.Headers.Concat(response.Content.Headers))
+                    result.Headers[header.Key] = string.Join(", ", header.Value);
+
+                if (!result.IsSuccess)
+                    Log.Warning("HTTP POST failed. Uri: {RequestUri}, StatusCode: {StatusCode}, Response: {ResponseBody}", requestUri, result.StatusCode, result.Body);
+
+                return result;
+            }
+        }
+
+        private static HttpRequestMessage BuildRequest(string requestUri, PostForm post)
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, requestUri)
+            {
+                Content = BuildContent(post)
+            };
+
+            foreach (var header in post.Headers)
+            {
+                // Content-Type gibi gövde başlıkları request.Headers'a eklenemez; gövdedeki değeri ezer.
+                if (!request.Headers.TryAddWithoutValidation(header.Key, header.Value))
+                {
+                    request.Content.Headers.Remove(header.Key);
+                    request.Content.Headers.TryAddWithoutValidation(header.Key, header.Value);
+                }
+            }
+
+            return request;
         }
 
         private static HttpContent BuildContent(PostForm post)
