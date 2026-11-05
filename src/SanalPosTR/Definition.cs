@@ -1,5 +1,7 @@
 ﻿using SanalPosTR.Configuration;
+using SanalPosTR.Providers.AkbankPos;
 using SanalPosTR.Providers.Est;
+using SanalPosTR.Providers.VakifBank;
 using SanalPosTR.Providers.Ykb;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,9 @@ namespace SanalPosTR
             { BankTypes.Isbank, typeof(NestPayProviderService) },
             { BankTypes.Ykb, typeof(YKBProviderServices) },
             { BankTypes.KuveytTurk, typeof(KuveytTurkProviderServices) },
-            { BankTypes.Garanti, typeof(GarantiProviderService) }
+            { BankTypes.Garanti, typeof(GarantiProviderService) },
+            { BankTypes.AkbankPos, typeof(AkbankPosProviderService) },
+            { BankTypes.VakifBank, typeof(VakifBankProviderService) }
 
         };
 
@@ -31,6 +35,8 @@ namespace SanalPosTR
             { BankTypes.Ykb,  new YKBConfiguration() },
             { BankTypes.KuveytTurk, new KuveytTurkConfiguration() },
             { BankTypes.Garanti, new GarantiConfiguration() },
+            { BankTypes.AkbankPos, new AkbankPosConfiguration() },
+            { BankTypes.VakifBank, new VakifBankConfiguration() },
 
         };
 
@@ -50,6 +56,18 @@ namespace SanalPosTR
                     SecureEndPointApi="boa.virtualpos.services/Home/ThreeDModelPayGate",
                     SecureReturnEndPoint="boa.virtualpos.services/Home/ThreeDModelProvisionGate"
                 }
+            },
+            {BankTypes.AkbankPos, new AkbankPosEndPointConfiguration
+                {
+                    BaseUrl = "https://apipre.akbank.com",
+                    GatewayBaseUrl = "https://virtualpospaymentgatewaypre.akbank.com"
+                }
+            },
+            {BankTypes.VakifBank, new VakifBankEndPointConfiguration
+                {
+                    BaseUrl = "https://inbound.apigatewaytest.vakifbank.com.tr:8443",
+                    EnrollmentBaseUrl = "https://inbound.apigatewaytest.vakifbank.com.tr:8443"
+                }
             }
         };
 
@@ -67,7 +85,19 @@ namespace SanalPosTR
                 BaseUrl="https://sanalpos.kuveytturk.com.tr",
                 SecureEndPointApi="ServiceGateWay/Home/ThreeDModelPayGate",
                 SecureReturnEndPoint="ServiceGateWay/Home/ThreeDModelProvisionGate"
-            } }
+            } },
+            {BankTypes.AkbankPos, new AkbankPosEndPointConfiguration
+                {
+                    BaseUrl = "https://api.akbank.com",
+                    GatewayBaseUrl = "https://virtualpospaymentgateway.akbank.com"
+                }
+            },
+            {BankTypes.VakifBank, new VakifBankEndPointConfiguration
+                {
+                    BaseUrl = "https://apigw.vakifbank.com.tr:8443",
+                    EnrollmentBaseUrl = "https://inbound.apigateway.vakifbank.com.tr:8443"
+                }
+            }
         };
     }
 }

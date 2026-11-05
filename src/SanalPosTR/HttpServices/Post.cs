@@ -27,6 +27,8 @@ namespace SanalPosTR
         public string PreTag { get; set; }
 
         public List<SanalPosTRAttribute> Parameters { get; set; } = new List<SanalPosTRAttribute>();
+
+        public Dictionary<string, string> Headers { get; set; } = new Dictionary<string, string>();
     }
 
     public enum SendParameterType

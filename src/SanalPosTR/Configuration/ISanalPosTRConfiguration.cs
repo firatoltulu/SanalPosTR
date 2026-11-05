@@ -23,6 +23,11 @@
         IConfigurationService UseZiraat(NestPayConfiguration configuration);
 
         IConfigurationService UseKuveytTurk(KuveytTurkConfiguration configuration);
+
+        IConfigurationService UseAkbankPos(AkbankPosConfiguration configuration);
+
+        IConfigurationService UseVakifBank(VakifBankConfiguration configuration);
+
         IConfigurationService SetBankEnvironment(BankTypes bankTypes, bool useTest);
     }
 }

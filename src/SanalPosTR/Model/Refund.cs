@@ -14,6 +14,8 @@ namespace SanalPosTR.Model
 
         public string CurrencyCode { get; set; }
 
+        public string ClientIp { get; set; }
+
         public Refund Clone()
         {
             var clonedObj = ObjectCopier.Clone(this); ;

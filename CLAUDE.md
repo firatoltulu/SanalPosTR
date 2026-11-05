@@ -52,11 +52,13 @@ dotnet pack src/SanalPosTR/SanalPosTR.csproj --configuration Release -o bin/Rele
 ## Supported Banks
 | Bank | Provider | Status |
 |------|----------|--------|
-| Ziraat, Akbank, Finans, İşbank, Halk, Anadolu, TEB | NestPay/EST | Implemented |
+| Ziraat, Akbank (legacy), Finans, İşbank, Halk, Anadolu, TEB | NestPay/EST | Implemented |
 | Yapı Kredi (YKB) | Posnet | Implemented |
 | Garanti | Garanti | Implemented |
 | Kuveyt Türk | BOA | Implemented (3D only, no refund) |
-| DenizBank, VakıfBank | - | Not yet implemented |
+| Akbank new infrastructure (`AkbankPos`) | AkbankPos (JSON + HMAC-SHA512) | Implemented (3D Model, non-3D, refund) |
+| VakıfBank | VPOS 7/24 (XML `prmstr`, 3DS Metodu cardless provision) | Implemented (3D, non-3D, refund) |
+| DenizBank | - | Not yet implemented |
 
 ## Payment Flows
 1. **Standard**: `ProcessPayment()` → render XML template → POST to bank → parse response
@@ -72,7 +74,7 @@ dotnet pack src/SanalPosTR/SanalPosTR.csproj --configuration Release -o bin/Rele
 - Structured logging format: `Log.Information("Message {Placeholder}", value)` — no string interpolation
 
 ## Important Notes
-- Bank-specific hash algorithms: NestPay uses SHA1, YKB uses SHA256, Garanti uses SHA1 hex, Kuveyturk uses UTF-8 SHA1
+- Bank-specific hash algorithms: AkbankPos uses HMAC-SHA512 (Base64, key = secretKey UTF-8), VakıfBank callback uses SHA-256 over ISO-8859-9 (Base64), NestPay uses SHA1, YKB uses SHA256, Garanti uses SHA1 hex, Kuveyturk uses UTF-8 SHA1
 - ISO-8859-9 (Turkish) encoding support is registered via CodePages
 - XML templates are embedded resources under `Resources/{Provider}/`
 - Definition.cs is the central registry mapping BankTypes → providers, configs, and URLs

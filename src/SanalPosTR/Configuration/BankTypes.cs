@@ -14,6 +14,7 @@
         Anadolubank = 9,
         TEB = 10,
         KuveytTurk = 11,
+        AkbankPos = 12,
         None = 99
     }
 }

@@ -36,8 +36,9 @@ SanalPosTR, Türkiye'deki bankaların sanal POS sistemlerini tek bir ortak aray�
 | Yapı Kredi (YKB) | Posnet | ✅ | ✅ | ✅ |
 | Garanti BBVA | Garanti | ✅ | ✅ | ✅ |
 | Kuveyt Türk | BOA | ✅ | ❌ | ❌ |
+| Akbank (yeni altyapı, `AkbankPos`) | Akbank Sanal POS (JSON, HMAC-SHA512) | ✅ | ✅ | ✅ |
 | DenizBank | — | ❌ | ❌ | ❌ |
-| VakıfBank | — | ❌ | ❌ | ❌ |
+| VakıfBank | VPOS 7/24 (XML, 3DS Metodu; callback SHA-256) | ✅ | ✅ | ✅ |
 
 > **Not:** Kuveyt Türk yalnızca 3D Secure üzerinden ödeme destekler. Normal ödeme ve iade henüz implementasyona dahil değildir.
 
@@ -331,6 +332,47 @@ options.UseKuveytTurk(new KuveytTurkConfiguration
 });
 ```
 
+### Akbank yeni altyapı (AkbankPos)
+
+Değerler Akbank Test Store'da (sanalposteststore-prep.akbank.com) herkese açık yayınlanan ortak test işyeri. Eski NestPay altyapısı `UseAkbank` ile ayrıca kullanılabilir.
+
+```csharp
+options.UseAkbankPos(new AkbankPosConfiguration
+{
+    MerchantSafeId = "2023090417500272654BD9A49CF07574",
+    TerminalSafeId = "2023090417500284633D137A249DBBEB",
+    SecretKey = "3230323330393034313735303032363031353172675f357637355f3273387373745f7233725f73323333383737335f323272383774767276327672323531355f",
+    UseTestEndPoint = true
+});
+```
+
+### VakıfBank
+
+Değerler Rehber v1.4 §2.2'deki herkese açık test üye işyeri:
+
+```csharp
+options.UseVakifBank(new VakifBankConfiguration
+{
+    MerchantId = "000100000013506", // Üye işyeri numarası
+    TerminalNo = "VP000579",        // POS numarası (yalnız provizyonda)
+    Password = "123456",            // Üye işyeri şifresi
+    UseTestEndPoint = true
+});
+```
+
+Test kartları (Rehber §2.3, 3D şifresi `123456`):
+
+| Kart | Son kullanma (YYAA) | CVV |
+|------|---------------------|-----|
+| 4938410109068353 | 2912 | 503 |
+| 4938410157705591 | 2912 | 453 |
+| 5421190122944522 | 2804 | 466 |
+| 5521010140829928 | 2912 | 691 |
+| 6501700122153568 | 2811 | 488 |
+
+- 3D dönüş adresi (`SiteSuccessUrl`/`SiteFailUrl`) internetten erişilebilir HTTPS olmalı; `localhost` içeren adresleri banka kabul etmiyor.
+- 3D'li satış için üye işyerinin 3DS yetkisi bankaya açtırılmalı (sanalpos@vakifbank.com.tr).
+
 ### Ortam Ayarları
 
 ```csharp
@@ -558,7 +600,6 @@ dotnet pack src/SanalPosTR/SanalPosTR.csproj --configuration Release -o bin/Rele
 Katkılarınızı memnuniyetle karşılıyoruz! Özellikle şu alanlarda katkıya açığız:
 
 - **DenizBank** entegrasyonu
-- **VakıfBank** entegrasyonu
 - Mevcut sağlayıcılar için eksik özellikler (Kuveyt Türk normal ödeme ve iade)
 - Birim test kapsamının artırılması
 
